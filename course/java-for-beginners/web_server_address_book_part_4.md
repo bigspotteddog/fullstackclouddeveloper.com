@@ -1,0 +1,5 @@
+## Full Stack Address Book - Part 4
+
+In part 4 of this exercise, we will add a bootstrap table to our web page to display the addresses we have added to the server. We will use JavaScript to fetch the addresses added, to display the address on page load, and to add newly added rows to the table.
+
+We leverage JavaScript template literal strings to create our table rows and the assigment operator `+=` to create the table body on page load. When adding a new record, we add it to the bottom of the table by adding to the innerHTML of the table body. This is probably not optimal and we will refactor this in a later part of the exercise. It is probably better to keep the records in memory on the client on page load, then add to this array, sort the records, then display them. That is the most likely refactor we will make later on.

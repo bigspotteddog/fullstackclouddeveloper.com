@@ -1,0 +1,3 @@
+## Full Stack Address Book - Part 2
+
+In part 2 of this exercise, we will learn how to send an address to the server as `JSON` data using the `URL Fetch API` and `JavaScript`. We will use `JavaScript` to get the `value` of the form input elements, create an address object and send it to the server in a `POST` request. We will also learn how to prevent the form from doing its default action so our page will behave like a single page application. 
