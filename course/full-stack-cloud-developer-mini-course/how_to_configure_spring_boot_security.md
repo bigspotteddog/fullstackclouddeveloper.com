@@ -171,7 +171,7 @@ Let's start with basic authentication which uses the browser to handle login and
 
 1. Restart the server and navigate to any of the links above. Enter the username `admin` and password `password` when you want to login.
 
-    ![Basic authentication](/images/basic_auth.png)
+    ![Basic authentication](/img/basic_auth.png)
 
 ## Upgrading to form based basic authentication
 
@@ -194,7 +194,7 @@ Spring Boot will automatically generate a login form for us to replace the brows
 
 1. Restart the server and navigate to any of the links above. Enter the username `admin` and password `password` when you want to login.
 
-    ![Form authentication](/images/form_login.png)
+    ![Form authentication](/img/form_login.png)
 
 ## Adding logout
 

@@ -56,7 +56,7 @@ To open the Chrome Developer Tools in a way that we can edit the page and save t
 
     1. Download a new background image. We will download this one:
 
-        ![Background image](/images/bg-coding.jpeg)
+        ![Background image](/img/bg-coding.jpeg)
 
     1. Copy the downloaded image to our website `img` folder at ~/Downloads/my-application/src/main/resources/static/assets/img
 

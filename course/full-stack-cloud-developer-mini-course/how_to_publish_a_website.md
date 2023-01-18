@@ -10,7 +10,7 @@ Follow along with the video that will walk you through this process step by step
 
     1. Choose a template and download it. We will download this one:
 
-        ![Landing page](/images/landing-page.jpeg)
+        ![Landing page](/img/landing-page.jpeg)
 
     1. Extract the downloaded template
 
