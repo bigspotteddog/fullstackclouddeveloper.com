@@ -15,7 +15,7 @@ Design and develop an online marketplace for customer order processing and merch
 
 * Backend Development
 
-  Develop RESTful web APIs to manage customer orders and maintain merchant products for an online marketplace, leveraging Java and SpringBoot, connected to a PostgreSQL database using JPA to implement data access objects in using JDBC and SQL to create, read, update, and delete database records. Use Liquibase for database schema maintenance. Test-driven development (TDD) used to create backend unit tests using JUnit and Mockito.
+  Develop RESTful web APIs to manage customer orders and maintain merchant products for an online marketplace, leveraging Java and SpringBoot, connected to a PostgreSQL database using JPA to implement data access objects in using JDBC and SQL to create, read, update, and delete database records. Use Liquibase for database schema maintenance. Test-driven development (TDD) used to create backend unit tests using JUnit and Mockito. Payment processing using Stripe.
 
 * DevOps
 
