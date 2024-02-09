@@ -4,7 +4,6 @@ This could be your resume after taking this course :)
 bob.roberts@gmail.com
 
 ## Project Experience
----
 ### Full Stack Web Developer
 
 ##### My Online Marketplace, June 2023 - Present
