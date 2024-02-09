@@ -1,4 +1,4 @@
-This could be your resume after taking this course :)
+This could be your resume after taking this course.
 
 # Bob Roberts
 bob.roberts@gmail.com
