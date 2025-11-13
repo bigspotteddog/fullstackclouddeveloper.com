@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 3: Introduction to Bootstrap</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --accent-color: #3b82f6;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --code-bg: #f8fafc;
+            --code-border: #e2e8f0;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .layout-container {
+            display: flex;
+            min-height: calc(100vh - 58px);
+        }
+
+        /* Left Instruction Panel */
+        .instruction-panel {
+            width: 50%;
+            background-color: var(--bg-primary);
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+            position: fixed;
+            height: calc(100vh - 58px);
+            left: 0;
+            top: 58px;
+        }
+
+        .instruction-header {
+            padding: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-secondary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-button {
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-button:hover {
+            background-color: #2563eb;
+            transform: translateY(-1px);
+            color: white;
+            text-decoration: none;
+        }
+
+        .instruction-header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .lesson-meta {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .instruction-content {
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .section h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .section p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .objectives-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .objectives-list li {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background-color: var(--bg-tertiary);
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .objectives-list li .icon {
+            color: var(--accent-color);
+            margin-top: 0.125rem;
+            font-size: 0.875rem;
+        }
+
+        .explanation-box {
+            background-color: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--success-color);
+        }
+
+        .explanation-box h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tag-explanation {
+            background-color: var(--code-bg);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            border: 1px solid var(--code-border);
+        }
+
+        .tag-item {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1.25rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tag-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .tag-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tag-name {
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.875rem;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .tag-purpose {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .tag-description {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+        }
+
+        .progress-container {
+            background-color: var(--bg-tertiary);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-bar {
+            background-color: var(--border-color);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .progress-fill {
+            background-color: var(--accent-color);
+            height: 100%;
+            width: 10%;
+            transition: width 0.3s ease;
+            border-radius: 4px;
+        }
+
+        /* Right Hands-on Panel */
+        .hands-on-panel {
+            width: 50%;
+            margin-left: 50%;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--bg-primary);
+            height: calc(100vh - 58px);}
+
+        .hands-on-header {
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hands-on-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .activity-badge {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .editor-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+            gap: 1rem;
+            height: calc(100vh - 58px - 4rem);
+            overflow: hidden;
+        }
+
+        .editor-section {
+            flex: 1;
+            background-color: var(--bg-primary);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .editor-header {
+            background-color: var(--bg-secondary);
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .editor-title {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .run-button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .run-button:hover {
+            background-color: #7c3aed;
+            transform: translateY(-1px);
+        }
+
+        #editor {
+            flex: 1;
+            width: 100%;
+            min-height: 300px;
+        }
+
+        .output-section {
+            flex: 1;
+            background-color: var(--bg-primary);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .output-header {
+            background-color: var(--bg-secondary);
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+        }
+
+        .expand-btn {
+            background: none;
+            border: none;
+            padding: 0.25rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            border-radius: 4px;
+            line-height: 0;
+        }
+
+        .expand-btn:hover {
+            background-color: var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .expand-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        #output {
+            flex: 1;
+            background: white;
+            border: none;
+            width: 100%;
+            min-height: 0;
+        }
+
+        .tip-box {
+            background-color: #fef3c7;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 4px solid var(--warning-color);
+        }
+
+        .tip-box h5 {
+            color: #92400e;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tip-box p {
+            color: #92400e;
+            margin: 0;
+            font-size: 0.9375rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .layout-container {
+                flex-direction: column;
+            }
+
+            .instruction-panel {
+                width: 100%;
+                height: auto;
+                position: relative;
+                top: 0;
+            }
+
+            .hands-on-panel {
+                width: 100%;
+                margin-left: 0;
+                margin-top: 0;
+                min-height: calc(100vh - 58px);
+                height: auto;
+            }
+
+            .editor-container {
+                height: calc(100vh - 58px - 2rem);
+            }
+
+            .instruction-header,
+            .hands-on-header {
+                padding: 1rem;
+            }
+
+            .instruction-content {
+                padding: 1rem;
+            }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="auth-container">
+        <style>
+            .navbar {
+                border-bottom: 1px solid #dedede;
+            }
+
+            .layout-container {
+                min-height: calc(100vh - 58px);
+            }
+
+            .instruction-panel {}
+        </style>
+        <nav class="navbar navbar-expand bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">Learn to Decode - Classes</a>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <!-- <div class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link" href="#">Features</a>
+                        <a class="nav-link" href="#">Pricing</a>
+                    </div> -->
+                </div>
+                <div id="profile-container" class="dropdown d-none">
+                    <img id="profile-picture" src="" class="rounded-circle dropdown-toggle"
+                        style="width: 40px; height: 40px;" data-bs-toggle="dropdown" aria-expanded="false">
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <h6 class="dropdown-header" id="profile-nickname"></h6>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#" id="logout-button">Logout</a></li>
+                    </ul>
+                </div>
+                <div class="ms-auto">
+                    <div id="login-container" class="d-none">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a class="nav-link" href="#" id="sign-up-button">Sign Up</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#" id="login-button">Login</a></li>
+                        </ul>
+                    </div>
+                    <div id="profile-container" class="dropdown d-none">
+                        <a href="#">
+                            <img id="profile-picture" src="" class="rounded-circle dropdown-toggle"
+                                style="width: 40px; height: 40px;" data-bs-toggle="dropdown" aria-expanded="false">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <h6 class="dropdown-header" id="profile-nickname"></h6>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#" id="logout-button">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+        <script src="auth0-service.js"></script>
+        <script src="login.js"></script>
+    </div>
+
+    <div class="layout-container">
+        <!-- Left Instruction Panel -->
+        <div class="instruction-panel">
+            <div class="instruction-header">
+                <div>
+                    <h1>Lesson 3: Introduction to Bootstrap</h1>
+                    <div class="lesson-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock text-muted"></i>
+                            <span>45 minutes</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-users text-muted"></i>
+                            <span>Ages 8-18+</span>
+                        </div>
+                    </div>
+                </div>
+                <a href="index.html?lesson=3" class="back-button">
+                    <i class="fas fa-arrow-left"></i> Back to Lessons
+                </a>
+            </div>
+
+            <div class="instruction-content">
+                <div class="progress-container">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="fw-medium">Lesson Progress</span>
+                        <span class="text-muted" id="progress-text">10%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fab fa-bootstrap"></i> What You'll Learn Today</h2>
+                    <p>Today, we're going to learn a powerful shortcut for making beautiful websites: Bootstrap! It's a
+                        free toolkit of pre-made CSS and JavaScript components that lets you build professional-looking
+                        pages without writing a lot of custom style code.</p>
+
+                    <div class="explanation-box">
+                        <h4><i class="fas fa-question-circle"></i> Why Use a CSS Framework?</h4>
+                        <p>Imagine building a castle with individual bricks versus using large, pre-built wall sections.
+                            A CSS framework like Bootstrap is like having those pre-built sections. It saves a huge
+                            amount of time and ensures your website looks great on all devices, from phones to
+                            big-screen TVs.</p>
+                    </div>
+
+                    <h3>Learning Objectives</h3>
+                    <ul class="objectives-list">
+                        <li>
+                            <i class="fas fa-check-circle icon"></i>
+                            <div>
+                                <strong>Understand what a CSS framework is</strong> and why they are so popular.
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle icon"></i>
+                            <div>
+                                <strong>Include Bootstrap in a project</strong> using a CDN link.
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle icon"></i>
+                            <div>
+                                <strong>Use Bootstrap's grid system</strong> and pre-styled components like cards and
+                                buttons.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-magic"></i> How to Add Bootstrap to Your Page</h2>
+                    <p>Imagine you want to build a giant LEGO castle. You could make every single brick yourself, or you
+                        could use special, pre-made castle wall pieces that someone else designed. Bootstrap is like a
+                        giant box of pre-made LEGO pieces for your website!</p>
+                    <p>But how do we get that box of pieces? We use a special HTML tag called <code>&lt;link&gt;</code>
+                        to connect to a <strong>CDN</strong>.</p>
+
+                    <div class="tag-explanation">
+                        <div class="tag-item">
+                            <div class="tag-header">
+                                <span class="tag-name">&lt;link&gt;</span>
+                                <span class="tag-purpose">Connects to other files</span>
+                            </div>
+                            <div class="tag-description">
+                                This tag, which goes in your <code>&lt;head&gt;</code> section, creates a connection to
+                                another file. We use it to link to our Bootstrap CSS file. Think of it as telling your
+                                webpage: "Hey, go use all the cool styles from this other file!"
+                            </div>
+                        </div>
+                        <div class="tag-item">
+                            <div class="tag-header">
+                                <span class="tag-name">CDN</span>
+                                <span class="tag-purpose">Content Delivery Network</span>
+                            </div>
+                            <div class="tag-description">
+                                The Bootstrap file is hosted on the internet on something called a CDN. A CDN is like a
+                                super-fast online library for code. By linking to the CDN, we don't have to download the
+                                file ourselves. Our webpage can just borrow it from the library whenever it needs it!
+                                You can see the CDN link in the editor inside the <code>&lt;head&gt;</code>.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-puzzle-piece"></i> Understanding Bootstrap Classes</h2>
+                    <p>Bootstrap works by providing you with a huge library of CSS classes. Instead of writing your own
+                        styles, you just add these classes to your HTML elements.</p>
+
+                    <div class="tag-explanation">
+                        <div class="tag-item">
+                            <div class="tag-header">
+                                <span class="tag-name">.container</span>
+                                <span class="tag-purpose">Page Layout</span>
+                            </div>
+                            <div class="tag-description">
+                                This class provides a centered, fixed-width container for your content, making it look
+                                neat and organized.
+                            </div>
+                        </div>
+
+                        <div class="tag-item">
+                            <div class="tag-header">
+                                <span class="tag-name">.row</span> & <span class="tag-name">.col-md-6</span>
+                                <span class="tag-purpose">Grid System</span>
+                            </div>
+                            <div class="tag-description">
+                                The grid is the foundation of Bootstrap layouts. You create a <code>.row</code> and then
+                                place columns (like <code>.col-md-6</code>) inside it. This example creates two columns
+                                that each take up half the screen on medium-sized devices and larger.
+                            </div>
+                        </div>
+
+                        <div class="tag-item">
+                            <div class="tag-header">
+                                <span class="tag-name">.card</span> & <span class="tag-name">.alert</span>
+                                <span class="tag-purpose">Components</span>
+                            </div>
+                            <div class="tag-description">
+                                Bootstrap comes with dozens of pre-styled components. <code>.card</code> is perfect for
+                                showing content in a neat box, and <code>.alert</code> is great for displaying messages.
+                            </div>
+                        </div>
+                        <div class="tag-item">
+                            <div class="tag-header">
+                                <span class="tag-name">.btn</span> & <span class="tag-name">.btn-primary</span>
+                                <span class="tag-purpose">Utility Classes</span>
+                            </div>
+                            <div class="tag-description">
+                                Utility classes are simple, single-purpose classes. <code>.btn</code> styles a button,
+                                and <code>.btn-primary</code> gives it a blue color. You can combine many utility
+                                classes to style elements quickly.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-tasks"></i> Your Mission: Build with Bootstrap</h2>
+                    <p>Your mission is to use Bootstrap classes to structure and style the plain HTML in the editor. You
+                        don't need to write any CSS in the <code>&lt;style&gt;</code> tag for this lesson!</p>
+
+                    <div class="tip-box">
+                        <h5><i class="fas fa-lightbulb"></i> Pro Tip</h5>
+                        <p>Notice the Bootstrap CSS file is already linked in the <code>&lt;head&gt;</code>. All you
+                            have to do is add the correct classes to the HTML elements in the <code>&lt;body&gt;</code>.
+                        </p>
+                    </div>
+
+                    <ul class="objectives-list">
+                        <li>
+                            <i class="fas fa-edit icon"></i>
+                            <div>
+                                <strong>Step 1: Create the main container.</strong> Wrap everything inside the
+                                <code>&lt;body&gt;</code> with a <code>&lt;div class="container mt-5"&gt;</code>. The
+                                <code>mt-5</code> is a utility class that adds margin to the top.
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-plus icon"></i>
+                            <div>
+                                <strong>Step 2: Add the title.</strong> Give the <code>&lt;h1&gt;</code> the classes
+                                <code>text-center</code> and <code>text-primary</code> to center it and make it blue.
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-columns icon"></i>
+                            <div>
+                                <strong>Step 3: Build the grid.</strong> Wrap the two inner <code>&lt;div&gt;</code>s
+                                with a <code>&lt;div class="row"&gt;</code>. Then, give each of the inner
+                                <code>&lt;div&gt;</code>s the class <code>col-md-6</code>. Let's break that down:
+                                <ul>
+                                    <li><strong>col</strong> stands for Column.</li>
+                                    <li><strong>md</strong> stands for "medium". This means the rule applies to
+                                        medium-sized screens (like tablets and desktops) and larger. On smaller screens,
+                                        the columns will stack on top of each other.</li>
+                                    <li><strong>6</strong> means the column should take up 6 of the 12 available units
+                                        in the row. So, two <code>col-md-6</code> divs will each take up half the space
+                                        (6 + 6 = 12).</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-credit-card icon"></i>
+                            <div>
+                                <strong>Step 4: Style the card.</strong> For the first column, add the <code>card</code>
+                                class to the outer div and <code>card-body</code> to the inner div. Add the classes
+                                <code>card-title</code> to the h5, <code>card-text</code> to the p, and
+                                <code>btn btn-primary</code> to the button.
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-exclamation-triangle icon"></i>
+                            <div>
+                                <strong>Step 5: Style the alert.</strong> For the second column, add the classes
+                                <code>alert alert-success</code> to the div.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-home"></i> Take It Home</h2>
+                    <p>Experiment with other Bootstrap components! Try adding an
+                        <code>&lt;div class="alert alert-warning"&gt;</code> or a
+                        <code>&lt;button class="btn btn-danger"&gt;</code>. In our next lesson, we'll bring our pages to
+                        life with JavaScript!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Hands-on Panel -->
+        <div class="hands-on-panel">
+            <div class="hands-on-header">
+                <h2 class="hands-on-title">Bootstrap Editor</h2>
+                <span class="activity-badge">Activity: Using Bootstrap Classes</span>
+            </div>
+
+            <div class="editor-container">
+                <!-- Code Editor -->
+                <div class="editor-section">
+                    <div class="editor-header">
+                        <div class="editor-title">
+                            <i class="fas fa-file-code"></i>
+                            index.html
+                        </div>
+                        <button class="run-button" onclick="runCode()">
+                            <i class="fas fa-play"></i> Run Code
+                        </button>
+                    </div>
+                    <div id="editor"></div>
+                </div>
+
+                <!-- Output -->
+                <div class="output-section">
+                    <div class="output-header">
+                        <div class="d-flex align-items-center" style="gap: 0.5rem;">
+                            <i class="fas fa-desktop"></i>
+                            <span>Live Preview</span>
+                        </div>
+                        <button class="expand-btn" id="openPreviewBtn" title="Open in new tab">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
+                            </svg>
+                        </button>
+                    </div>
+                    <iframe id="output"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.min.js"></script>
+    <script>
+        // Define openPreviewInNewTab in global scope so it can be accessed by the button
+        let globalEditor;
+
+        function openPreviewInNewTab() {
+            if (globalEditor) {
+                const code = globalEditor.getValue();
+                const blob = new Blob([code], { type: 'text/html' });
+                const url = URL.createObjectURL(blob);
+                window.open(url, '_blank');
+            }
+        }
+
+        let editor;
+
+        // Initialize Monaco Editor
+        require.config({ paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs' } });
+        require(['vs/editor/editor.main'], function () {
+            editor = monaco.editor.create(document.getElementById('editor'), {
+                value: `<!DOCTYPE html>
+<html>
+<head>
+    <title>Bootstrap Fun</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Your mission: Add Bootstrap classes here! -->
+    <h1>Hello Bootstrap!</h1>
+    <div>
+        <div>
+            <div>
+                <div>
+                    <h5>Bootstrap Card</h5>
+                    <p>This professional-looking card was made with just Bootstrap classes!</p>
+                    <button>Learn More</button>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div>
+                <h6>Success!</h6>
+                <p>Bootstrap makes styling so much easier!</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>`,
+                language: 'html',
+                theme: 'vs',
+                fontSize: 14,
+                minimap: { enabled: false },
+                scrollBeyondLastLine: false,
+                automaticLayout: true,
+                tabSize: 2,
+                insertSpaces: true,
+                wordWrap: 'on',
+                lineNumbers: 'on',
+                folding: true,
+                bracketMatching: 'always',
+                autoIndent: 'full'
+            });
+
+            // Store reference to global scope
+            globalEditor = editor;
+
+            // Auto-run code when user stops typing
+            let timeout;
+            editor.onDidChangeModelContent(() => {
+                clearTimeout(timeout);
+                timeout = setTimeout(runCode, 500);
+            });
+
+            // Initial run
+            runCode();
+
+            // Attach event listener to the open preview button
+            document.getElementById('openPreviewBtn').addEventListener('click', openPreviewInNewTab);
+        });
+
+        function runCode() {
+            const code = editor.getValue();
+            const output = document.getElementById('output');
+
+            const blob = new Blob([code], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+
+            output.src = url;
+
+            updateProgress(code);
+        }
+
+        function updateProgress(code) {
+            const progressFill = document.querySelector('.progress-fill');
+            const progressText = document.getElementById('progress-text');
+            let progress = 10;
+
+            if (code.includes('class="container')) progress += 15;
+            if (code.includes('class="row')) progress += 15;
+            if (code.includes('class="col-md-6')) progress += 15;
+            if (code.includes('class="card"')) progress += 15;
+            if (code.includes('class="card-body"')) progress += 10;
+            if (code.includes('class="btn btn-primary"')) progress += 10;
+            if (code.includes('class="alert alert-success"')) progress += 10;
+
+            const finalProgress = Math.min(progress, 100);
+            progressFill.style.width = finalProgress + '%';
+            progressText.textContent = finalProgress + '%';
+        }
+
+        login();
+    </script>
+</body>
+
+</html>

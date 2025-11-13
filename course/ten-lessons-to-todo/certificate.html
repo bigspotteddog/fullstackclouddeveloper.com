@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Certificate of Completion</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;500;700&display=swap');
+        
+        body {
+            display: flex;
+            justify-content: center;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .certificate-container {
+            position: relative;
+            text-align: center;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .certificate-header {
+            margin-bottom: 20px;
+        }
+        
+        .certificate-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: #000000;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            line-height: 1.1;
+        }
+        
+        .certificate-subtitle {
+            font-size: 1.5rem;
+            color: #4a5568;
+            font-weight: 500;
+        }
+        
+        .award-text {
+            font-size: 1.5rem;
+            color: #4a5568;
+            margin: 20px 0;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+        
+        .recipient-name {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.8rem;
+            color: #000000;
+            margin: 10px 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            line-height: 1.1;
+        }
+        
+        .course-name {
+            font-size: 1.5rem;
+            color: #4a5568;
+            margin: 5px 0;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .description {
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin: 10px 0;
+            line-height: 1.3;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .signature-section {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px 0 10px;
+            flex-wrap: wrap;
+        }
+        
+        .signature {
+            text-align: center;
+            margin: 0 20px;
+        }
+        
+        .signature-line {
+            width: 200px;
+            height: 1px;
+            background: #4a5568;
+        }
+        
+        .signature-text {
+            font-size: 1rem;
+            color: #4a5568;
+        }
+        
+        .signature-name {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            color: #000000;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            line-height: 1.1;
+        }
+        
+        .date-section {
+            margin: 10px 0 5px;
+            font-size: 1.2rem;
+            color: #4a5568;
+        }
+        
+        .certificate-id {
+            font-size: 0.9rem;
+            color: #a0aec0;
+            margin-top: 5px;
+        }
+        
+        body .print-button {
+            position: absolute;
+            bottom: -60px;
+            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        body.printing .print-button {
+            display: none;
+        }
+
+        .print-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        .print-button:active {
+            /* transform: translateY(0); */
+        }
+        
+        .logo {
+            font-size: xx-large;
+            font-weight: 700;
+            color: #333333;
+        }
+        
+        @media print {
+
+            body {
+                page-break-after: avoid !important;
+                page-break-before: avoid !important;
+            }
+
+            body .pagedjs_page {
+                box-shadow: none;
+            }
+
+            body .pagedjs_page {
+                box-shadow: 0px 0px 8px #aaaaaa;
+            }
+
+            body.printing .pagedjs_page {
+                box-shadow: none;
+            }
+
+            @page {
+                size: 11in 8.5in;
+                margin-top: 1in;
+                margin-bottom: 1in;
+            }
+
+            @page :left {
+                margin-left: 1in;
+                margin-right: 1in;
+            }
+
+            @page :right {
+                margin-left: 1in;
+                margin-right: 1in;
+            }
+
+            html, body {
+                background: white;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .certificate-container {
+                box-shadow: none;
+                border-radius: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            
+            .certificate-border {
+                border: none;
+                padding: 0;
+                height: 100%;
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: column;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="certificate-container">
+        <div class="certificate-border">            
+            <div class="certificate-header">
+                <h1 class="certificate-title">Certificate of Completion</h1>
+            </div>
+            
+            <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                <p class="logo">Full Stack Cloud Developer</p>
+
+                <p class="award-text">Proudly awards this certificate to</p>
+                
+                <h2 class="recipient-name" id="studentName">[Student Name]</h2>
+                
+                <p class="course-name">Ten Lessons to Todo</p>
+                
+                <p class="description mt-0 mb-2">
+                    HTML, CSS, & JavaScript
+                </p>
+                
+                <p class="description">
+                    For successfully completing the 10-lesson journey from creating their first "Hello World" webpage 
+                    to building a fully functional Todo List application with data persistence.
+                </p>
+            </div>
+            
+            <div class="signature-section">
+                <div class="signature">
+                    <div class="signature-name" id="instructorSignature">[Instructor Signature]</div>
+                    <div class="signature-line"></div>
+                    <div class="signature-text" id="instructorName">[Instructor Name]</div>
+                </div>
+                
+                <div class="signature">
+                    <div class="signature-name" id="dateSignature">[Date]</div>
+                    <div class="signature-line"></div>
+                    <div class="signature-text">Date</div>
+                </div>
+            </div>
+            
+            <div class="certificate-id">
+                Certificate ID: <span id="certificateId">[Certificate ID]</span>
+            </div>
+            
+            <button class="print-button" onclick="printCertificate()">
+                <i class="fas fa-print"></i> Print Certificate
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Generate a random certificate ID
+        function generateCertificateId() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let result = '';
+            for (let i = 0; i < 8; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
+        }
+        
+        // Set the completion date to today
+        function setCompletionDate() {
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return now.toLocaleDateString('en-US', options);
+        }
+        
+        // Get student name from URL parameter or prompt
+        function getStudentName() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const name = urlParams.get('name');
+            if (name) {
+                return decodeURIComponent(name);
+            }
+            
+            // If no name in URL, prompt user
+            const promptName = prompt("Congratulations! Please enter your name for your certificate:", "Student Name");
+            return promptName || "Student Name";
+        }
+        
+        // Get instructor name from URL parameter or prompt
+        function getInstructorName() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const name = urlParams.get('instructor');
+            if (name) {
+                return decodeURIComponent(name);
+            }
+            
+            // If no name in URL, prompt user
+            const promptName = prompt("Please enter your instructor's name:", "Instructor Name");
+            return promptName || "Instructor Name";
+        }
+
+        // Print the certificate
+        function printCertificate() {
+            document.body.classList.add("printing");
+            window.print();
+            document.body.classList.remove("printing");
+        }
+        
+        // Initialize certificate
+        function initializeCertificate() {
+            // Get the values first
+            const studentName = getStudentName();
+            const instructorName = getInstructorName();
+            const completionDate = setCompletionDate();
+            const certificateId = generateCertificateId();
+            
+            // Try to set the values
+            const studentNameElement = document.getElementById('studentName');
+            const instructorNameElement = document.getElementById('instructorName');
+            const instructorSignatureElement = document.getElementById('instructorSignature');
+            const dateSignatureElement = document.getElementById('dateSignature');
+            const certificateIdElement = document.getElementById('certificateId');
+            
+            if (studentNameElement) {
+                studentNameElement.textContent = studentName;
+            }
+            
+            if (instructorNameElement) {
+                instructorNameElement.textContent = instructorName;
+            }
+            
+            if (instructorSignatureElement) {
+                instructorSignatureElement.textContent = instructorName;
+            }
+            
+            if (dateSignatureElement) {
+                dateSignatureElement.textContent = completionDate;
+            }
+            
+            if (certificateIdElement) {
+                certificateIdElement.textContent = certificateId;
+            }
+        }
+
+        initializeCertificate();
+    </script>
+</body>
+</html>
