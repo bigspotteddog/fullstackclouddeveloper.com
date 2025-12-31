@@ -1,126 +1,246 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-W4T7VKP72V"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-W4T7VKP72V');
-</script>  
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-
-  <title>Full Stack Cloud Developer - Courses</title>
-
-  <style>
-    #nav-bar a {
-      color: white;
-    }
-    .bg-primary {
-      background-color: #0F0F0F!important;
-    }
-  </style>
-  <style>
-    img {
-      width: 100%;
-      border-radius: 4px;
-    }
-    h1 {
-      margin: 30px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fullstackclouddeveloper | Technical Solutions for Business</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-  <nav id="nav-bar" class="navbar navbar-dark bg-primary">
-    <div class="container-fluid">
-      <div>
-        <div class="float-start">
-          <a class="navbar-brand fs-2" href="/"><i class="bi bi-clouds" style="font-size: 2rem; color: white;"></i></a>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <a href="#">fullstackclouddeveloper</a>
+                <span class="tagline">Technical Solutions</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#approach">My Approach</a></li>
+                    <li><a href="#work">Experience</a></li>
+                    <li><a href="/courses">Courses</a></li>
+                    <li><a href="#contact" class="btn btn-primary">Get a Quote</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
-        <div class="float-start ms-2">
-          <a class="navbar-brand fs-2" href="/">Full Stack Cloud Developer</a>
-        </div>
-      </div>
-    </div>
-  </nav>
+    </header>
 
-  <section class="features-icons text-center">
-    <div class="container">
-      <h1>Courses</h1>
-      <div class="row">
-        <div class="col-lg-3 mb-4">
-          <a href="course/java-for-beginners/index.html"><img src="img/java-crash-course.png"></a>
-          <div>Java Crash Course</div>
-        </div>
-        <div class="col-lg-3 mb-4">
-          <a href="course/full-stack-cloud-developer-mini-course/index.html"><img src="img/mini-course.png"></a>
-          <div>Full Stack Mini-Course</div>
-        </div>
-        <div class="col-lg-3 mb-4">
-          <a href="course/front-end-crash-course/index.html"><img src="img/front-end-crash-course.png"></a>
-          <div>Front-End Crash Course</div>
-        </div>
-        <div class="col-lg-3 mb-4">
-          <a href="https://www.youtube.com/playlist?list=PLQpnyZpvh8xUJEe5NXFa3SPrntiTA2dVt"><img src="img/build-a-blog-from-scratch.png"></a>
-          <div>Build a Blog from Scratch</div>
-        </div>
-        <div class="col-lg-3 mb-4">
-          <a href="course/windows-11-java-env/index.html"><img src="img/windows-11-java-env.png"></a>
-          <div>Windows 11 - Java Development Environment</div>
-        </div>
-        <div class="col-lg-3 mb-4">
-          <a href="course/complete-full-stack-web-developer-course/index.html"><img src="img/complete-full-stack-web-developer-course.png"></a>
-          <div>Complete Full Stack Web Developer Course - <b>Coming Soon!</b></div>
-        </div>
-        <div class="col-lg-3 mb-4">
-          <a href="course/ten-lessons-to-todo/"><img src="img/ten-lessons-to-todo.png"></a>
-          <div>10 Lessons to TODO - Frontend</div>
-        </div>
-      </div>
-      <h1>Documents</h1>
-      <div class="row">
-        <div class="col-lg-3 center">
-          <div class="row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-10">
-              <a href="docs/how-to-become-a-full-stack-developer/index.html"><img style="border: 1px solid #dedede;" src="img/how-to-become-a-full-stack-developer.png"></a>
-              <div>How to Become a Full Stack Developer</div>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Technical Solutions for Growing Businesses</h1>
+                    <p class="hero-sub">From professional websites to custom business software. I build exactly what you need—whether you're just starting out or ready to scale.</p>
+                    <div class="hero-actions">
+                        <a href="#contact" class="btn btn-primary">Start Your Project</a>
+                        <a href="#services" class="btn btn-secondary">See What I Build</a>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-1"></div>
-          </div>
-        </div>
-        <div class="col-lg-3 center">
-          <div class="row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-10">
-              <a href="docs/how-to-sign-up-for-an-aws-account/index.html"><img style="border: 1px solid #dedede;" src="docs/how-to-sign-up-for-an-aws-account/imgs/aws-1.png"></a>
-              <div>How to Sign Up for an AWS Account</div>
+        </section>
+
+        <section id="about" class="section-light">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Your Technical Partner</h2>
+                    <p>You don't need a full-time IT department. You need a partner who can solve technical problems as they arise. I bring 20+ years of experience to build almost anything your business needs.</p>
+                </div>
             </div>
-            <div class="col-lg-1"></div>
-          </div>
-        </div>
-        <div class="col-lg-3 center">
-          <div class="row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-10">
-              <a href="docs/ai-quick-start/index.html"><img style="border: 1px solid #dedede;" src="docs/ai-quick-start/imgs/ai-quick-start.png"></a>
-              <div>AI Quick Start</div>
+        </section>
+
+        <section id="services" class="section-gray">
+            <div class="container">
+                <div class="section-header">
+                    <h2>How I Can Help</h2>
+                    <p>Practical solutions tailored to your business stage.</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>Professional Websites</h3>
+                        <p>Your website is your digital storefront. I build high-quality, mobile-friendly sites that establish credibility, explain your services, and drive new customers to your business.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>E-Commerce Solutions</h3>
+                        <p>Ready to sell online? I build secure, easy-to-manage online stores. Whether you need a simple shop or a complex marketplace, I help you turn visitors into paying customers.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Custom Cloud Software</h3>
+                        <p>Access your business tools from anywhere. I build zero-installation web applications that run in the cloud, giving you secure access to your data from any device.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Systems Integration</h3>
+                        <p>Stop manual data entry. I connect your different business tools (CRM, accounting, email) so they talk to each other automatically, saving you hours of busywork.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>MVP Development</h3>
+                        <p>Have a new product idea? I rapidly build "Minimum Viable Products" to help you test your concept in the market without spending a fortune on development.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Growth Partner</h3>
+                        <p>As your business grows, your needs change. I stick around to upgrade your systems, ensuring your technology handles more customers without breaking.</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-1"></div>
-          </div>
+        </section>
+
+        <section id="approach" class="section-light">
+            <div class="container">
+                <div class="split-layout">
+                    <div class="split-content">
+                        <h2>Why Work With Me?</h2>
+                        <ul class="feature-list">
+                            <li>
+                                <strong>One-Stop Shop:</strong> No need to hire separate web designers, developers, and consultants. I handle the entire technical side of your business.
+                            </li>
+                            <li>
+                                <strong>Built for Growth:</strong> I build with professional standards from day one. This means you won't have to pay to rebuild your website just because your business grew.
+                            </li>
+                            <li>
+                                <strong>20+ Years Experience:</strong> I've built systems for startups and massive enterprises. I bring that same level of quality and reliability to your business.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="work" class="section-gray">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Proven Results</h2>
+                </div>
+                <div class="case-studies">
+                    <div class="case-study">
+                        <div class="case-content">
+                            <h3>Scaling Market Reach</h3>
+                            <p class="case-meta">Business Growth</p>
+                            <p>Scaled product footprint from 10-20% to 100% of a casino floor. By integrating system monitoring, progressive loyalty bonuses, and composited multi-media into every machine, the technology became essential for operators.</p>
+                            <ul class="tags">
+                                <li>Business Growth</li>
+                                <li>System Upgrade</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="case-study">
+                        <div class="case-content">
+                            <h3>Platform for 500k+ Users</h3>
+                            <p class="case-meta">Education at Scale</p>
+                            <p>Unified 4 disparate databases across 3 different programming languages. Engineered a custom REST-based ORM to create a unified server/user interface that automated registration, scheduling, grading, and certificate tracking for 500k+ students.</p>
+                            <ul class="tags">
+                                <li>Custom Platform</li>
+                                <li>High Reliability</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="case-study">
+                        <div class="case-content">
+                            <h3>Cloud Transformation</h3>
+                            <p class="case-meta">To The Cloud and Beyond</p>
+                            <p>Led the transition of a flagship "shrink-wrapped" product to the cloud. Built the Proof of Concept that proved we could transform a traditional app into a scalable, multi-tenant SaaS on AWS.</p>
+                            <ul class="tags">
+                                <li>Cloud Architecture</li>
+                                <li>SaaS Migration</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="case-study">
+                        <div class="case-content">
+                            <h3>Automated Vending System</h3>
+                            <p class="case-meta">Consulting Project</p>
+                            <p>Built a complete cloud-based vending ecosystem using custom REST-based ORM. This enabled seamless synchronization of animation, media advertising, inventory, pricing, and configurations between the cloud and local vending machine databases.</p>
+                            <ul class="tags">
+                                <li>IoT & Hardware</li>
+                                <li>Cloud Logistics</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="case-study">
+                        <div class="case-content">
+                            <h3>Fintech & POS System</h3>
+                            <p class="case-meta">Startup Launch</p>
+                            <p>Built the entire financial infrastructure for a brand new startup in just 6 weeks. Led a 5-person team to launch a cloud-based POS and credit system in time for a major trade show debut.</p>
+                            <ul class="tags">
+                                <li>Rapid Delivery</li>
+                                <li>Fintech Integration</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="case-study">
+                        <div class="case-content">
+                            <h3>Technical Mentorship</h3>
+                            <p class="case-meta">Education & Training</p>
+                            <p>Leveraging 20+ years of teaching experience (university adjunct faculty, Corporate Training) to build strong engineering cultures. I don't just write code; I train teams to maintain it, ensuring long-term success for your business.</p>
+                            <ul class="tags">
+                                <li>Team Building</li>
+                                <li>Knowledge Transfer</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="cta-section">
+            <div class="container">
+                <h2>Let's Build Your Business</h2>
+                <p>Need a website? A custom tool? Or just advice on what to do next? Fill out the form below.</p>
+                <form class="contact-form" action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="project-type">Project Type</label>
+                        <select id="project-type" name="project-type">
+                            <option value="website">Professional Website</option>
+                            <option value="ecommerce">E-Commerce Store</option>
+                            <option value="custom-software">Custom Software</option>
+                            <option value="consulting">Consulting / Advice</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-large">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h4>fullstackclouddeveloper</h4>
+                    <p>Technical Solutions</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+                    <a href="https://github.com" target="_blank">GitHub</a>
+                    <a href="mailto:bink.lynch@gmail.com">Email</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 fullstackclouddeveloper. All rights reserved.</p>
+            </div>
         </div>
-        <div class="col-lg-3">
-        </div>
-      </div>
-    </div>
-  </section>
+    </footer>
+
+    <script src="js/script.js"></script>
 </body>
 </html>

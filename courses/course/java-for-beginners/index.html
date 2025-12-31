@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+  <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W4T7VKP72V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W4T7VKP72V');
+</script>    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+    <title>Java Crash Course</title>
+
+    <style>
+      .video-bottom-right {
+        position: fixed;
+        bottom: 0px;
+        right: 0px;
+        width: 480px;
+        margin-bottom: 40px;
+        margin-right: 40px;
+        z-index: 1000;
+      }
+
+      .course-item {
+        margin-top: 2em;
+        color: #555;
+        font-weight: bold;
+      }
+
+      .course-item a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .course-item a:hover {
+        text-decoration: underline;
+      }
+
+      .course-item li {
+        margin-top: 1em;
+        font-weight: normal!important;
+      }
+
+      #lesson-content {
+        margin-bottom: 400px;
+      }
+
+      #x {
+        position: absolute;
+        background: red;
+        top: -13px;
+        right: -13px;
+        z-index: 1000;
+        border-radius: 20px;
+        width: 27px;
+        height: 27px;
+      }
+
+      #x a {
+        text-decoration: none;
+        color: #fff;
+      }
+      #nav-bar a {
+        color: white;
+      }
+      .bg-primary {
+        background-color: #0F0F0F!important;
+      }
+    </style>
+  </head>
+  <body>
+
+    <nav id="nav-bar" class="navbar navbar-dark bg-primary">
+      <div class="container-fluid">
+        <div>
+          <div class="float-start">
+            <a class="navbar-brand fs-2" href="/courses"><i class="bi bi-clouds" style="font-size: 2rem; color: white;"></i></a>
+          </div>
+          <div class="float-start ms-2">
+            <a class="navbar-brand fs-2" href="/courses">Full Stack Cloud Developer</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid px-4 mt-4">
+      <div class="row gx-5">
+        <div id="lesson-plan-container" class="col-sm-3">
+          <div class="row">
+            <div id="lesson-plan-content" class="col-sm-12 shadow-sm border p-4">
+              <h3>Contents</h3>
+              <nav>
+                <ol>
+                  <li class="course-item">
+                    <div class="text"><a id="introduction" href="index.html#introduction" data-youtube="https://www.youtube.com/embed/xPd9kLczmxo">Introduction</a></div>
+                  </li>
+                  <li class="course-item">
+                    <div class="text"><a id="how_to_setup_a_java_development_environment" href="index.html#how_to_setup_a_java_development_environment" data-youtube="https://www.youtube.com/embed/xcojoAJ157Y">How to set up a Java development environment</a></div>
+                    <ol style="list-style-type: lower-alpha;">
+                      <li>
+                        <div class="text">How to install Java 11</div>
+                      </li>
+                      <li>
+                        <div class="text">How to install Visual Studio Code</div>
+                      </li>
+                    </ol>
+                  </li>
+                  <li class="course-item">
+                    <div class="text"><a id="hello_world" href="index.html#hello_world" data-youtube="https://www.youtube.com/embed/IUsMVzjAGww">Hello World!</a></div>
+                    <ol style="list-style-type: lower-alpha;">
+                      <li>
+                        <div class="text">HelloWorld.java</div>
+                      </li>
+                      <li>
+                        <div class="text">Exercise 1: Run a Java application</div>
+                      </li>
+                    </ol>
+                  </li>
+                  <li class="course-item">
+                    <div class="text"><a id="anatomy_of_a_java_class" href="index.html#anatomy_of_a_java_class" data-youtube="https://www.youtube.com/embed/2-0_udTOWSw">Anatomy of a Java Class</a></div>
+                    <ol style="list-style-type: lower-alpha;">
+                      <li>
+                        <div class="text">Packages</div>
+                      </li>
+                      <li>
+                        <div class="text">Imports</div>
+                      </li>
+                      <li>
+                        <div class="text">Class declaration</div>
+                      </li>
+                      <li>
+                        <div class="text">Constructors</div>
+                      </li>
+                      <li>
+                        <div class="text">Variables</div>
+                      </li>
+                      <li>
+                        <div class="text">Functions</div>
+                      </li>
+                    </ol>
+                  </li>
+                  <li class="course-item">
+                    <div class="text"><a id="calling_functions" href="index.html#calling_functions" data-youtube="https://www.youtube.com/embed/xIXKH5kKUVA">Calling Functions</a></div>
+                    <ol style="list-style-type: lower-alpha;">
+                      <li>
+                        <div class="text">Calling functions in this class</div>
+                      </li>
+                      <li>
+                        <div class="text">Calling functions in another class</div>
+                      </li>
+                      <li>
+                        <div class="text">Exercise 2: Calling functions</div>
+                      </li>
+                    </ol>
+                  </li>
+                  <li class="course-item">
+                    <div class="text"><a id="running_a_java_application" href="index.html#running_a_java_application">Running a Java Application</a></div>
+                    <ol style="list-style-type: lower-alpha;">
+                      <li>
+                        <div class="text">Compiling a Java source file</div>
+                      </li>
+                      <li>
+                        <div class="text">Running a Java class</div>
+                      </li>
+                      <li>
+                        <div class="text">Compiling with a classpath</div>
+                      </li>
+                      <li>
+                        <div class="text">Running with a classpath</div>
+                      </li>
+                    </ol>
+                  </li>
+                  <li class="course-item">
+                    <div class="text"><a id="variables" href="index.html#variables" data-youtube="https://www.youtube.com/embed/VRL7MeecQzo">Variables</a></div>
+                    <ol style="list-style-type: lower-alpha;">
+                      <li>
+                        <div class="text">Primitive Types</div>
+                      </li>
+                      <li>
+                        <div class="text">Strings</div>
+                      </li>
+                      <li>
+                        <div class="text">Reference Types</div>
+                      </li>
+                      <li>
+                        <div class="text">Arrays</div>
+                      </li>
+                      <li>
+                        <div class="text">Lists</div>
+                      </li>
+                      <li>
+                        <div class="text">Maps</div>
+                      </li>
+                      <li>
+                        <div class="text">Exercise 3: Print variable values</div>
+                      </li>
+                    </ol>
+                  </li>
+                  <li class="course-item">
+                    <div class="text"><a id="math" href="index.html#math" data-youtube="https://www.youtube.com/embed/QDjgG4RU4y0">Math with Formulas</a></div>
+                    <ol style="list-style-type: lower-alpha;">
+                      <li>
+                        <div class="text">Arithmatic Operators</div>
+                      </li>
+                      <li>
+                        <div class="text">Operator Precedence</div>
+                      </li>
+                      <li>
+                        <div class="text">Math class</div>
+                      </li>
+                      <li>
+                        <div class="text">Exercise 4: Math with formulas</div>
+                      </li>
+                    </ol>
+                  </li>
+                  <li class="course-item">
+                    <div class="text"><a id="assignment_operators" href="index.html#assignment_operators" data-youtube="https://www.youtube.com/embed/kR_TRnGsv68">Assignment Operators</a></div>
+                    <ol style="list-style-type: lower-alpha;">
+                      <li>
+                        <div class="text">Assignment operator (=)</div>
+                      </li>
+                      <li>
+                        <div class="text">Addition assignment (+=)</div>
+                      </li>
+                      <li>
+                        <div class="text">Subtraction assignment (-=)</div>
+                      </li>
+                      <li>
+                        <div class="text">Multiplication assignment (*=)</div>
+                      </li>
+                      <li>
+                        <div class="text">Division assignment (/=)</div>
+                      </li>
+                      <li>
+                        <div class="text">Modulo assignment (%=)</div>
+                      </li>
+                    </ol>
+                  </li>
+                  <li class="course-item">
+                    <div class="text"><a id="logic_operators" href="index.html#logic_operators" data-youtube="https://www.youtube.com/embed/rjUbVjNKcqM">Logic Operators</a></div>
+                    <ol style="list-style-type: lower-alpha;">
+                      <li>
+                        <div class="text">Equality operator (==)</div>
+                      </li>
+                      <li>
+                        <div class="text">Inequality operator (!=)</div>
+                      </li>
+                      <li>
+                        <div class="text">Less than and less than or equal to operators (&lt;=)</div>
+                      </li>
+                      <li>
+                        <div class="text">Greater than and greater than or equal to operators (&lt;=)</div>
+                      </li>
+                      <li>
+                        <div class="text">And operator (&&)</div>
+                      </li>
+                      <li>
+                        <div class="text">Or operator (||)</div>
+                      </li>
+                    </ol>
+                  </li>
+                  <li class="course-item">
+                    <div class="text"><a id="branch_logic" href="index.html#branch_logic" data-youtube="https://www.youtube.com/embed/q7TZDSm6sF4">Branch Logic</a></div>
+                    <ol style="list-style-type: lower-alpha;">
+                      <li>
+                        <div class="text">if, else if, else</div>
+                      </li>
+                      <li>
+                        <div class="text">switch</div>
+                      </li>
+                    </ol>
+                  </li>
+                  <li class="course-item">
+                    <div class="text"><a id="loops" href="index.html#loops" data-youtube="https://www.youtube.com/embed/ieFlxPuaeoA">Loops</a></div>
+                    <ol style="list-style-type: lower-alpha;">
+                      <li>
+                        <div class="text">for loops</div>
+                      </li>
+                      <li>
+                        <div class="text">while loops</div>
+                      </li>
+                      <li>
+                        <div class="text">Exercise 5: Print a calendar using loops</div>
+                      </li>
+                    </ol>
+                  </li>
+                  <li class="course-item">
+                    <div class="text"><a id="objects" href="index.html#objects" data-youtube="https://www.youtube.com/embed/WfkiiACZyi8">Objects</a></div>
+                    <ol style="list-style-type: lower-alpha;">
+                      <li>
+                        <div class="text">Creating a new instance</div>
+                      </li>
+                      <li>
+                        <div class="text">Calling functions on another object</div>
+                      </li>
+                      <li>
+                        <div class="text">Object equality</div>
+                      </li>
+                      <li>
+                        <div class="text">Variable scopes</div>
+                      </li>
+                      <li>
+                        <div class="text">Inheritance</div>
+                      </li>
+                      <li>
+                        <div class="text">Composition</div>
+                      </li>
+                      <li>
+                        <div class="text">Exercise 6: Implement user login</div>
+                      </li>
+                    </ol>
+                  </li>
+                  <li class="course-item">
+                    <div class="text"><a id="member_access" href="index.html#member_access" data-youtube="https://www.youtube.com/embed/7rVkEs2JPjY">Member access</a></div>
+                    <ol style="list-style-type: lower-alpha;">
+                      <li>
+                        <div class="text">public</div>
+                      </li>
+                      <li>
+                        <div class="text">protected</div>
+                      </li>
+                      <li>
+                        <div class="text">default</div>
+                      </li>
+                      <li>
+                        <div class="text">private</div>
+                      </li>
+                    </ol>
+                  </li>
+                  <li class="course-item">
+                    <div class="text"><a id="oo" href="index.html#oo" data-youtube="https://www.youtube.com/embed/240uyZknYhA">Object-oriented concepts</a></div>
+                    <ol style="list-style-type: lower-alpha;">
+                      <li>
+                        <div class="text">Classes</div>
+                      </li>
+                      <li>
+                        <div class="text">Object-oriented terms</div>
+                      </li>
+                    </ol>
+                  </li>
+                  <li class="course-item">
+                    <div class="text"><a id="console_calculator" href="index.html#console_calculator" data-youtube="https://www.youtube.com/embed/s4D6U-lergQ">Exercise 7: Console calculator</a></div>
+                  </li>
+                  <li class="course-item">
+                    <div class="text"><a id="web_server_address_book" href="index.html#web_server_address_book">Exercise 8: Full stack address book</a></div>
+                    <ol style="list-style-type: lower-alpha;">
+                      <li>
+                        <div class="text"><a id="web_server_address_book_part_1" href="index.html#web_server_address_book_part_1" data-youtube="https://www.youtube.com/embed/9YnH-ApU1CM">Part 1 - Starting with the Front End</a></div>
+                      </li>
+                      <li>
+                        <div class="text"><a id="web_server_address_book_part_2" href="index.html#web_server_address_book_part_2" data-youtube="https://www.youtube.com/embed/Xn7ChSBp2r0">Part 2 - Send Data to the Server</a></div>
+                      </li>
+                      <li>
+                        <div class="text"><a id="web_server_address_book_part_3" href="index.html#web_server_address_book_part_3" data-youtube="https://www.youtube.com/embed/9e9xx8CEZdc">Part 3 - Receive Data on the Server</a></div>
+                      </li>
+                      <li>
+                        <div class="text"><a id="web_server_address_book_part_4" href="index.html#web_server_address_book_part_4" data-youtube="https://www.youtube.com/embed/NM2roXhPYDc">Part 4 - Add a Table to Display Addresses</a></div>
+                      </li>
+                      <li>
+                        <div class="text"><a id="web_server_address_book_part_5" href="index.html#web_server_address_book_part_5" data-youtube="https://www.youtube.com/embed/yQTA5xyzVPc">Part 5 - Send an Edited Address to the Server</a></div>
+                      </li>
+                      <li>
+                        <div class="text"><a id="web_server_address_book_part_6" href="index.html#web_server_address_book_part_6" data-youtube="https://www.youtube.com/embed/SEsHbMwjql4">Part 6 - Update an Address on the Server</a></div>
+                      </li>
+                      <li>
+                        <div class="text"><a id="web_server_address_book_part_7" href="index.html#web_server_address_book_part_7" data-youtube="https://www.youtube.com/embed/3LsclXYedDw">Part 7 - Delete an Address from the Server</a></div>
+                      </li>
+                      <li>
+                        <div class="text"><a id="web_server_address_book_part_8" href="index.html#web_server_address_book_part_8" data-youtube="https://www.youtube.com/embed/dzhl0aafRNs">Part 8 - Final Testing and Fixes</a></div>
+                      </li>
+                    </ol>
+                  </li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+        </div>
+        <div id="lesson-container" class="col-sm-9">
+          <div class="row">
+            <div id="video-container" class="p-0 pb-4 d-none">
+              <div id="video" class="ratio ratio-16x9 border">
+                <div><div id="x" class="text-center d-none"><a id="close-video" href="index.html#">x</a></div></div>
+                <iframe id="youtube" rel="0" width="560" height="315" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <div id="video-spacer" class="ratio ratio-16x9 mb-4 d-none">
+              </div>
+            </div>
+
+            <div id="lesson-content" class="col-sm shadow-sm border p-4">
+              <zero-md id="app" manual-render>
+                <template data-merge="append">
+                  <style>
+                    :not(pre)>code[class*=language-], pre[class*=language-] {
+                      background: #222;
+                    }
+                    code[class*=language-], pre[class*=language-] {
+                      color: #ddd;
+                      text-shadow: none;
+                    }
+                    .language-css .token.string, .style .token.string, .token.entity, .token.operator, .token.url {
+                      color: #ddd;
+                      text-shadow: none;
+                      background: none;
+                    }
+                    .token.property,
+                    .token.tag,
+                    .token.boolean,
+                    .token.number,
+                    .token.constant,
+                    .token.symbol,
+                    .token.deleted {
+                      color: #f55;
+                    }                    
+                  </style>
+                </template>
+              </zero-md>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@2/dist/zero-md.min.js"></script>
+    <script src="../../js/video-lesson.js"></script>
+  </body>
+</html>
