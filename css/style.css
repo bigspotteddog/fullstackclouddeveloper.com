@@ -305,6 +305,7 @@ section {
     color: var(--white);
     text-align: center;
     padding: 6rem 0;
+    position: relative;
 }
 
 .cta-section h2 {
