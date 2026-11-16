@@ -22,9 +22,10 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #0B111D; }
 body { font-family: 'Inter', -apple-system, 'Segoe UI', Arial, sans-serif; color: #1B2436; }
 #stage { position: fixed; inset: 0; }
 #deck { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; transform-origin: center center; }
-#hud { position: fixed; right: 20px; bottom: 16px; font: 600 13px/1 'JetBrains Mono', Menlo, monospace; color: #8C97AB; letter-spacing: 1px; user-select: none; z-index: 5; }
-#hud button { background: none; border: 1px solid #2E3B57; color: #B9C2D3; font: inherit; padding: 6px 10px; border-radius: 6px; margin-left: 6px; cursor: pointer; }
-#hud a { color: #B9C2D3; text-decoration: none; border: 1px solid #2E3B57; padding: 6px 10px; border-radius: 6px; margin-left: 6px; display: inline-block; }
+#hud { position: fixed; right: 16px; bottom: 14px; display: flex; align-items: center; gap: 6px; padding: 6px 6px 6px 12px; background: rgba(11,17,29,0.88); border: 1px solid #2E3B57; border-radius: 10px; box-shadow: 0 4px 16px rgba(0,0,0,0.25); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); font: 600 13px/1 'JetBrains Mono', Menlo, monospace; color: #B9C2D3; letter-spacing: 1px; user-select: none; z-index: 5; }
+#count { margin-right: 4px; }
+#hud button { background: none; border: 1px solid #2E3B57; color: #B9C2D3; font: inherit; padding: 6px 10px; border-radius: 6px; cursor: pointer; }
+#hud a { color: #B9C2D3; text-decoration: none; border: 1px solid #2E3B57; padding: 6px 10px; border-radius: 6px; display: inline-block; }
 #hud a:hover, #hud button:hover { border-color: #E8833A; color: #F0A066; }
 #progress { position: fixed; left: 0; bottom: 0; height: 4px; background: #E8833A; transition: width 300ms ease; z-index: 5; }
 #notes { position: fixed; left: 0; right: 0; bottom: 0; max-height: 34vh; overflow: auto; background: rgba(11,17,29,0.96); color: #D3D9E4; font: 17px/1.55 'Inter', Arial, sans-serif; padding: 20px 28px 52px; border-top: 2px solid #E8833A; display: none; z-index: 4; }
