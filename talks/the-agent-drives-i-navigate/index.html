@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Agent Drives, I Navigate</title>
+<meta name="description" content="How I run a team of AI developers with XP discipline.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Agent Drives, I Navigate">
+<meta property="og:description" content="How I run a team of AI developers with XP discipline.">
+<meta property="og:url" content="https://fullstackclouddeveloper.com/talks/the-agent-drives-i-navigate/">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://fullstackclouddeveloper.com/talks/the-agent-drives-i-navigate/">
+<link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500..700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root {
+  --bg: #F5F2EA;
+  --surface: #FBF9F4;
+  --surface-2: #EAE3D3;
+  --line: #DDD5C4;
+  --text: #1B2436;
+  --muted: #4A5263;
+  --accent: #E8833A;
+  --accent-text: #A4471A;
+  --code-bg: #121A2B;
+  --code-text: #E4E8EF;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121A2B;
+    --surface: #1C2740;
+    --surface-2: #24314D;
+    --line: #2E3B57;
+    --text: #F2EEE4;
+    --muted: #B9C2D3;
+    --accent: #E8833A;
+    --accent-text: #F0A066;
+    --code-bg: #0B111D;
+    --code-text: #E4E8EF;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121A2B;
+  --surface: #1C2740;
+  --surface-2: #24314D;
+  --line: #2E3B57;
+  --text: #F2EEE4;
+  --muted: #B9C2D3;
+  --accent: #E8833A;
+  --accent-text: #F0A066;
+  --code-bg: #0B111D;
+  --code-text: #E4E8EF;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, 'Segoe UI', Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+/* ---------- layout ---------- */
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 16px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 56px; }
+@media (min-width: 1100px) { .wrap { grid-template-columns: 240px minmax(0, 720px); padding: 0 32px; justify-content: center; } }
+main { min-width: 0; padding-bottom: 96px; }
+
+/* ---------- hero ---------- */
+.hero { background: #121A2B; color: #F2EEE4; padding: 96px 0 72px; position: relative; }
+.hero .inner { max-width: 1180px; margin: 0 auto; padding: 0 16px; }
+@media (min-width: 1100px) { .hero .inner { padding: 0 32px; } }
+.hero .bar { width: 96px; height: 8px; background: var(--accent); margin-bottom: 40px; }
+.hero .eyebrow { color: #F0A066; }
+.hero h1 { font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif; font-weight: 700; font-size: clamp(44px, 8vw, 96px); line-height: 1.02; letter-spacing: -0.02em; margin: 12px 0 20px; }
+.hero .sub { font-size: clamp(20px, 2.6vw, 28px); color: #D3D9E4; margin: 0; max-width: 760px; line-height: 1.4; }
+.principle { margin-top: 48px; display: inline-block; border-left: 6px solid var(--accent); padding: 4px 0 4px 24px; }
+.principle p { margin: 0; }
+.principle .big { font-family: 'Space Grotesk', Arial, sans-serif; font-size: clamp(22px, 3vw, 32px); font-weight: 600; line-height: 1.25; }
+.principle .small { color: #B9C2D3; font-size: 17px; margin-top: 6px; }
+
+.eyebrow { font-family: 'JetBrains Mono', 'Courier New', monospace; font-size: 13px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-text); }
+
+.talk-links { margin: 28px 0 0; display: flex; flex-wrap: wrap; gap: 10px 22px; font: 600 14px/1.4 'JetBrains Mono', monospace; letter-spacing: 0.06em; }
+.talk-links a { color: #F0A066; text-decoration: none; border-bottom: 1px solid rgba(240,160,102,0.4); padding-bottom: 2px; }
+.talk-links a:hover { color: #F2EEE4; border-bottom-color: #F2EEE4; }
+@media print { .talk-links { display: none; } }
+
+/* ---------- toc ---------- */
+.toc { display: none; }
+@media (min-width: 1100px) {
+  .toc { display: block; position: sticky; top: 32px; align-self: start; padding-top: 64px; max-height: calc(100vh - 32px); overflow: auto; }
+}
+.toc ol { list-style: none; padding: 0; margin: 16px 0 0; }
+.toc li { margin: 0; }
+.toc a { display: block; padding: 6px 0 6px 14px; border-left: 2px solid var(--line); color: var(--muted); text-decoration: none; font-size: 14px; line-height: 1.4; }
+.toc a:hover { color: var(--text); }
+.toc a.on { color: var(--text); border-left-color: var(--accent); font-weight: 600; }
+.toc-mobile { margin-top: 40px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; }
+@media (min-width: 1100px) { .toc-mobile { display: none; } }
+.toc-mobile summary { cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-text); }
+.toc-mobile ol { margin: 12px 0 4px; padding-left: 20px; font-size: 16px; }
+.toc-mobile a { color: var(--text); text-decoration: none; }
+
+/* ---------- article typography ---------- */
+main h2 { font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif; font-size: clamp(28px, 4vw, 38px); line-height: 1.15; letter-spacing: -0.01em; margin: 80px 0 20px; padding-top: 24px; border-top: 1px solid var(--line); scroll-margin-top: 24px; }
+main h2 .num { display: block; font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.18em; color: var(--accent-text); margin-bottom: 10px; font-weight: 600; }
+main h3 { font-family: 'Space Grotesk', Arial, sans-serif; font-size: 23px; line-height: 1.3; margin: 44px 0 12px; scroll-margin-top: 24px; }
+main p { margin: 0 0 20px; }
+main ul, main ol { margin: 0 0 22px; padding-left: 24px; }
+main li { margin-bottom: 10px; }
+main li::marker { color: var(--accent-text); font-weight: 600; }
+main strong { font-weight: 600; }
+main code { font-family: 'JetBrains Mono', monospace; font-size: 0.88em; background: var(--surface-2); padding: 1px 6px; border-radius: 4px; }
+a { color: var(--accent-text); }
+
+blockquote { margin: 28px 0; padding: 4px 0 4px 24px; border-left: 4px solid var(--accent); font-family: 'Space Grotesk', Arial, sans-serif; font-size: 22px; line-height: 1.4; font-weight: 500; }
+blockquote p { margin: 0; }
+
+.status { margin: 28px 0; background: var(--code-bg); color: var(--code-text); border-radius: 14px; padding: 24px 26px; font-family: 'JetBrains Mono', 'Courier New', monospace; font-size: 15px; line-height: 1.65; }
+.status .label { color: #F0A066; font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 14px; }
+.status p { margin: 0 0 14px; }
+.status p:last-child { margin-bottom: 0; }
+.status .meta { color: #8C97AB; font-style: italic; }
+
+.table-wrap { overflow-x: auto; margin: 28px 0; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+table { width: 100%; border-collapse: collapse; font-size: 16px; line-height: 1.5; }
+th, td { text-align: left; vertical-align: top; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+tr:last-child td { border-bottom: none; }
+th { background: var(--surface-2); font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-text); }
+td:first-child { font-weight: 600; min-width: 150px; }
+
+/* stages */
+.stages { list-style: none; padding: 0; margin: 28px 0; counter-reset: s; }
+.stages li { counter-increment: s; position: relative; padding: 0 0 22px 56px; margin: 0; }
+.stages li::before { content: counter(s, decimal-leading-zero); position: absolute; left: 0; top: 2px; font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 14px; color: var(--accent-text); }
+.stages li::after { content: ""; position: absolute; left: 9px; top: 28px; bottom: 4px; width: 2px; background: var(--line); }
+.stages li:last-child::after { display: none; }
+
+/* callout */
+.callout { margin: 28px 0; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px 24px; }
+.callout p:last-child { margin-bottom: 0; }
+
+/* ---------- workflow diagram ---------- */
+.flow { margin: 32px 0; padding: 28px 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; }
+.flow-title { margin: 0 0 20px; }
+.chain { display: flex; flex-direction: column; align-items: stretch; gap: 0; max-width: 520px; margin: 0 auto; }
+.node { background: var(--bg); border: 2px solid var(--line); border-radius: 12px; padding: 12px 16px; font-size: 15px; line-height: 1.45; text-align: center; }
+.node.me { border-color: var(--accent); }
+.node.decision { border-style: dashed; font-weight: 600; }
+.down { align-self: center; width: 2px; height: 22px; background: var(--muted); position: relative; opacity: 0.6; }
+.down::after { content: ""; position: absolute; left: -5px; bottom: -2px; border: 6px solid transparent; border-top-color: var(--muted); border-bottom: 0; }
+.branch { margin: 8px 0 0; font-weight: 400; font-size: 14px; line-height: 1.45; color: var(--muted); border-left: 3px solid var(--accent); padding: 6px 0 6px 12px; text-align: left; }
+.branch b { color: var(--accent-text); font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; display: block; }
+.legend { margin: 20px auto 0; max-width: 520px; font-size: 13px; color: var(--muted); }
+.legend span { display: inline-block; width: 14px; height: 10px; border: 2px solid var(--accent); border-radius: 3px; margin-right: 6px; vertical-align: middle; }
+
+/* closing */
+.closing { margin-top: 72px; background: #121A2B; color: #F2EEE4; border-radius: 18px; padding: 40px 32px; }
+.closing p { margin: 0; font-family: 'Space Grotesk', Arial, sans-serif; font-size: clamp(22px, 3vw, 30px); line-height: 1.3; font-weight: 600; }
+.closing .after { margin-top: 14px; font-family: 'Inter', Arial, sans-serif; font-size: 17px; font-weight: 400; color: #B9C2D3; line-height: 1.6; }
+
+/* license footer */
+.license { border-top: 1px solid var(--line); padding: 28px 16px 48px; text-align: center; font-size: 14px; line-height: 1.6; color: var(--muted); }
+.license p { margin: 0 auto; max-width: 720px; }
+
+/* theme toggle */
+.theme { position: absolute; right: 16px; top: 16px; z-index: 10; background: rgba(18,26,43,0.85); color: #F2EEE4; border: 1px solid #2E3B57; border-radius: 999px; padding: 6px 14px; font: 600 12px/1.4 'JetBrains Mono', monospace; letter-spacing: 0.1em; cursor: pointer; }
+
+@media print {
+  .theme, .toc, .toc-mobile { display: none !important; }
+  body { background: #fff; color: #000; font-size: 11pt; }
+  .hero { background: none; color: #000; padding: 0 0 24px; }
+  .hero .sub, .principle .small { color: #333; }
+  .wrap { display: block; }
+  main h2 { break-after: avoid; }
+  .flow, .table-wrap, .status, blockquote { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<button class="theme" id="theme" type="button" aria-label="Toggle light or dark theme">Theme</button>
+
+<header class="hero">
+<div class="inner">
+<div class="bar"></div>
+<div class="eyebrow">An operating model for AI-assisted engineering</div>
+<h1>The Agent Drives, I&nbsp;Navigate</h1>
+<p class="sub">How I run a team of AI developers with XP discipline</p>
+<p class="talk-links"><a href="slides.html">View the slides →</a><a href="../">All talks</a><a href="/">fullstackclouddeveloper.com</a></p>
+<div class="principle">
+<p class="big">Autonomous execution, not autonomous approval.</p>
+<p class="small">Agents plan, implement, test, and integrate; humans decide what ships.</p>
+</div>
+</div>
+</header>
+
+<div class="wrap">
+
+<nav class="toc" aria-label="Contents">
+<div class="eyebrow">Contents</div>
+<ol id="toc-list">
+<li><a href="#idea">The idea</a></li>
+<li><a href="#s1">1. My role</a></li>
+<li><a href="#s2">2. How work starts</a></li>
+<li><a href="#s3">3. Test-first</a></li>
+<li><a href="#s4">4. Rotating initiatives</a></li>
+<li><a href="#s5">5. Tested handoffs</a></li>
+<li><a href="#s6">6. Review</a></li>
+<li><a href="#s7">7. Delivery after merge</a></li>
+<li><a href="#s8">8. The workflow</a></li>
+<li><a href="#s9">9. Retrospectives</a></li>
+<li><a href="#s10">10. XP mapping</a></li>
+<li><a href="#s11">11. vs. sub-agents</a></li>
+<li><a href="#s12">12. In practice</a></li>
+<li><a href="#s13">13. Questions people ask</a></li>
+<li><a href="#s14">14. What others can adopt</a></li>
+</ol>
+</nav>
+
+<main>
+
+<details class="toc-mobile">
+<summary>Contents</summary>
+<ol>
+<li><a href="#idea">The idea</a></li>
+<li><a href="#s1">My role</a></li>
+<li><a href="#s2">How work starts and who does what</a></li>
+<li><a href="#s3">Test-first, in a complete running system</a></li>
+<li><a href="#s4">Rotating between initiatives</a></li>
+<li><a href="#s5">A PR is a tested handoff</a></li>
+<li><a href="#s6">Review and the team’s process</a></li>
+<li><a href="#s7">Delivery continues after merge</a></li>
+<li><a href="#s8">The workflow, step by step</a></li>
+<li><a href="#s9">Retrospectives built the fleet</a></li>
+<li><a href="#s10">How XP maps onto this</a></li>
+<li><a href="#s11">How this differs from sub-agent orchestration</a></li>
+<li><a href="#s12">In practice</a></li>
+<li><a href="#s13">Questions people ask</a></li>
+<li><a href="#s14">What others can adopt</a></li>
+</ol>
+</details>
+
+<h2 id="idea"><span class="num">INTRODUCTION</span>The idea</h2>
+
+<p>Most teams have figured out how to get AI agents to write code. The harder problem is trusting what they write. Writing a better prompt or a more detailed spec helps, but it only covers the start. My answer is to stay in the loop the whole way, and to make the agents verify intended behavior in a running system before anyone reviews it.</p>
+
+<p>I no longer write most of the code myself, but I’m still hands-on in engineering. I discuss architecture, clarify requirements, follow the work, review pull requests, make technical decisions, and remain accountable for delivery. The AI agent drives; I navigate.</p>
+
+<p>I work with AI agents as an engineering team rather than as a code-generation feature. Depending on the initiative, I work directly with a terminal agent that coordinates developers, or have it start a dedicated manager for larger or longer-running work. I run one, two, or three initiatives at a time, depending on how much attention each needs for me to stay in the loop.</p>
+
+<p>The guiding principle is <strong>autonomous execution, not autonomous approval</strong>. Agents plan, implement, test, and integrate; humans decide what ships.</p>
+
+<p>The approach draws on years of practicing Extreme Programming (XP) across multiple teams. It is an adaptation of XP, not a claim that every XP practice is enforced automatically.</p>
+
+<h3 id="origins">Where it came from</h3>
+
+<p>This is a personal way of working, not one company’s process. I’ve used it at more than one company and on my own projects. The current fleet is the latest stage of work I started in early 2025.</p>
+
+<ol class="stages">
+<li><strong>A board the agents walked themselves.</strong> My first orchestration used Jira tickets with dependencies, aider agents as developers, and n8n as the manager. Once I started a sprint, the agents worked the board on their own, moving tickets across the columns. When a ticket reached review, I reviewed it and gave feedback. Either the agent took it back to in progress, or I merged it, “tested” it, and moved it to done. The agents weren’t yet capable of this kind of implementation work, so each one produced a markdown description of what it would do. “Testing” meant judging whether that plan would work, not running anything. I was proving the process, not the work.</li>
+<li><strong>Real work, verified on my machine.</strong> Once agents could write real code, I eventually worked with three to five at a time on a company’s real codebase. Each coordinated its own sub-agents rather than running on its own compute, and the end-to-end verification ran against the entire system on my own machine.</li>
+<li><strong>Agents that check their own work.</strong> Around the same time, I built my own agents to run the same loop. One of them ended up in the browser, where it could validate its work against the running application.</li>
+<li><strong>Parallel, test-first, end to end.</strong> That grew into multiple agents in separate browser tabs, each on its own branch, doing test-first work validated end to end. That work continues, and it can build and validate full-stack applications.</li>
+<li><strong>The fleet.</strong> The current fleet applies the same process in a different environment: separate compute instances instead of browser tabs.</li>
+</ol>
+
+<p>One thing stayed constant through every stage: human direction, agent execution, human review, merge. What changed is the agents. As they got better at implementation, the same loop could carry real work, and testing moved from me judging a plan on paper to agents validating working software in the running system before I ever see it.</p>
+
+<p>I carried forward the process, not the architecture. Each implementation is built for its environment and belongs where it was built; the process is what I bring with me. In every stage since the agents could do real work, I started simple, used the approach on real software, and improved it through retrospectives (see <a href="#s9">§9</a>). The fleet’s infrastructure wasn’t planned upfront; it grew out of that loop.</p>
+
+<h2 id="s1"><span class="num">§ 1</span>My role: accountable, involved, and not necessarily typing</h2>
+
+<p>I usually work at the initiative level (epics, not individual tickets or stories), and I own the outcome. I direct the effort, understand how the system works, and can explain its progress and technical choices to colleagues. The agents do the implementation; I stay close enough to challenge assumptions, review decisions, and respond to problems.</p>
+
+<p>The pairing metaphor is useful but imperfect. In XP, the navigator watches every change as it happens. Usually I don’t: once an agent is underway, I step away to another initiative and come back for results and decisions. Most of the time, the approach borrows pairing’s division of labor (one partner operates the tools, the other holds direction and design) without its continuous attention. When the work is hard enough, I go back to real pairing (see <a href="#s4">§4</a>). In practice my role sits somewhere between navigator and tech lead.</p>
+
+<p>This isn’t unattended code generation, and it doesn’t remove human review. It expands execution capacity while keeping technical ownership with a person.</p>
+
+<h2 id="s2"><span class="num">§ 2</span>How work starts and who does what</h2>
+
+<p>Breaking an epic into tickets and PRs is part of the work the agents and I do together. Work on an initiative usually starts one of two ways:</p>
+
+<ul>
+<li><strong>Existing work:</strong> I point my terminal agent at an epic’s existing tickets, a group of them, or a category such as all high-priority issues in one area.</li>
+<li><strong>New work:</strong> I talk through a feature or system with the terminal agent, work out requirements and architecture, then have it create the work items and use the fleet to build it.</li>
+</ul>
+
+<p>The terminal agent decides whether an initiative needs one developer, several in parallel, or a dedicated manager. A manager is useful for long-running work because it keeps monitoring even when my laptop sleeps; for shorter work, the terminal agent coordinates developers directly. A manager is an option, not a mandatory layer.</p>
+
+<p>I favor small, end-to-end, verifiable slices of value over disconnected changes that can’t be meaningfully tested.</p>
+
+<div class="table-wrap">
+<table>
+<thead><tr><th>Role</th><th>Responsibility</th></tr></thead>
+<tbody>
+<tr><td>Human engineering owner (me)</td><td>Own the outcome, set priorities and architecture, review work, decide how to handle failures, approve release progression.</td></tr>
+<tr><td>Terminal agent</td><td>Collaborate on requirements and design, organize the initiative, choose direct developers or a manager, help with review and deployment.</td></tr>
+<tr><td>Dedicated manager (when used)</td><td>Plan and delegate subtasks, launch and monitor developers, coordinate parallel work, summarize outcomes.</td></tr>
+<tr><td>Development agent</td><td>Implement an assigned change in a complete working environment, validate it, hand off a reviewable PR.</td></tr>
+<tr><td>Manager or designated developer</td><td>Integrate and test multiple PRs together when work spans changes or repositories.</td></tr>
+<tr><td>Human engineering team</td><td>Normal peer review and merge.</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>When something fails, the manager reports the problem and waits for my direction rather than quietly deciding how to recover. I want to know what’s happening, not just receive a final success claim.</p>
+
+<p>That instinct extends to situations nobody planned for. One manager recently finished its work and shut down its four fleet instances, then noticed two more running that weren’t its own. Instead of treating them as leftovers and shutting them down too, it asked me who had started them. I told it I’d check with the other manager, and that I’d started that work myself. Agents managing parallel work only see their own part; I’m the one who sees all of it.</p>
+
+<h2 id="s3"><span class="num">§ 3</span>Test-first, in a complete running system</h2>
+
+<p>Each development agent gets more than a checkout and a prompt. Every fleet instance gets an isolated, complete development environment with a fully working version of the system, including the dependencies and test tooling its task needs. The only exceptions are the agents I work with directly on my laptop.</p>
+
+<p>Agents practice test-first development: they write tests for the intended behavior, then implement until those tests pass. Early on, I verified this by watching agent logs as they worked and seeing them follow the instruction. Test-first is now part of every development agent’s prompt, and a RED check confirms the new tests fail before implementation begins.</p>
+
+<p>Passing tests is not the definition of done. The agent must exercise its change in the complete, running system: start the application, use the affected functionality, inspect any failures, and confirm the behavior works end to end.</p>
+
+<p>Environments are reproducible and disposable. Before work starts, the environment refreshes the relevant code and rebuilds changed components, so the agent isn’t unknowingly testing stale software. A freshness check blocks work if a required checkout is behind its intended branch.</p>
+
+<p>Working state lives on persistent storage separate from the compute instance, so a stopped agent can resume where it left off rather than rebuilding from scratch. I’ve rarely needed this, but it’s cheap insurance.</p>
+
+<p>The infrastructure is replaceable: local machines, VMs, containers, or cloud instances all work. What matters is a runnable, testable system, not a particular vendor or stack.</p>
+
+<h2 id="s4"><span class="num">§ 4</span>Rotating between initiatives</h2>
+
+<p>I work with an agent or manager until we’ve agreed on the next objective and it starts implementing, delegating, testing, or monitoring. Then I switch to the next initiative, discuss its work, and set it in motion. I return as results arrive or decisions are needed.</p>
+
+<p>This is my adaptation of XP pair rotation. The agent’s execution time is what frees me to work on another initiative; without it, I couldn’t stay closely involved in several at once.</p>
+
+<p>The hard part is context switching, especially the next morning. I give terminals descriptive titles so I can tell initiatives apart, and when I reconnect I usually ask:</p>
+
+<blockquote><p>What are we working on? What’s next?</p></blockquote>
+
+<p>The agent restores the current state and next actions, backed by tickets, PRs, and persisted execution state. I still need to understand the engineering decisions, but I don’t try to memorize every detail of every session.</p>
+
+<p>The real limit on parallelism is my own attention, not agent capacity. Three initiatives is about my limit while staying closely connected to what’s going on. I’ve become more efficient over time, but staying connected matters more than adding initiatives.</p>
+
+<p>Not every initiative gets equal attention. I vary it with uncertainty. Routine work gets a check-in when results arrive. When an implementation is particularly difficult, I let the other sessions wait and focus on the one that needs me, and for work that demands it, I drop down to one-on-one pairing with a single agent. On occasion that has lasted an entire day.</p>
+
+<h2 id="s5"><span class="num">§ 5</span>A PR is a tested handoff, not just a diff</h2>
+
+<p>Each developer validates its own work before handing it off. It self-reviews and corrects its changes first, then runs end-to-end tests in the real system. The pull request records what was tested and what the results were, alongside implementation notes, so the reviewer has evidence to check rather than claims to trust.</p>
+
+<p>Agents also update tickets as they go: progress, implementation notes, validation results, and saved-state information. That matters because development instances usually shut down when their work is done (the manager may first ask whether I want one kept running for manual inspection). Two kinds of record survive:</p>
+
+<ul>
+<li><strong>Environment state</strong>, so an agent’s workspace can be resumed.</li>
+<li><strong>The engineering record</strong> in tickets and PRs, which preserves decisions, progress, and test evidence for people and other agents.</li>
+</ul>
+
+<h3 id="bundles">Testing the whole solution: PR bundles</h3>
+
+<p>Passing individual tests doesn’t prove several changes work together. For multi-PR or multi-repository work, the fleet supports PR bundle testing:</p>
+
+<ol>
+<li>Select the relevant PRs and pin their exact revisions.</li>
+<li>Apply them together in a working development environment.</li>
+<li>Rebuild and run the integrated system.</li>
+<li>Run the available integration and health checks.</li>
+<li>Reject or roll back incomplete combinations rather than testing a partial bundle.</li>
+</ol>
+
+<p>When an initiative produces several PRs, I ask the manager whether they were all tested together end to end. Usually they were. When they weren’t, the manager either explains why or offers to run the bundle test, and I usually say yes. I sometimes exercise a running bundle myself. A body of work isn’t ready for team review just because every agent reports that its own task is done.</p>
+
+<h2 id="s6"><span class="num">§ 6</span>Review and the team’s existing process</h2>
+
+<p>When all the developers have finished, the manager reports what happened, with a link to each PR. How I review those PRs changed after one hard week.</p>
+
+<p>This approach produces more PRs than one engineer typically would, and my colleagues review them. One week, while running a focused initiative alongside a stream of fix tickets, I ended with 51 PRs still waiting for review, even after merging and deploying approved ones all week. Writing code was no longer the bottleneck; reviewing and verifying it was.</p>
+
+<p>That week also showed me something useful: if PRs were going to wait for review anyway, I had time to put more into each one. So I changed how I build them, to make them easier to validate for the team and for me:</p>
+
+<ul>
+<li><strong>AI-assisted review first.</strong> Agents review each PR and point out where I should focus.</li>
+<li><strong>Then my own review.</strong> I go through every PR myself. The agents’ review directs my attention; it doesn’t replace it.</li>
+<li><strong>Full-system end-to-end evidence.</strong> Each PR shows what was tested in the complete running system and what happened (see <a href="#s5">§5</a>).</li>
+<li><strong>Agent-guided review for the team too,</strong> while they still read the changes themselves.</li>
+</ul>
+
+<p>Review has become more efficient as a result, and it still catches real problems.</p>
+
+<p>That careful review matters because working with an AI agent is like working with an extremely talented engineer who doesn’t know the domain. The code is usually good. What slips through is what only someone who knows the domain would catch: a business rule, an unstated expectation, a reason things are done a certain way. As the tech lead, I review each PR for exactly what a newcomer wouldn’t know.</p>
+
+<p>Recently an agent widened a change, adding a new parameter to functions that shouldn’t have had it. I reviewed the shape of the change and missed it; a teammate who knew which functions belonged caught it, and it was reverted before release. We added code guardrails to catch that case, added rules to the agents’ environment, and I now slow down and read every line.</p>
+
+<p>Findings from my review go back to fleet instances, which fix them and test each PR end to end again. Only then do I post the PR links in the team channel. Team findings go through the same loop, and when everything is approved, we merge.</p>
+
+<p>My AI developers don’t use a separate process. They contribute through the same pull requests, reviews, approvals, merges, and deployments as everyone else. They respond to review comments, and they review other people’s PRs, sometimes checking out a colleague’s change and testing it in their own complete environment rather than just reading the diff.</p>
+
+<p>Their contributions flow through work assigned to me, and I’m accountable for everything submitted. None of this should be hidden. I make sure colleagues and management know how I work, and I share the tooling, demonstrate the workflow live, and record walkthroughs so others can try it. Disclosure and attribution should follow the policies of whatever organization uses the approach.</p>
+
+<h2 id="s7"><span class="num">§ 7</span>Delivery continues after merge</h2>
+
+<p>My terminal agent helps coordinate deployment and uses the fleet to validate the software at each stage:</p>
+
+<ul>
+<li><strong>Development:</strong> the gate is usually open; merged changes deploy and are validated.</li>
+<li><strong>QA:</strong> changes pass the applicable gate and receive comparable validation.</li>
+<li><strong>Production:</strong> when QA looks good, I approve the production gate, and we test as much as is practical and safe.</li>
+</ul>
+
+<p>The CI/CD pipeline handles progression; I keep authority over the approval gates.</p>
+
+<h2 id="s8"><span class="num">§ 8</span>The workflow, step by step</h2>
+
+<ol>
+<li><strong>Describe the work.</strong> I tell my terminal agent what I want done for an initiative, either from its existing tickets or through a discussion that produces new ones. The terminal agent acts as the manager itself or launches one.</li>
+<li><strong>Implement and test.</strong> The manager assigns the work to fleet instances. Each one implements its change, then tests it end to end in its own complete running system.</li>
+<li><strong>Report.</strong> The manager waits for every instance to finish, then reports what happened, with links to the PRs. If something fails along the way, it reports the problem and waits for my direction.</li>
+<li><strong>My review.</strong> Fleet agents review the PRs and point out where I should focus. I look at every PR myself.</li>
+<li><strong>Fix and retest.</strong> The manager has fleet instances address the findings on each PR, and each PR is tested end to end again.</li>
+<li><strong>Test together.</strong> For multi-PR work, I ask whether all the PRs were tested together end to end. If they weren’t, the manager explains why or offers to run the combined test, and I usually say yes.</li>
+<li><strong>Team review.</strong> I post the PR links in the team channel. Findings from the team go back through steps 5 and 6.</li>
+<li><strong>Merge and deliver.</strong> Once everything is approved, we merge and validate in dev, QA, and production, with me approving the production gate.</li>
+</ol>
+
+<figure class="flow" aria-label="Workflow flowchart from describing the work through production verification">
+<div class="eyebrow flow-title">The workflow as a flowchart</div>
+<div class="chain">
+<div class="node me">Describe the work: ticket or discussion</div>
+<div class="down"></div>
+<div class="node">Terminal agent or manager plans</div>
+<div class="down"></div>
+<div class="node">Fleet instances implement, then test end to end in their own full system
+<div class="branch"><b>On failure or blocker</b>Manager reports and awaits my direction, then planning resumes.</div>
+</div>
+<div class="down"></div>
+<div class="node">Manager waits for all; reports results and PR links</div>
+<div class="down"></div>
+<div class="node">Fleet review highlights where to focus</div>
+<div class="down"></div>
+<div class="node me">I review every PR</div>
+<div class="down"></div>
+<div class="node">Fleet addresses findings; each PR retested end to end</div>
+<div class="down"></div>
+<div class="node decision">Multi-PR work tested together?
+<div class="branch"><b>If no</b>Manager explains why or offers a combined test. Usually: run the combined end-to-end test. Otherwise, continue.</div>
+</div>
+<div class="down"></div>
+<div class="node me">Post PR links for team review</div>
+<div class="down"></div>
+<div class="node decision">Team findings?
+<div class="branch"><b>If yes</b>Back to “Fleet addresses findings; each PR retested end to end.”</div>
+</div>
+<div class="down"></div>
+<div class="node">Merge</div>
+<div class="down"></div>
+<div class="node">Validate in dev</div>
+<div class="down"></div>
+<div class="node">QA gate and validation</div>
+<div class="down"></div>
+<div class="node me">I approve the production gate</div>
+<div class="down"></div>
+<div class="node">Production verification</div>
+</div>
+<p class="legend"><span></span>Orange outline: a step where I act. Dashed outline: a decision.</p>
+</figure>
+
+<p>It’s a lot of testing. It’s also how I worked when I wrote the code myself, and that work rarely came back to me. The fleet follows the same discipline; the difference is that agents now do the repeated end-to-end retesting that’s easy for a person to cut short.</p>
+
+<h3 id="update">What a manager update looks like</h3>
+
+<p>Here’s a real status message from a manager, with internal identifiers replaced:</p>
+
+<div class="status">
+<div class="label">Manager status</div>
+<p>The dry run passed end to end, with the red check reporting 8 failed and 159 passed against build. I’m posting the results on PR #[A] and noting the branch-resume behaviour in memory.</p>
+<p class="meta">Commented on PR #[A], read 1 file, ran 1 shell command, wrote 1 memory</p>
+<p>The dry-run evidence is on fleet PR #[A], and the follow-up box for #[B] is on the right base: its work tree is cut from [commit], the PR’s head, and it is in the stack-restart phase before the agent starts. That run includes an on-box reproduction of the proxy error before and after the change, so I expect it to take longer than the earlier tickets, roughly forty minutes. I’ll review its stacked PR and run the red check on it when the launcher reports.</p>
+</div>
+
+<p>In two paragraphs, it shows most of this document at work:</p>
+
+<ul>
+<li><strong>Evidence, not claims.</strong> It gives actual red-check counts and posts the results on the PR, where reviewers will see them.</li>
+<li><strong>Real-system testing.</strong> The next run reproduces the bug in the running system before and after the fix, not just in a unit test.</li>
+<li><strong>Freshness.</strong> It confirms the follow-up work starts from the exact commit it depends on.</li>
+<li><strong>Learning.</strong> It records something it learned about resuming branches so future runs benefit.</li>
+<li><strong>Rotation support.</strong> It says how long the next step will take and what it will do then, so I know when to come back.</li>
+</ul>
+
+<p>PR #[A] is also on the fleet’s own repository: this is the fleet testing an improvement to itself (see <a href="#s9">§9</a>).</p>
+
+<h2 id="s9"><span class="num">§ 9</span>Retrospectives built the fleet</h2>
+
+<p>The fleet has evolved through one recurring question:</p>
+
+<blockquote><p>What challenges did you run into during this build session, and what changes in the environment would make things easier for you?</p></blockquote>
+
+<p>I ask the agents, discuss their answers, decide what to improve, and direct the terminal agent or manager to make the changes. As the fleet matured, it began implementing and testing improvements to its own environment using the same instances and validation workflow it uses for application work: provisioning, code refresh, build scripts, test automation, developer tools, and the <code>AGENT.md</code> and other guidance agents read.</p>
+
+<p>A fix to a shared obstacle helps every future agent, not just the one that hit it. The agents don’t govern their own environment; I start the retrospective, choose the improvements, and direct the work. Each round of work starts from a better baseline.</p>
+
+<h2 id="s10"><span class="num">§ 10</span>How XP maps onto this</h2>
+
+<p>My experience with the full set of XP practices (intensive pairing, rotating partners, frequent integration, multi-team process improvement) shaped how I approach these agents. On one team we coordinated shared-mainline merges with a literal traffic light. The concern then is the same as now: integrate often, keep the system working, and surface conflicts early.</p>
+
+<div class="table-wrap">
+<table>
+<thead><tr><th>XP practice</th><th>How it shows up here</th></tr></thead>
+<tbody>
+<tr><td>Pair programming</td><td>AI drives implementation; I navigate design, intent, and review. My attention scales with uncertainty, up to full one-on-one pairing for difficult work (see <a href="#s4">§4</a>).</td></tr>
+<tr><td>Pair rotation</td><td>I switch among AI partners while each works independently, then return for results and decisions.</td></tr>
+<tr><td>Test-first development</td><td>Agents write tests for the intended behavior before implementing, then run them in a working system.</td></tr>
+<tr><td>Small releases</td><td>Initiatives are broken into independently meaningful, verifiable slices.</td></tr>
+<tr><td>Continuous integration</td><td>Changes are validated individually and as combined PR bundles.</td></tr>
+<tr><td>Feedback</td><td>Agents exercise changes in the running application and report failures promptly.</td></tr>
+<tr><td>Collective ownership</td><td>Agents work across services and repositories and review colleagues’ PRs; the integrated result is a shared responsibility.</td></tr>
+<tr><td>Simple design and refactoring</td><td>The fleet’s own environment grew incrementally from real needs rather than an upfront framework. Agents don’t refactor on their own, so I direct it (see <a href="#s13">§13</a>).</td></tr>
+<tr><td>Retrospectives</td><td>Agents are asked what impeded them, and the environment improves in response.</td></tr>
+<tr><td>Sustainable pace</td><td>Applies to the human. Rotating across initiatives trades typing for context switching, so I run one to three initiatives at a time, depending on how much attention each needs.</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Test-first development and pair rotation are established in how I work. Other practices are goals I’m still building toward rather than things the tooling enforces.</p>
+
+<h2 id="s11"><span class="num">§ 11</span>How this differs from sub-agent orchestration</h2>
+
+<p>Sub-agents are a useful mechanism for delegating tasks, and I use them. But the approach is an operating model, not an agent hierarchy: a human owns the outcome; agents plan and delegate; developers work in complete running environments; every contribution is tested individually and in combination; and everything goes through normal review, merge, and deployment gates.</p>
+
+<p>None of this requires unique technology. A sub-agent system could support the same practices, and for a small task a single agent is often better. What matters is the discipline around the agents, not how many are spawned.</p>
+
+<h2 id="s12"><span class="num">§ 12</span>In practice</h2>
+
+<h3>Output</h3>
+
+<p>The clearest measure I can share without describing the work is pull request volume. In a typical month, I average more than six PRs per working day across more than a dozen repositories, and my own projects run at roughly the same pace.</p>
+
+<p>The PR count is a side effect of how I work: I take on epics, each epic is broken into small, verifiable slices, and each slice becomes a PR. At work, every one goes through the workflow in <a href="#s8">§8</a>, and most are reviewed and merged by the end of the next day. Volume alone isn’t the point: it matters only because each PR carries the evidence described in <a href="#s5">§5</a> and passes the same team review as everyone else’s work.</p>
+
+<h3>What the PRs add up to</h3>
+
+<p>Ticket counts undersell this kind of work, because initiatives often arrive as a single line: support monorepos across the entire system, or build a new platform, assigned as a blank ticket. Turning that into an architecture, a plan, tickets, and PRs is the job. Over a few months, several initiatives were large enough to be broken into dozens of subtasks in the tracker. Others were tracked as a single ticket, whatever their size.</p>
+
+<h3 id="wrong">What went wrong: requirements, not code</h3>
+
+<p>When I join a new organization or department, I don’t yet know its domain, and I haven’t always interpreted requirements correctly. Agent validation confirms the software does what I specified; it can’t tell me the specification was wrong. Team review has caught these gaps in my domain knowledge, both in a new department and at a new company.</p>
+
+<p>That’s the clearest argument I have for keeping human review in the loop. The agents can verify the software behaves as intended. The people who know the domain tell me whether it’s the right software.</p>
+
+<h2 id="s13"><span class="num">§ 13</span>Questions people ask</h2>
+
+<h3>What does it cost?</h3>
+
+<p>A few hundred dollars a month: roughly half for the fleet’s cloud compute and inference, and the rest for my terminal agent’s subscription. At the PR rate in <a href="#s12">§12</a>, that works out to a few dollars per PR. Fleet developers and managers run on glm-5.3-flash. My terminal agent runs in Claude Code, and so does any manager work it does itself. I went without Claude Code for a while but switched back for my terminal agent when shared inference rate limits became a problem.</p>
+
+<p>The process itself can be much cheaper. My browser-based setup runs the same process for about $30 a month, including both the browser agents and the agents that improve the system itself. The fleet costs more because it gives every agent its own complete environment, not because the method needs it.</p>
+
+<h3>Which tools and models?</h3>
+
+<p>Claude Code with Opus 5.5 is my interface. Pi running glm-5.3-flash does most of the work. The process doesn’t depend on either; it has run on very different tools (see <a href="#origins">“Where it came from”</a>).</p>
+
+<h3>What can the agents access?</h3>
+
+<p>In development, the full running system. In production, agents test as me, with an ordinary user-level token for the application itself, not a cloud or infrastructure credential. It’s limited to my own account, can’t reach anyone else’s data, and has no admin rights. It’s essentially black-box testing by testers who happen to know a lot about how the system is built.</p>
+
+<h3>Do you really understand all of it?</h3>
+
+<p>I know it as well as a tech lead who reviews every pull request: well enough to answer questions in meetings about how things work. When I need specifics, I ask my agent, the same way I’d ask the developer who wrote it. And like anyone on a large system, I’m still learning the parts I haven’t worked on.</p>
+
+<h3>What do the agents do poorly?</h3>
+
+<p>Four things, and all of them need my attention.</p>
+
+<p><strong>Stacked PRs.</strong> When one PR builds on another, a merge can collapse the stack into a single commit and lose the work in the PRs above it. I’ve hit this often enough that handling it is now part of the process: the manager backs up the work before touching a stack and no longer deletes branches as it merges.</p>
+
+<p><strong>Drift.</strong> Agents drift toward whatever is simplest right now, and they’ll drop things they don’t see a use for, even when I’m building toward something that needs them. I learned this the hard way. One agent removed my Apache Spark and Delta Lake implementation without my noticing, because Postgres handled my small demo dataset fine. I’d built it to show data flowing through the medallion tables and ETL into Postgres, and I never got to give that demo. Agents don’t have the bigger picture unless you give it to them, any more than a junior engineer would. Since then, I watch closely for drift.</p>
+
+<p><strong>Compaction.</strong> When an agent’s session runs long, its earlier context gets compressed into a summary, and details are lost. I believe that’s how the Spark and Delta Lake work above disappeared. It loses even simple instructions. If I’m pairing directly with an agent and I’ve told it to commit and push its changes, which triggers a deploy, it can forget that after a compaction. I go on testing what I think is deployed, prompting “...still happening...”, until I find three commits sitting unpushed on my machine. Compaction still worries me.</p>
+
+<p><strong>Abstraction.</strong> Agents duplicate code rather than abstract it. Ask for ten similar things on ten separate occasions and you’ll get ten similar implementations; they rarely refactor unless you tell them to. Some concepts are surprisingly hard for them, too: I once had to walk Opus 4.8 through a simple recursion. Refactoring is still a core XP practice here; it just has to be directed. (A teammate once caught exactly this in review; see <a href="#team">“How does the team feel about it?”</a>)</p>
+
+<p>There’s also a limit upstream of the agents: they build what I ask for, so when I misunderstand a requirement, they build the wrong thing well (see <a href="#wrong">§12</a>). Beyond these, I haven’t found a kind of engineering work they can’t do. I use them for everything I can, and when one gets blocked, I ask it, “What can I do to unblock you?”</p>
+
+<h3>Do agent runs fail or loop?</h3>
+
+<p>Rarely. I’ve seen an agent loop maybe twice. Each time, I interrupted and asked, “What are you working on? You keep repeating the same thing.” That was enough to break the loop, and it carried on fine. Occasionally an agent prints a screen of garbled characters; I restart it and give it the work again. Because progress lives in tickets, PRs, and persisted state, a restart costs little.</p>
+
+<h3>How do I start?</h3>
+
+<p>Try to give your agent everything you would do yourself. When it can’t do something, ask what it needs to be able to. Really, use it for everything. Have it set up the entire system and test its own work end to end. Once that works, ask it how to split the work.</p>
+
+<p>Feel free to ask it anything. For me, worrying about cost was what held me back most. Once I switched to open-weight models, I felt free to ask for anything, even though they were sometimes less capable, and that freedom was good for learning. If you’re learning, I’d start with a low-cost subscription such as OpenCode Go (about $10 a month) and an agent like Pi. Right now I’d pick glm-5.3-flash: it’s capable and inexpensive, and a $10 plan goes a long way with it. Prices and models change quickly, so check what’s current.</p>
+
+<h3 id="team">How does the team feel about it?</h3>
+
+<p>The teams I’ve worked with have been comfortable with it. We’re all experimenting and learning ways to be more productive, sharing what we learn, and growing together.</p>
+
+<p>Team review also keeps me honest. I once asked agents for ten similar things in ten separate sessions, with other work in between. There were enough PRs that a teammate pulled them together to see the bigger picture, then messaged me: “Okay, that’s three of these things. I usually refactor at three.” I replied, “So do I.” Before I could get into the code: “Okay, now there are four.” I wrote back, “Stop the review. Let me take a look.” With days between the PRs, I hadn’t noticed the pattern; across the whole body of work, it was obvious. My agent rules now include “Check for duplication in our code.”</p>
+
+<h3>What about learning, especially for junior engineers?</h3>
+
+<p>Ask a lot of questions, including asking the agent how you would do it yourself. When I want to learn something hands-on, I ask the agent for a runbook so I can do it myself.</p>
+
+<h3>Shouldn’t you stop counting PRs?</h3>
+
+<p>Yes. The right measure is vertical slices of value delivered. Most organizations still count PRs, so that’s what I can report for now. At a previous company, I asked engineers to keep pointing stories the same way even after AI made us faster; otherwise we’d have lost our baseline before we had a new metric to replace it.</p>
+
+<h2 id="s14"><span class="num">§ 14</span>What others can adopt</h2>
+
+<p>None of this requires my tools or infrastructure; I’ve run the same process on a ticket board, with sub-agents on my own machine, in browser tabs, and on separate compute instances. A team can start with one agent and one working application environment, then add capabilities as real work justifies them:</p>
+
+<ol>
+<li>Treat the agent as a pairing partner and keep a human technical owner.</li>
+<li>Give the agent a complete, runnable system. Work test-first, and require the agent to exercise its change in that system, not just pass unit tests.</li>
+<li>Keep tasks small enough to validate and hand off as reviewable PRs.</li>
+<li>Record coordination, implementation notes, and test evidence in durable work items.</li>
+<li>Test related changes together before merge.</li>
+<li>Keep human review, failure decisions, and release approvals explicit.</li>
+<li>Rotate among AI partners while they work independently; use terminal titles and a quick “what’s next?” to recover context.</li>
+<li>Ask agents what slowed them down, improve the shared environment, and repeat.</li>
+</ol>
+
+<div class="closing">
+<p>More agents don’t automatically produce better software.</p>
+<p class="after">Engineering discipline, working environments, feedback loops, and accountable leadership are what make parallel AI execution useful.</p>
+</div>
+
+</main>
+</div>
+
+<footer class="license">
+<p>© 2026 Joseph Cava. This work is licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">Creative Commons Attribution 4.0 International (CC BY 4.0)</a>. You may share and adapt it with credit.</p>
+</footer>
+
+<script>
+(function () {
+  // theme toggle: cycles light / dark, remembered per browser
+  var root = document.documentElement;
+  try { var saved = localStorage.getItem('theme'); if (saved) root.setAttribute('data-theme', saved); } catch (e) {}
+  document.getElementById('theme').addEventListener('click', function () {
+    var cur = root.getAttribute('data-theme');
+    if (!cur) cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    var next = cur === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  });
+
+  // highlight the current section in the sidebar
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc-list a'));
+  var map = {};
+  links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+  var heads = Array.prototype.slice.call(document.querySelectorAll('main h2[id]'));
+  if (!('IntersectionObserver' in window)) return;
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) {
+        links.forEach(function (a) { a.classList.remove('on'); });
+        var a = map[en.target.id]; if (a) a.classList.add('on');
+      }
+    });
+  }, { rootMargin: '0px 0px -75% 0px' });
+  heads.forEach(function (h) { obs.observe(h); });
+})();
+</script>
+</body>
+</html>
