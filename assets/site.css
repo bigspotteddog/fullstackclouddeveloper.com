@@ -1,0 +1,83 @@
+/* Shared styles for the home page and talks index.
+   Palette and type match the talk articles and slides. */
+:root {
+  --bg: #F5F2EA;
+  --surface: #FBF9F4;
+  --line: #DDD5C4;
+  --text: #1B2436;
+  --muted: #4A5263;
+  --accent: #E8833A;
+  --accent-text: #A4471A;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121A2B;
+    --surface: #1C2740;
+    --line: #2E3B57;
+    --text: #F2EEE4;
+    --muted: #B9C2D3;
+    --accent-text: #F0A066;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121A2B;
+  --surface: #1C2740;
+  --line: #2E3B57;
+  --text: #F2EEE4;
+  --muted: #B9C2D3;
+  --accent-text: #F0A066;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, 'Segoe UI', Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+}
+a { color: var(--accent-text); }
+
+.inner { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+@media (min-width: 720px) { .inner { padding: 0 32px; } }
+
+.eyebrow { font-family: 'JetBrains Mono', 'Courier New', monospace; font-size: 13px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-text); margin: 0; }
+
+/* hero (always dark, like the articles) */
+.hero { background: #121A2B; color: #F2EEE4; padding: 88px 0 64px; }
+.hero .bar { width: 96px; height: 8px; background: var(--accent); margin-bottom: 36px; }
+.hero .eyebrow { color: #F0A066; }
+.hero h1 { font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif; font-weight: 700; font-size: clamp(44px, 8vw, 88px); line-height: 1.0; letter-spacing: -0.02em; margin: 12px 0 20px; }
+.hero .sub { font-size: clamp(19px, 2.4vw, 24px); color: #D3D9E4; margin: 0; max-width: 680px; line-height: 1.45; }
+.crumbs { margin: 0 0 28px; font: 600 13px/1.4 'JetBrains Mono', monospace; letter-spacing: 0.08em; }
+.crumbs a { color: #8C97AB; text-decoration: none; }
+.crumbs a:hover { color: #F0A066; }
+
+main { padding: 64px 0 96px; }
+main h2 { font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif; font-size: clamp(26px, 3.4vw, 34px); line-height: 1.15; margin: 0 0 8px; }
+section + section { margin-top: 72px; }
+.section-note { color: var(--muted); margin: 0 0 28px; }
+
+/* talk cards */
+.talks { list-style: none; padding: 0; margin: 0; display: grid; gap: 20px; }
+@media (min-width: 760px) { .talks { grid-template-columns: 1fr 1fr; } }
+.talk { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px; }
+.talk .meta { font: 600 12px/1.4 'JetBrains Mono', monospace; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 0; }
+.talk h3 { font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif; font-size: 28px; line-height: 1.15; margin: 0; }
+.talk h3 a { color: var(--text); text-decoration: none; }
+.talk h3 a:hover { color: var(--accent-text); }
+.talk p { margin: 0; color: var(--muted); }
+.talk .actions { margin-top: auto; padding-top: 12px; display: flex; flex-wrap: wrap; gap: 10px; }
+.btn { display: inline-block; font: 600 14px/1 'JetBrains Mono', monospace; letter-spacing: 0.04em; text-decoration: none; padding: 11px 16px; border-radius: 999px; border: 1px solid var(--line); color: var(--text); }
+.btn:hover { border-color: var(--accent); color: var(--accent-text); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #121A2B; }
+.btn.primary:hover { color: #121A2B; filter: brightness(1.06); }
+
+.plain-link { font-weight: 600; text-decoration: none; border-bottom: 1px solid currentColor; }
+
+.theme { position: absolute; right: 16px; top: 16px; z-index: 10; background: rgba(18,26,43,0.85); color: #F2EEE4; border: 1px solid #2E3B57; border-radius: 999px; padding: 6px 14px; font: 600 12px/1.4 'JetBrains Mono', monospace; letter-spacing: 0.1em; cursor: pointer; }
+
+footer { border-top: 1px solid var(--line); padding: 28px 0 48px; font-size: 14px; color: var(--muted); }
+footer p { margin: 0; }

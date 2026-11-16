@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Agent Drives, I Navigate</title>
+<meta name="description" content="How I run a team of AI developers with XP discipline.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Agent Drives, I Navigate (slides)">
+<meta property="og:description" content="How I run a team of AI developers with XP discipline.">
+<meta property="og:url" content="https://fullstackclouddeveloper.com/talks/the-agent-drives-i-navigate/slides.html">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://fullstackclouddeveloper.com/talks/the-agent-drives-i-navigate/slides.html">
+<link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* ---------- viewer chrome ---------- */
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: #0B111D; }
+body { font-family: 'Inter', -apple-system, 'Segoe UI', Arial, sans-serif; color: #1B2436; }
+#stage { position: fixed; inset: 0; }
+#deck { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; transform-origin: center center; }
+#hud { position: fixed; right: 20px; bottom: 16px; font: 600 13px/1 'JetBrains Mono', Menlo, monospace; color: #8C97AB; letter-spacing: 1px; user-select: none; z-index: 5; }
+#hud button { background: none; border: 1px solid #2E3B57; color: #B9C2D3; font: inherit; padding: 6px 10px; border-radius: 6px; margin-left: 6px; cursor: pointer; }
+#hud a { color: #B9C2D3; text-decoration: none; border: 1px solid #2E3B57; padding: 6px 10px; border-radius: 6px; margin-left: 6px; display: inline-block; }
+#hud a:hover, #hud button:hover { border-color: #E8833A; color: #F0A066; }
+#progress { position: fixed; left: 0; bottom: 0; height: 4px; background: #E8833A; transition: width 300ms ease; z-index: 5; }
+#notes { position: fixed; left: 0; right: 0; bottom: 0; max-height: 34vh; overflow: auto; background: rgba(11,17,29,0.96); color: #D3D9E4; font: 17px/1.55 'Inter', Arial, sans-serif; padding: 20px 28px 52px; border-top: 2px solid #E8833A; display: none; z-index: 4; }
+#notes.open { display: block; }
+#notes b { color: #F0A066; font: 600 12px/1 'JetBrains Mono', Menlo, monospace; letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 10px; }
+
+/* ---------- slides ---------- */
+.slide { position: absolute; inset: 0; width: 1920px; height: 1080px; padding: 128px; display: none; flex-direction: column; gap: 48px; background: #F5F2EA; color: #1B2436; overflow: hidden; }
+.slide.active { display: flex; }
+.slide aside { display: none; }
+.slide h1, .slide h2, .slide h3, .slide p, .slide ul, .slide ol { margin: 0; }
+.slide.dark { background: #121A2B; color: #F2EEE4; }
+.slide.accent { background: #E8833A; color: #121A2B; }
+.slide.bottom { justify-content: flex-end; }
+
+h1, h2, h3 { font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif; }
+h1 { font-size: 120px; line-height: 1.04; font-weight: 700; letter-spacing: -2px; }
+h2 { font-size: 72px; line-height: 1.08; font-weight: 700; letter-spacing: -1px; }
+h3 { font-size: 36px; line-height: 1.2; font-weight: 600; }
+p { font-size: 32px; line-height: 1.4; }
+
+.eyebrow { font-family: 'JetBrains Mono', 'Courier New', monospace; font-size: 24px; line-height: 1.3; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #A4471A; }
+.dark .eyebrow { color: #F0A066; }
+.accent .eyebrow { color: #121A2B; }
+
+.head { display: flex; flex-direction: column; gap: 16px; }
+.head-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 48px; }
+.lead { font-size: 44px; line-height: 1.3; }
+.body { font-size: 28px; line-height: 1.45; color: #4A5263; }
+.dark .body { color: #B9C2D3; }
+.dark .lead { color: #D3D9E4; }
+.accent .lead { color: #121A2B; }
+.note { font-size: 28px; line-height: 1.4; color: #4A5263; max-width: 1300px; }
+.dark .note { color: #B9C2D3; }
+
+.mark { position: absolute; left: 128px; top: 128px; width: 160px; height: 12px; background: #E8833A; }
+.accent .mark { background: #121A2B; }
+
+.cards { display: flex; gap: 32px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.card { flex: 1; display: flex; flex-direction: column; gap: 12px; background: #FBF9F4; border: 2px solid #DDD5C4; border-radius: 20px; padding: 36px 40px; }
+.dark .card { background: #1C2740; border-color: #2E3B57; }
+.tag { font-family: 'JetBrains Mono', 'Courier New', monospace; font-size: 24px; line-height: 1.3; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #A4471A; }
+.dark .tag { color: #F0A066; }
+.card-text { font-size: 28px; line-height: 1.4; color: #4A5263; }
+.dark .card-text { color: #B9C2D3; }
+
+.timeline { display: flex; gap: 32px; }
+.stage { flex: 1; display: flex; flex-direction: column; gap: 12px; border-top: 6px solid #E8833A; padding-top: 24px; }
+.stage-title { font-size: 32px; line-height: 1.2; }
+.stage-text { font-size: 24px; line-height: 1.4; color: #4A5263; }
+.constant { font-size: 32px; line-height: 1.4; font-weight: 500; padding-top: 32px; border-top: 2px solid #DDD5C4; }
+
+.stat { font-family: 'Space Grotesk', Arial, sans-serif; font-size: 96px; line-height: 1; font-weight: 700; color: #A4471A; }
+.huge { font-family: 'Space Grotesk', Arial, sans-serif; font-size: 300px; line-height: 0.9; font-weight: 700; letter-spacing: -8px; color: #F0A066; }
+.huge-label { font-size: 36px; line-height: 1.3; font-weight: 500; }
+.quote { font-family: 'Space Grotesk', Arial, sans-serif; font-size: 64px; line-height: 1.15; font-weight: 500; letter-spacing: -1px; }
+.quote-sm { font-family: 'Space Grotesk', Arial, sans-serif; font-size: 48px; line-height: 1.2; font-weight: 500; }
+.split { display: flex; gap: 96px; align-items: center; flex: 1; }
+.split-l { display: flex; flex-direction: column; gap: 16px; width: 560px; flex: none; }
+.split-r { display: flex; flex-direction: column; gap: 32px; flex: 1; }
+.rule-l { border-left: 6px solid #E8833A; padding-left: 40px; }
+
+.list { font-size: 28px; line-height: 1.5; color: #4A5263; padding-left: 36px; }
+.dark .list { color: #B9C2D3; }
+
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px 32px; }
+.step { display: flex; flex-direction: column; gap: 8px; background: #FBF9F4; border: 2px solid #DDD5C4; border-radius: 18px; padding: 28px 32px; }
+.step.loop { border-color: #E8833A; }
+.step-title { font-size: 32px; line-height: 1.2; }
+.step-text { font-size: 24px; line-height: 1.4; color: #4A5263; }
+
+.excerpt { flex: 1.5; display: flex; flex-direction: column; gap: 20px; background: #121A2B; border-radius: 20px; padding: 48px 52px; }
+.excerpt-text { font-family: 'JetBrains Mono', 'Courier New', monospace; font-size: 26px; line-height: 1.55; color: #E4E8EF; }
+.excerpt-label { font-family: 'JetBrains Mono', 'Courier New', monospace; font-size: 24px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #F0A066; }
+.notes-col { flex: 1; display: flex; flex-direction: column; gap: 22px; }
+.ann { display: flex; flex-direction: column; gap: 4px; border-left: 4px solid #E8833A; padding-left: 24px; }
+.ann-title { font-size: 30px; line-height: 1.2; }
+.ann-text { font-size: 24px; line-height: 1.4; color: #4A5263; }
+
+.xp { width: 100%; font-size: 26px; color: #1B2436; border-collapse: collapse; }
+.xp th, .xp td { text-align: left; padding: 0.35em 0.6em; border-bottom: 1px solid #DDD5C4; }
+.xp th { font-weight: 600; }
+.xp-head { background: #EAE3D3; }
+.pill { font-size: 24px; line-height: 1.3; background: #EAE3D3; border-radius: 999px; padding: 12px 24px; color: #1B2436; white-space: nowrap; }
+
+.adopt { display: grid; grid-template-columns: 1fr 1fr; gap: 36px 72px; }
+.item { display: flex; gap: 24px; align-items: flex-start; }
+.item-num { font-family: 'JetBrains Mono', 'Courier New', monospace; font-size: 28px; line-height: 1.4; font-weight: 600; color: #A4471A; min-width: 48px; }
+.item-text { font-size: 28px; line-height: 1.4; }
+
+.license { position: absolute; left: 128px; bottom: 48px; font-size: 24px; line-height: 1.3; color: #8C97AB; }
+.license a { color: #B9C2D3; }
+
+@keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+.slide.active .rise { animation: rise 600ms cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: calc(var(--i, 0) * 110ms); }
+@media (prefers-reduced-motion: reduce) { .slide.active .rise { animation: none; } }
+
+/* ---------- print: one slide per page ---------- */
+@media print {
+  @page { size: 1920px 1080px; margin: 0; }
+  html, body { overflow: visible; height: auto; background: none; }
+  #hud, #progress, #notes { display: none !important; }
+  #stage { position: static; }
+  #deck { position: static; transform: none !important; width: 1920px; height: auto; }
+  .slide { position: relative; display: flex !important; page-break-after: always; break-after: page; }
+  .slide .rise { animation: none !important; }
+}
+</style>
+</head>
+<body>
+<div id="stage"><div id="deck">
+
+<section class="slide dark bottom">
+<div class="mark"></div>
+<div class="head">
+<p class="eyebrow rise">An operating model for AI-assisted engineering</p>
+<h1 class="rise" style="--i:1; font-size:140px;">The Agent Drives,<br>I Navigate</h1>
+</div>
+<p class="lead rise" style="--i:2;">How I run a team of AI developers with XP discipline</p>
+<aside>Most teams have figured out how to get AI agents to write code. The harder problem is trusting what they write. A better prompt or spec only covers the start. My answer: stay in the loop the whole way, and make the agents verify intended behavior in a running system before anyone reviews it. I no longer write most of the code, but I’m still hands-on: architecture, requirements, review, technical decisions, accountability for delivery.</aside>
+</section>
+
+<section class="slide accent bottom">
+<div class="mark"></div>
+<p class="eyebrow rise">The guiding principle</p>
+<h1 class="rise" style="--i:1;">Autonomous execution,<br>not autonomous approval.</h1>
+<p class="lead rise" style="--i:2;">Agents plan, implement, test and integrate. Humans decide what ships.</p>
+<aside>This is the one idea to remember. I work with AI agents as an engineering team, not as a code-generation feature. The approach draws on years of practicing Extreme Programming across multiple teams. It’s an adaptation of XP, not a claim that every XP practice is enforced automatically.</aside>
+</section>
+
+<section class="slide">
+<div class="head">
+<p class="eyebrow">Where it came from</p>
+<h2>Five stages since early 2025</h2>
+</div>
+<div class="timeline">
+<div class="stage rise" style="--i:0;"><p class="tag">01</p><h3 class="stage-title">A board the agents walked</h3><p class="stage-text">Jira, aider and n8n. Agents moved tickets; I reviewed markdown plans, not running code.</p></div>
+<div class="stage rise" style="--i:1;"><p class="tag">02</p><h3 class="stage-title">Real work, on my machine</h3><p class="stage-text">Three to five agents on a real codebase, verified end to end against the whole system locally.</p></div>
+<div class="stage rise" style="--i:2;"><p class="tag">03</p><h3 class="stage-title">Agents check their work</h3><p class="stage-text">My own agents; one in the browser, validating against the running application.</p></div>
+<div class="stage rise" style="--i:3;"><p class="tag">04</p><h3 class="stage-title">Parallel and test-first</h3><p class="stage-text">Agents in separate browser tabs, each on its own branch, building full-stack apps.</p></div>
+<div class="stage rise" style="--i:4;"><p class="tag">05</p><h3 class="stage-title">The fleet</h3><p class="stage-text">The same process on separate compute instances, each with a complete environment.</p></div>
+</div>
+<p class="constant rise" style="--i:5;">Constant at every stage: human direction → agent execution → human review → merge.</p>
+<aside>This is a personal way of working, used at more than one company and on my own projects. In stage one I was proving the process, not the work: “testing” meant judging whether a plan would work. As agents improved, the same loop could carry real work, and testing moved from me judging a plan on paper to agents validating working software. I carried forward the process, not the architecture. The fleet’s infrastructure wasn’t planned upfront; it grew out of retrospectives.</aside>
+</section>
+
+<section class="slide">
+<div class="head">
+<p class="eyebrow">Who does what</p>
+<h2>A human owns it; agents execute</h2>
+</div>
+<table class="xp rise" style="font-size:28px;">
+<tr class="xp-head"><th style="width:32%;">Role</th><th style="width:68%;">Responsibility</th></tr>
+<tr><td>Me, the engineering owner</td><td>Own the outcome, set priorities and architecture, approve releases</td></tr>
+<tr><td>Terminal agent</td><td>Shape requirements and design; choose developers or a manager</td></tr>
+<tr><td>Manager (optional)</td><td>Plan, delegate, launch and monitor developers, summarize</td></tr>
+<tr><td>Development agent</td><td>Implement in a complete environment, validate, hand off a PR</td></tr>
+<tr><td>Integrator</td><td>Test multiple PRs together across changes or repositories</td></tr>
+<tr><td>Human team</td><td>Normal peer review and merge</td></tr>
+</table>
+<p class="note rise" style="--i:2;">When something fails, the manager reports it and waits for my direction.</p>
+<aside>I work at the initiative level: epics, not individual tickets. Work starts from existing tickets or from a discussion that produces new ones. The terminal agent decides whether an initiative needs one developer, several in parallel, or a dedicated manager; a manager keeps monitoring even when my laptop sleeps. Story: a manager finished and shut down its four instances, then noticed two more it hadn’t started. Instead of shutting them down, it asked me. Agents only see their own part; I see all of it.</aside>
+</section>
+
+<section class="slide">
+<div class="head">
+<p class="eyebrow">Test-first, in a complete running system</p>
+<h2>Passing tests is not the definition of done</h2>
+</div>
+<div class="cards">
+<div class="card rise" style="--i:0;"><p class="tag">Red first</p><h3>Tests before code</h3><p class="card-text">Agents write tests for the intended behavior. A RED check confirms they fail before implementation begins.</p></div>
+<div class="card rise" style="--i:1;"><p class="tag">Run it</p><h3>Exercise the change</h3><p class="card-text">The agent starts the application, uses the affected feature, inspects failures and confirms it works end to end.</p></div>
+<div class="card rise" style="--i:2;"><p class="tag">Stay fresh</p><h3>Disposable environments</h3><p class="card-text">Code refreshes and rebuilds before work starts. A freshness check blocks work on a stale checkout.</p></div>
+</div>
+<p class="note rise" style="--i:3;">The infrastructure is replaceable: laptops, VMs, containers or cloud. What matters is a runnable, testable system.</p>
+<aside>Every fleet instance gets an isolated, complete development environment with a fully working version of the system, including dependencies and test tooling. Early on I verified test-first by watching agent logs; now it’s in every development agent’s prompt, backed by the RED check. Working state lives on persistent storage separate from the compute, so a stopped agent can resume. I’ve rarely needed it, but it’s cheap insurance.</aside>
+</section>
+
+<section class="slide dark">
+<div class="head">
+<p class="eyebrow">Rotating between initiatives</p>
+<h2>The limit is my attention, not agent capacity</h2>
+</div>
+<div class="split">
+<div class="split-l rise">
+<p class="huge">1–3</p>
+<p class="huge-label">initiatives at a time, while staying closely connected</p>
+</div>
+<div class="split-r">
+<div class="rule-l rise" style="--i:1;"><p class="quote-sm">“What are we working on? What’s next?”</p></div>
+<p class="body rise" style="--i:2;">How I reconnect each morning. Tickets, PRs and persisted state let the agent restore context.</p>
+<p class="body rise" style="--i:3;">Attention scales with uncertainty: routine work gets a check-in; hard work gets one-on-one pairing, sometimes for a whole day.</p>
+</div>
+</div>
+<aside>This is my adaptation of XP pair rotation. I work with an agent until we agree on the next objective, then switch to the next initiative while it executes. The hard part is context switching, especially the next morning. I give terminals descriptive titles to tell initiatives apart. Staying connected matters more than adding initiatives.</aside>
+</section>
+
+<section class="slide">
+<div class="head">
+<p class="eyebrow">Tested handoffs</p>
+<h2>A PR is evidence to check, not a claim to trust</h2>
+</div>
+<div class="cards">
+<div class="card rise" style="--i:0;">
+<p class="tag">Every PR records</p>
+<ul class="list">
+<li>Self-review and corrections</li>
+<li>What was tested in the running system</li>
+<li>Results and implementation notes</li>
+<li>Ticket updates and saved state</li>
+</ul>
+</div>
+<div class="card rise" style="--i:1;">
+<p class="tag">PR bundles, for multi-PR work</p>
+<ol class="list">
+<li>Pin each PR’s exact revision</li>
+<li>Apply them together in one environment</li>
+<li>Rebuild and run the integrated system</li>
+<li>Run integration and health checks</li>
+<li>Reject incomplete combinations</li>
+</ol>
+</div>
+</div>
+<p class="note rise" style="--i:2;">A body of work isn’t ready for team review just because every agent reports its own task is done.</p>
+<aside>Development instances usually shut down when done, so two kinds of record survive: environment state, so a workspace can be resumed, and the engineering record in tickets and PRs. For multi-PR work I ask the manager whether everything was tested together end to end. Usually it was; when it wasn’t, the manager explains why or offers to run the bundle test, and I usually say yes.</aside>
+</section>
+
+<section class="slide dark">
+<div class="head">
+<p class="eyebrow">One hard week</p>
+<h2>Writing code was no longer the bottleneck</h2>
+</div>
+<div class="split">
+<div class="split-l rise">
+<p class="huge">51</p>
+<p class="huge-label">PRs still waiting for review at the end of one week</p>
+</div>
+<div class="split-r">
+<p class="lead rise" style="--i:1;">If PRs wait anyway, put more into each one.</p>
+<ol class="list rise" style="--i:2; font-size:32px;">
+<li>AI-assisted review points out where to focus</li>
+<li>I review every PR myself</li>
+<li>Each PR shows full-system end-to-end evidence</li>
+<li>Agent-guided review for the team, who still read the changes</li>
+</ol>
+</div>
+</div>
+<aside>That week I was running a focused initiative alongside a stream of fix tickets, and still ended with 51 PRs waiting, even after merging and deploying approved ones all week. Reviewing and verifying became the bottleneck. So I changed how I build PRs to make them easier to validate. The agents’ review directs my attention; it doesn’t replace it. Review is more efficient now, and it still catches real problems.</aside>
+</section>
+
+<section class="slide">
+<p class="eyebrow">What review is for</p>
+<div class="rule-l rise" style="--i:1;"><p class="quote">“Working with an AI agent is like working with an extremely talented engineer who doesn’t know the domain.”</p></div>
+<div class="cards">
+<div class="card rise" style="--i:2;"><p class="tag">What slips through</p><p class="card-text">A business rule, an unstated expectation, a reason things are done a certain way. The code is usually good.</p></div>
+<div class="card rise" style="--i:3;"><p class="tag">A recent miss</p><p class="card-text">An agent added a parameter to functions that shouldn’t have it. I reviewed the shape and missed it; a teammate caught it.</p></div>
+<div class="card rise" style="--i:4;"><p class="tag">What changed</p><p class="card-text">Code guardrails for that case, new rules for the agents, and I now slow down and read every line.</p></div>
+</div>
+<aside>As tech lead, I review each PR for exactly what a newcomer wouldn’t know. The widened change was reverted before release. Findings from my review go back to fleet instances, which fix them and test each PR end to end again. Only then do I post the links in the team channel. My AI developers use the same process as everyone: same PRs, reviews, approvals, merges and deployments. They respond to review comments and review colleagues’ PRs too, sometimes testing a colleague’s change in their own complete environment. None of it is hidden.</aside>
+</section>
+
+<section class="slide">
+<div class="head-row">
+<div class="head">
+<p class="eyebrow">The workflow</p>
+<h2>Eight steps from request to production</h2>
+</div>
+<p class="pill">Orange outline: findings loop back here</p>
+</div>
+<div class="steps">
+<div class="step rise" style="--i:0;"><p class="tag">01</p><h3 class="step-title">Describe</h3><p class="step-text">From existing tickets or a design discussion.</p></div>
+<div class="step rise" style="--i:0;"><p class="tag">02</p><h3 class="step-title">Implement, test</h3><p class="step-text">Each instance builds, then tests end to end in its own system.</p></div>
+<div class="step rise" style="--i:1;"><p class="tag">03</p><h3 class="step-title">Report</h3><p class="step-text">Manager reports with PR links; failures wait for me.</p></div>
+<div class="step rise" style="--i:1;"><p class="tag">04</p><h3 class="step-title">My review</h3><p class="step-text">Fleet review shows where to look; I read every PR.</p></div>
+<div class="step loop rise" style="--i:2;"><p class="tag">05 · loop</p><h3 class="step-title">Fix, retest</h3><p class="step-text">Findings addressed; each PR retested end to end.</p></div>
+<div class="step loop rise" style="--i:2;"><p class="tag">06 · loop</p><h3 class="step-title">Test together</h3><p class="step-text">Multi-PR work runs as a combined bundle.</p></div>
+<div class="step rise" style="--i:3;"><p class="tag">07</p><h3 class="step-title">Team review</h3><p class="step-text">PR links go to the team channel. Findings return to step 5.</p></div>
+<div class="step rise" style="--i:3;"><p class="tag">08</p><h3 class="step-title">Merge, deliver</h3><p class="step-text">Validate in dev and QA; I approve the production gate.</p></div>
+</div>
+<aside>It’s a lot of testing. It’s also how I worked when I wrote the code myself, and that work rarely came back to me. The difference is that agents now do the repeated end-to-end retesting that’s easy for a person to cut short. After merge, my terminal agent helps coordinate deployment and uses the fleet to validate at each stage: dev, QA, then production, where we test as much as is practical and safe. The CI/CD pipeline handles progression; I keep authority over the gates.</aside>
+</section>
+
+<section class="slide">
+<div class="head">
+<p class="eyebrow">What a manager update looks like</p>
+<h2>Two paragraphs, most of the method</h2>
+</div>
+<div class="cards">
+<div class="excerpt rise">
+<p class="excerpt-label">Manager status, identifiers replaced</p>
+<p class="excerpt-text">The dry run passed end to end, with the red check reporting 8 failed and 159 passed against build. I’m posting the results on PR #[A] and noting the branch-resume behaviour in memory. … The follow-up box for #[B] is on the right base: its work tree is cut from [commit], the PR’s head. … That run includes an on-box reproduction of the proxy error before and after the change, so I expect it to take … roughly forty minutes.</p>
+</div>
+<div class="notes-col">
+<div class="ann rise" style="--i:1;"><h3 class="ann-title">Evidence, not claims</h3><p class="ann-text">Real red-check counts, posted on the PR.</p></div>
+<div class="ann rise" style="--i:2;"><h3 class="ann-title">Real-system testing</h3><p class="ann-text">The bug is reproduced before and after the fix.</p></div>
+<div class="ann rise" style="--i:3;"><h3 class="ann-title">Freshness</h3><p class="ann-text">Follow-up work starts from the exact commit.</p></div>
+<div class="ann rise" style="--i:4;"><h3 class="ann-title">Learning</h3><p class="ann-text">It records what it learned for future runs.</p></div>
+<div class="ann rise" style="--i:5;"><h3 class="ann-title">Rotation support</h3><p class="ann-text">It says how long the next step takes.</p></div>
+</div>
+</div>
+<aside>This is a real status message from a manager. It shows evidence rather than claims, real-system testing, freshness, learning, and rotation support: it tells me when to come back. PR #[A] is on the fleet’s own repository, so this is the fleet testing an improvement to itself.</aside>
+</section>
+
+<section class="slide dark">
+<div class="head">
+<p class="eyebrow">Retrospectives built the fleet</p>
+<h2>One recurring question</h2>
+</div>
+<div class="rule-l rise" style="--i:1;"><p class="quote">“What challenges did you run into during this build session, and what changes in the environment would make things easier for you?”</p></div>
+<div class="cards">
+<div class="card rise" style="--i:2;"><p class="tag">What improves</p><p class="card-text">Provisioning, code refresh, build scripts, test automation, developer tools and the AGENT.md guidance agents read.</p></div>
+<div class="card rise" style="--i:3;"><p class="tag">Who decides</p><p class="card-text">I start the retrospective, choose the improvements and direct the work. Agents don’t govern their own environment.</p></div>
+</div>
+<aside>I ask the agents, discuss their answers, decide what to improve, and direct the terminal agent or manager to make the changes. As the fleet matured, it began implementing and testing improvements to its own environment using the same instances and validation workflow it uses for application work. A fix to a shared obstacle helps every future agent. Each round starts from a better baseline.</aside>
+</section>
+
+<section class="slide">
+<div class="head-row">
+<div class="head">
+<p class="eyebrow">XP, adapted</p>
+<h2>How XP maps onto this</h2>
+</div>
+<p class="pill">Established: test-first and rotation. The rest are goals.</p>
+</div>
+<table class="xp rise">
+<tr class="xp-head"><th style="width:30%;">XP practice</th><th style="width:70%;">How it shows up</th></tr>
+<tr><td>Pair programming</td><td>AI drives; I navigate design, intent and review</td></tr>
+<tr><td>Pair rotation</td><td>I switch among AI partners while each works on its own</td></tr>
+<tr><td>Test-first</td><td>Tests for intended behavior first, then the running system</td></tr>
+<tr><td>Small releases</td><td>Independently meaningful, verifiable slices</td></tr>
+<tr><td>Continuous integration</td><td>Validated individually and as combined PR bundles</td></tr>
+<tr><td>Feedback</td><td>Agents exercise changes in the running app</td></tr>
+<tr><td>Collective ownership</td><td>Agents work across repos and review colleagues’ PRs</td></tr>
+<tr><td>Simple design, refactoring</td><td>Grown from real needs; refactoring has to be directed</td></tr>
+<tr><td>Retrospectives</td><td>Agents say what impeded them; the environment improves</td></tr>
+<tr><td>Sustainable pace</td><td>Applies to the human: one to three initiatives at a time</td></tr>
+</table>
+<aside>My experience with the full set of XP practices shaped this. On one team we coordinated shared-mainline merges with a literal traffic light. The concern then is the same as now: integrate often, keep the system working, surface conflicts early. Test-first and pair rotation are established in how I work; the other practices are goals I’m still building toward, not things the tooling enforces.</aside>
+</section>
+
+<section class="slide">
+<div class="head">
+<p class="eyebrow">In practice</p>
+<h2>Output is a side effect of small slices</h2>
+</div>
+<div class="cards">
+<div class="card rise" style="--i:0;"><p class="stat">6+</p><p class="card-text">PRs per working day in a typical month, across more than a dozen repositories</p></div>
+<div class="card rise" style="--i:1;"><p class="stat">Next day</p><p class="card-text">Most PRs are reviewed and merged by the end of the next day</p></div>
+<div class="card rise" style="--i:2;"><p class="stat">A few $</p><p class="card-text">Per PR. A few hundred a month covers compute, inference and my terminal agent</p></div>
+</div>
+<p class="note rise" style="--i:3;">PR volume isn’t the point. The right measure is vertical slices of value delivered; PRs are what most organizations still count.</p>
+<aside>Each epic is broken into small, verifiable slices, and each slice becomes a PR that carries end-to-end evidence and passes the same team review as everyone else’s work. Ticket counts undersell this: initiatives often arrive as one line, like “support monorepos across the entire system.” Turning that into architecture, a plan, tickets and PRs is the job. Cost: roughly half for fleet compute and inference, the rest for the terminal agent subscription. Fleet developers run on glm-5.3-flash; my terminal agent is Claude Code. The browser-based setup runs the same process for about $30 a month. The fleet costs more because every agent gets its own complete environment, not because the method needs it.</aside>
+</section>
+
+<section class="slide">
+<div class="head">
+<p class="eyebrow">What the agents do poorly</p>
+<h2>Four weaknesses that need my attention</h2>
+</div>
+<div class="grid2">
+<div class="card rise" style="--i:0;"><h3>Stacked PRs</h3><p class="card-text">A merge can collapse a stack and lose the work above it. The manager now backs up first and keeps branches.</p></div>
+<div class="card rise" style="--i:1;"><h3>Drift</h3><p class="card-text">Agents drift toward what’s simplest now. One removed a Spark and Delta Lake build because Postgres handled the demo data.</p></div>
+<div class="card rise" style="--i:2;"><h3>Compaction</h3><p class="card-text">Long sessions get summarized and details vanish, even “commit and push.” I found three commits sitting unpushed.</p></div>
+<div class="card rise" style="--i:3;"><h3>Abstraction</h3><p class="card-text">Ask for ten similar things and get ten implementations. Refactoring still matters; it just has to be directed.</p></div>
+</div>
+<aside>Agents don’t have the bigger picture unless you give it to them, any more than a junior engineer would. A teammate once reviewed my similar PRs together: “Okay, that’s three of these things. I usually refactor at three.” “So do I.” “Okay, now there are four.” “Stop the review. Let me take a look.” My agent rules now include “Check for duplication in our code.” Runs rarely fail or loop; when they do, I ask what it’s working on, or restart it. Progress lives in tickets, PRs and persisted state, so a restart costs little.</aside>
+</section>
+
+<section class="slide dark bottom">
+<div class="mark"></div>
+<p class="eyebrow rise">What went wrong: requirements, not code</p>
+<h2 class="rise" style="--i:1; font-size:88px;">Agents verify the software does what I specified. People who know the domain tell me whether it’s the right software.</h2>
+<p class="lead rise" style="--i:2;">When I misunderstand a requirement, the agents build the wrong thing well.</p>
+<aside>When I join a new organization or department, I don’t yet know its domain, and I haven’t always interpreted requirements correctly. Agent validation can’t tell me the specification was wrong. Team review caught those gaps, both in a new department and at a new company. That’s the clearest argument I have for keeping human review in the loop.</aside>
+</section>
+
+<section class="slide">
+<div class="head">
+<p class="eyebrow">What others can adopt</p>
+<h2>Start with one agent and one working environment</h2>
+</div>
+<div class="adopt">
+<div class="item rise" style="--i:0;"><p class="item-num">01</p><p class="item-text">Treat the agent as a pairing partner, and keep a human technical owner.</p></div>
+<div class="item rise" style="--i:0;"><p class="item-num">05</p><p class="item-text">Test related changes together before merge.</p></div>
+<div class="item rise" style="--i:1;"><p class="item-num">02</p><p class="item-text">Give it a complete, runnable system. Work test-first and exercise every change in it.</p></div>
+<div class="item rise" style="--i:1;"><p class="item-num">06</p><p class="item-text">Keep human review, failure decisions and release approvals explicit.</p></div>
+<div class="item rise" style="--i:2;"><p class="item-num">03</p><p class="item-text">Keep tasks small enough to validate and hand off as reviewable PRs.</p></div>
+<div class="item rise" style="--i:2;"><p class="item-num">07</p><p class="item-text">Rotate among AI partners; recover context with terminal titles and “What’s next?”</p></div>
+<div class="item rise" style="--i:3;"><p class="item-num">04</p><p class="item-text">Record coordination, notes and test evidence in durable work items.</p></div>
+<div class="item rise" style="--i:3;"><p class="item-num">08</p><p class="item-text">Ask agents what slowed them down, improve the environment, repeat.</p></div>
+</div>
+<aside>None of this requires my tools or infrastructure. I’ve run the same process on a ticket board, with sub-agents on my own machine, in browser tabs, and on separate compute instances. Getting started: give your agent everything you would do yourself, and when it can’t, ask what it needs. Have it set up the entire system and test its own work end to end. Once that works, ask it how to split the work. A low-cost subscription and an open-weight model are a good way to learn without worrying about cost; prices and models change quickly, so check what’s current.</aside>
+</section>
+
+<section class="slide dark bottom">
+<div class="mark"></div>
+<h1 class="rise" style="font-size:104px;">More agents don’t automatically produce better software.</h1>
+<p class="lead rise" style="--i:1;">Engineering discipline, working environments, feedback loops and accountable leadership are what make parallel AI execution useful.</p>
+<p class="eyebrow rise" style="--i:2;">The agent drives. I navigate.</p>
+<p class="license">© 2026 Joseph Cava. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>.</p>
+<aside>Close on the core message: the discipline around the agents matters, not how many are spawned. Invite questions.</aside>
+</section>
+
+</div></div>
+
+<div id="progress"></div>
+<div id="notes"><b>Speaker notes</b><div id="notes-text"></div></div>
+<div id="hud"><span id="count"></span><a href="./" title="Read the full article">Article</a><button id="btn-notes" title="Toggle speaker notes (N)">Notes</button><button id="btn-full" title="Fullscreen (F)">Full</button></div>
+
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var deck = document.getElementById('deck');
+  var count = document.getElementById('count');
+  var progress = document.getElementById('progress');
+  var notes = document.getElementById('notes');
+  var notesText = document.getElementById('notes-text');
+  var current = 0;
+
+  function fit() {
+    var s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    deck.style.transform = 'translate(-50%, -50%) scale(' + s + ')';
+  }
+
+  function show(n) {
+    n = Math.max(0, Math.min(slides.length - 1, n));
+    slides[current].classList.remove('active');
+    current = n;
+    slides[current].classList.add('active');
+    count.textContent = (current + 1) + ' / ' + slides.length;
+    progress.style.width = ((current + 1) / slides.length * 100) + '%';
+    var aside = slides[current].querySelector('aside');
+    notesText.textContent = aside ? aside.textContent : '';
+    if (location.hash !== '#' + (current + 1)) history.replaceState(null, '', '#' + (current + 1));
+  }
+
+  function fromHash() {
+    var n = parseInt(location.hash.slice(1), 10);
+    return isNaN(n) ? 0 : n - 1;
+  }
+
+  function toggleNotes() { notes.classList.toggle('open'); }
+  function toggleFull() {
+    if (!document.fullscreenElement) { document.documentElement.requestFullscreen && document.documentElement.requestFullscreen(); }
+    else { document.exitFullscreen && document.exitFullscreen(); }
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    switch (e.key) {
+      case 'ArrowRight': case 'ArrowDown': case 'PageDown': case ' ': case 'Enter':
+        e.preventDefault(); show(current + 1); break;
+      case 'ArrowLeft': case 'ArrowUp': case 'PageUp': case 'Backspace':
+        e.preventDefault(); show(current - 1); break;
+      case 'Home': show(0); break;
+      case 'End': show(slides.length - 1); break;
+      case 'n': case 'N': toggleNotes(); break;
+      case 'f': case 'F': toggleFull(); break;
+    }
+  });
+
+  document.getElementById('stage').addEventListener('click', function (e) {
+    if (e.target.closest('a')) return;
+    if (e.clientX < window.innerWidth / 3) show(current - 1); else show(current + 1);
+  });
+
+  var tx = null;
+  document.addEventListener('touchstart', function (e) { tx = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend', function (e) {
+    if (tx === null) return;
+    var dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 40) show(current + (dx < 0 ? 1 : -1));
+    tx = null;
+  });
+
+  document.getElementById('btn-notes').addEventListener('click', function (e) { e.stopPropagation(); toggleNotes(); });
+  document.getElementById('btn-full').addEventListener('click', function (e) { e.stopPropagation(); toggleFull(); });
+  window.addEventListener('resize', fit);
+  window.addEventListener('hashchange', function () { show(fromHash()); });
+
+  fit();
+  slides[0].classList.add('active');
+  show(fromHash());
+})();
+</script>
+</body>
+</html>

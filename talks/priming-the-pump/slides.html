@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Priming the Pump</title>
+<meta name="description" content="Start working with an AI agent through an engineering conversation, not a perfect prompt.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Priming the Pump (slides)">
+<meta property="og:description" content="Start working with an AI agent through an engineering conversation, not a perfect prompt.">
+<meta property="og:url" content="https://fullstackclouddeveloper.com/talks/priming-the-pump/slides.html">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://fullstackclouddeveloper.com/talks/priming-the-pump/slides.html">
+<link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* ---------- viewer chrome ---------- */
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: #0B111D; }
+body { font-family: 'Inter', -apple-system, 'Segoe UI', Arial, sans-serif; color: #1B2436; }
+#stage { position: fixed; inset: 0; }
+#deck { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; transform-origin: center center; }
+#hud { position: fixed; right: 20px; bottom: 16px; font: 600 13px/1 'JetBrains Mono', Menlo, monospace; color: #8C97AB; letter-spacing: 1px; user-select: none; z-index: 5; }
+#hud button { background: none; border: 1px solid #2E3B57; color: #B9C2D3; font: inherit; padding: 6px 10px; border-radius: 6px; margin-left: 6px; cursor: pointer; }
+#hud a { color: #B9C2D3; text-decoration: none; border: 1px solid #2E3B57; padding: 6px 10px; border-radius: 6px; margin-left: 6px; display: inline-block; }
+#hud a:hover, #hud button:hover { border-color: #E8833A; color: #F0A066; }
+#progress { position: fixed; left: 0; bottom: 0; height: 4px; background: #E8833A; transition: width 300ms ease; z-index: 5; }
+#notes { position: fixed; left: 0; right: 0; bottom: 0; max-height: 34vh; overflow: auto; background: rgba(11,17,29,0.96); color: #D3D9E4; font: 17px/1.55 'Inter', Arial, sans-serif; padding: 20px 28px 52px; border-top: 2px solid #E8833A; display: none; z-index: 4; }
+#notes.open { display: block; }
+#notes b { color: #F0A066; font: 600 12px/1 'JetBrains Mono', Menlo, monospace; letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 10px; }
+
+/* ---------- slides ---------- */
+.slide { position: absolute; inset: 0; width: 1920px; height: 1080px; padding: 128px; display: none; flex-direction: column; gap: 48px; background: #F5F2EA; color: #1B2436; overflow: hidden; }
+.slide.active { display: flex; }
+.slide aside { display: none; }
+.slide h1, .slide h2, .slide h3, .slide p, .slide ul, .slide ol { margin: 0; }
+.slide.dark { background: #121A2B; color: #F2EEE4; }
+.slide.accent { background: #E8833A; color: #121A2B; }
+.slide.bottom { justify-content: flex-end; }
+
+h1, h2, h3 { font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif; }
+h1 { font-size: 120px; line-height: 1.04; font-weight: 700; letter-spacing: -2px; }
+h2 { font-size: 72px; line-height: 1.08; font-weight: 700; letter-spacing: -1px; }
+h3 { font-size: 36px; line-height: 1.2; font-weight: 600; }
+p { font-size: 32px; line-height: 1.4; }
+
+.eyebrow { font-family: 'JetBrains Mono', 'Courier New', monospace; font-size: 24px; line-height: 1.3; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #A4471A; }
+.dark .eyebrow { color: #F0A066; }
+.accent .eyebrow { color: #121A2B; }
+
+.head { display: flex; flex-direction: column; gap: 16px; }
+.lead { font-size: 44px; line-height: 1.3; }
+.dark .lead { color: #D3D9E4; }
+.accent .lead { color: #121A2B; }
+.note { font-size: 28px; line-height: 1.4; color: #4A5263; max-width: 1400px; }
+.dark .note { color: #B9C2D3; }
+
+.mark { position: absolute; left: 128px; top: 128px; width: 160px; height: 12px; background: #E8833A; }
+.accent .mark { background: #121A2B; }
+
+.cards { display: flex; gap: 32px; }
+.card { flex: 1; display: flex; flex-direction: column; gap: 12px; background: #FBF9F4; border: 2px solid #DDD5C4; border-radius: 20px; padding: 36px 40px; }
+.dark .card { background: #1C2740; border-color: #2E3B57; }
+.tag { font-family: 'JetBrains Mono', 'Courier New', monospace; font-size: 24px; line-height: 1.3; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #A4471A; }
+.dark .tag { color: #F0A066; }
+.card-text { font-size: 28px; line-height: 1.4; color: #4A5263; }
+.dark .card-text { color: #B9C2D3; }
+
+.huge { font-family: 'Space Grotesk', Arial, sans-serif; font-size: 260px; line-height: 0.9; font-weight: 700; letter-spacing: -8px; color: #F0A066; }
+.huge-label { font-size: 36px; line-height: 1.3; font-weight: 500; }
+.quote { font-family: 'Space Grotesk', Arial, sans-serif; font-size: 64px; line-height: 1.15; font-weight: 500; letter-spacing: -1px; }
+.split { display: flex; gap: 96px; align-items: center; flex: 1; }
+.split-l { display: flex; flex-direction: column; gap: 16px; width: 600px; flex: none; }
+.split-r { display: flex; flex-direction: column; gap: 32px; flex: 1; }
+.rule-l { border-left: 6px solid #E8833A; padding-left: 40px; }
+
+.list { font-size: 30px; line-height: 1.5; color: #4A5263; padding-left: 36px; }
+.dark .list { color: #B9C2D3; }
+
+/* the seven questions */
+.qs { display: flex; flex-direction: column; }
+.q { display: grid; grid-template-columns: 72px 1fr 360px; gap: 24px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid #DDD5C4; }
+.q-num { font-family: 'JetBrains Mono', 'Courier New', monospace; font-size: 24px; font-weight: 600; color: #A4471A; }
+.q-text { font-size: 30px; line-height: 1.35; }
+.q-why { font-family: 'JetBrains Mono', 'Courier New', monospace; font-size: 24px; line-height: 1.3; color: #4A5263; text-align: right; }
+.q.go { background: #FBE6D6; border-bottom: none; border-radius: 12px; padding: 18px 20px; margin-top: 8px; }
+.q.go .q-text { font-weight: 600; }
+
+/* principles */
+.principles { display: flex; flex-direction: column; gap: 28px; }
+.pr { display: flex; gap: 32px; align-items: baseline; }
+.pr-num { font-family: 'Space Grotesk', Arial, sans-serif; font-size: 44px; font-weight: 700; color: #F0A066; min-width: 72px; }
+.pr-text { font-size: 44px; line-height: 1.25; font-weight: 500; }
+
+/* conversation loop */
+.flow { display: flex; align-items: stretch; gap: 16px; }
+.node { flex: 1; display: flex; flex-direction: column; gap: 10px; background: #FBF9F4; border: 2px solid #DDD5C4; border-radius: 18px; padding: 28px 28px; }
+.node.hot { background: #121A2B; border-color: #121A2B; color: #F2EEE4; }
+.node.hot .tag { color: #F0A066; }
+.node.hot .node-text { color: #B9C2D3; }
+.node-title { font-size: 32px; line-height: 1.2; }
+.node-text { font-size: 24px; line-height: 1.4; color: #4A5263; }
+.arrow { font-family: 'Space Grotesk', Arial, sans-serif; font-size: 48px; color: #E8833A; align-self: center; font-weight: 700; }
+.dark .node { background: #1C2740; border-color: #2E3B57; }
+.dark .node-text { color: #B9C2D3; }
+.dark .node.hot { background: #E8833A; border-color: #E8833A; color: #121A2B; }
+.dark .node.hot .tag, .dark .node.hot .node-text { color: #121A2B; }
+
+/* scope table */
+.xp { width: 100%; font-size: 30px; color: #1B2436; border-collapse: collapse; }
+.xp th, .xp td { text-align: left; padding: 0.5em 0.6em; border-bottom: 1px solid #DDD5C4; vertical-align: top; }
+.xp th { font-weight: 600; font-size: 24px; font-family: 'JetBrains Mono', 'Courier New', monospace; letter-spacing: 2px; text-transform: uppercase; color: #A4471A; }
+.xp td:first-child { font-family: 'Space Grotesk', Arial, sans-serif; font-weight: 700; font-size: 36px; }
+.xp-head { background: #EAE3D3; }
+
+.steps5 { display: flex; flex-direction: column; gap: 24px; }
+.st { display: flex; gap: 32px; align-items: baseline; padding-bottom: 24px; border-bottom: 1px solid #DDD5C4; }
+.st:last-child { border-bottom: none; }
+.st-num { font-family: 'JetBrains Mono', 'Courier New', monospace; font-size: 28px; font-weight: 600; color: #A4471A; min-width: 56px; }
+.st-text { font-size: 40px; line-height: 1.25; font-weight: 500; }
+
+.license { position: absolute; left: 128px; bottom: 48px; font-size: 24px; line-height: 1.3; color: #8C97AB; }
+.license a { color: #B9C2D3; }
+
+@keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+.slide.active .rise { animation: rise 600ms cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: calc(var(--i, 0) * 110ms); }
+@media (prefers-reduced-motion: reduce) { .slide.active .rise { animation: none; } }
+
+@media print {
+  @page { size: 1920px 1080px; margin: 0; }
+  html, body { overflow: visible; height: auto; background: none; }
+  #hud, #progress, #notes { display: none !important; }
+  #stage { position: static; }
+  #deck { position: static; transform: none !important; width: 1920px; height: auto; }
+  .slide { position: relative; display: flex !important; page-break-after: always; break-after: page; }
+  .slide .rise { animation: none !important; }
+}
+</style>
+</head>
+<body>
+<div id="stage"><div id="deck">
+
+<!-- 1 -->
+<section class="slide dark bottom">
+<div class="mark"></div>
+<div class="head">
+<p class="eyebrow rise">Getting started with AI agents</p>
+<h1 class="rise" style="--i:1; font-size:160px;">Priming the Pump</h1>
+</div>
+<p class="lead rise" style="--i:2;">Start with an engineering conversation, not a perfect prompt.</p>
+<aside>This is the start of the process I describe in The Agent Drives, I Navigate. It’s the approach I use in my own work and the first thing I show teammates who are getting started.</aside>
+</section>
+
+<!-- 2 -->
+<section class="slide">
+<p class="eyebrow">The skeptic who called me</p>
+<div class="rule-l rise" style="--i:1;"><p class="quote">“I tried it and it didn’t work for me. I see you doing it, and I don’t believe what I’m seeing. Show me how you do it.”</p></div>
+<div class="cards">
+<div class="card rise" style="--i:2;"><p class="tag">We paired</p><p class="card-text">Claude Code open in his project’s folder. No big prompts: talk to it like you would anyone else.</p></div>
+<div class="card rise" style="--i:3;"><p class="tag">Plain questions</p><p class="card-text">I fed him a few plain questions to ask it. He caught on right away.</p></div>
+<div class="card rise" style="--i:4;"><p class="tag">What changed</p><p class="card-text">Not his skill. Only how he started the conversation. He went on to help others get going.</p></div>
+</div>
+<aside>One of the biggest AI skeptics at my company called me one day. We paired: I asked what he was working on, had him open Claude Code in that project’s folder, explained how I prime the pump, and fed him a few plain questions. He went on to become one of the best AI engineers at the company.</aside>
+</section>
+
+<!-- 3 -->
+<section class="slide dark">
+<div class="head">
+<p class="eyebrow">The real barrier</p>
+<h2>The barrier usually isn’t the AI</h2>
+</div>
+<p class="lead rise">It’s the belief that you need an elaborate prompt, or a full spec, before you’ll get anything useful.</p>
+<div class="cards">
+<div class="card rise" style="--i:1;"><p class="tag">Too much</p><h3>An hour on the perfect prompt</h3><p class="card-text">Heavy effort up front, before the agent has looked at a single line of code.</p></div>
+<div class="card rise" style="--i:2;"><p class="tag">Too little</p><h3>A one-liner</h3><p class="card-text">Something generic comes back, and the conclusion is “AI doesn’t work.”</p></div>
+</div>
+<p class="note rise" style="--i:3;">Both start in the wrong place.</p>
+<aside>People either spend an hour crafting the perfect prompt, or they type a one-liner, get something generic back, and decide AI doesn’t work. I use plain, almost naive questions that anyone can ask. No prompt engineering and no spec.</aside>
+</section>
+
+<!-- 4 -->
+<section class="slide accent bottom">
+<div class="mark"></div>
+<p class="eyebrow rise">The metaphor</p>
+<h1 class="rise" style="--i:1; font-size:104px;">An old hand pump won’t draw water from a dry start.</h1>
+<p class="lead rise" style="--i:2;">You pour a little water in first, and then it flows. Working with an AI agent is the same.</p>
+<aside>Instead of a perfect prompt, I start an engineering conversation. Each round points more clearly at the target.</aside>
+</section>
+
+<!-- 5 -->
+<section class="slide">
+<div class="head">
+<p class="eyebrow">What priming the pump means</p>
+<h2>A conversation, then a go with a named target</h2>
+</div>
+<div class="flow">
+<div class="node rise" style="--i:0;"><p class="tag">Ask</p><h3 class="node-title">The existing system</h3><p class="node-text">The questions you’d ask a teammate while looking at the code together.</p></div>
+<p class="arrow rise" style="--i:0;">→</p>
+<div class="node rise" style="--i:1;"><p class="tag">Clarify</p><h3 class="node-title">Requirements</h3><p class="node-text">The agent asks questions too. Context builds in both directions.</p></div>
+<p class="arrow rise" style="--i:1;">→</p>
+<div class="node rise" style="--i:2;"><p class="tag">Constrain</p><h3 class="node-title">Talk through limits</h3><p class="node-text">Each round points more clearly at the target.</p></div>
+<p class="arrow rise" style="--i:2;">→</p>
+<div class="node hot rise" style="--i:3;"><p class="tag">Go</p><h3 class="node-title">“Implement what we just discussed”</h3><p class="node-text">Never just “go.”</p></div>
+<p class="arrow rise" style="--i:3;">→</p>
+<div class="node rise" style="--i:4;"><p class="tag">Agent</p><h3 class="node-title">Implements, tests, verifies</h3><p class="node-text">And comes back with questions when it needs to.</p></div>
+</div>
+<p class="note rise" style="--i:5;">It’s very much like a conversation with another engineer.</p>
+<aside>I ask about the existing system, clarify requirements, and talk through constraints. The agent asks questions too. Then I say go, and the go always names its target. The agent implements, tests, and verifies the work.</aside>
+</section>
+
+<!-- 6 -->
+<section class="slide dark">
+<div class="head">
+<p class="eyebrow">The principles</p>
+<h2>Five simple rules</h2>
+</div>
+<div class="principles">
+<div class="pr rise" style="--i:0;"><p class="pr-num">1</p><p class="pr-text">Conversation builds the context, in both directions.</p></div>
+<div class="pr rise" style="--i:1;"><p class="pr-num">2</p><p class="pr-text">The effort grows with the scope of the work.</p></div>
+<div class="pr rise" style="--i:2;"><p class="pr-num">3</p><p class="pr-text">“Go” always names its target.</p></div>
+<div class="pr rise" style="--i:3;"><p class="pr-num">4</p><p class="pr-text">Engineering judgment sets the direction. Agents propose; review decides.</p></div>
+<div class="pr rise" style="--i:4;"><p class="pr-num">5</p><p class="pr-text">Working, verified software is what counts.</p></div>
+</div>
+<aside>Engineering judgment sets the direction. Agents propose the implementation, and review decides.</aside>
+</section>
+
+<!-- 7 -->
+<section class="slide">
+<div class="head">
+<p class="eyebrow">What it looks like</p>
+<h2>Seven plain questions</h2>
+</div>
+<div class="qs">
+<div class="q rise" style="--i:0;"><p class="q-num">01</p><p class="q-text">“What is this project?”</p><p class="q-why">Get oriented</p></div>
+<div class="q rise" style="--i:0;"><p class="q-num">02</p><p class="q-text">“How do scans get into the system?”</p><p class="q-why">Trace the path that matters</p></div>
+<div class="q rise" style="--i:1;"><p class="q-num">03</p><p class="q-text">“Does that include zip files?”</p><p class="q-why">Probe the gap</p></div>
+<div class="q rise" style="--i:1;"><p class="q-num">04</p><p class="q-text">“What needs to happen to make it include zip files?”</p><p class="q-why">Let the agent find the work</p></div>
+<div class="q rise" style="--i:2;"><p class="q-num">05</p><p class="q-text">“What’s the best way to receive those if the files are large?”</p><p class="q-why">Bring in a constraint</p></div>
+<div class="q rise" style="--i:2;"><p class="q-num">06</p><p class="q-text">“What needs to change in the scanner project to do that?”</p><p class="q-why">Narrow to the target</p></div>
+<div class="q go rise" style="--i:3;"><p class="q-num">07</p><p class="q-text">“Go ahead and make those changes to the scanner, and test them end to end.”</p><p class="q-why">Go, with a named target</p></div>
+</div>
+<aside>This is the kind of conversation I had my colleague start, with the agent open in his project folder. The details are illustrative, but the shape is real. Each answer sets up the next question.</aside>
+</section>
+
+<!-- 8 -->
+<section class="slide dark">
+<div class="head">
+<p class="eyebrow">Why it works</p>
+<h2>None of these questions is clever</h2>
+</div>
+<p class="lead rise">They’re what you’d ask another engineer who knows the project. By the time you say go, the agent has read the code itself and knows:</p>
+<div class="flow">
+<div class="node rise" style="--i:1;"><p class="tag">01</p><h3 class="node-title">The system</h3></div>
+<div class="node rise" style="--i:2;"><p class="tag">02</p><h3 class="node-title">The gap</h3></div>
+<div class="node rise" style="--i:3;"><p class="tag">03</p><h3 class="node-title">The constraint</h3></div>
+<div class="node hot rise" style="--i:4;"><p class="tag">04</p><h3 class="node-title">The target</h3></div>
+</div>
+<p class="note rise" style="--i:5;">And you never wrote a prompt.</p>
+<aside>Each answer sets up the next question. The agent did the reading; I steered the conversation.</aside>
+</section>
+
+<!-- 9 -->
+<section class="slide">
+<div class="head">
+<p class="eyebrow">How far to go</p>
+<h2>Prime only as much as the work needs</h2>
+</div>
+<table class="xp rise">
+<tr class="xp-head"><th style="width:20%;">Scope</th><th style="width:42%;">The conversation</th><th style="width:38%;">What it produces</th></tr>
+<tr><td>A task</td><td>A few questions, like the example</td><td>Enough shared understanding to do that one thing</td></tr>
+<tr><td>A feature</td><td>A longer discussion of requirements and design</td><td>Tickets the agents can work from</td></tr>
+<tr><td>An initiative</td><td>A larger discussion, over several sessions if needed</td><td>A document that outlasts any one session</td></tr>
+</table>
+<p class="note rise" style="--i:2;">Prompt engineering spends heavy effort on everything; spec-driven development writes a spec for everything. Priming spends effort in proportion to the work.</p>
+<aside>Writing it down matters as the work grows. An agent’s memory of a long session gets compressed and details are lost, so a larger discussion ends up as a document or tickets the agent can always go back to. I often build iteratively, each round of conversation sharpening the target.</aside>
+</section>
+
+<!-- 10 -->
+<section class="slide dark">
+<div class="head">
+<p class="eyebrow">A good ticket is a pump someone already primed</p>
+<h2>When the ticket exists, priming can be one question</h2>
+</div>
+<div class="split">
+<div class="split-l rise">
+<p class="huge">~35</p>
+<p class="huge-label">words from me, across three short messages</p>
+</div>
+<div class="split-r">
+<p class="lead rise" style="--i:1;">“Look for any tickets regarding Firebase.” “Which should we start with?” “Yes, do both.”</p>
+<ul class="list rise" style="--i:2;">
+<li>A PR posted on the ticket with the fix</li>
+<li>Before-and-after results for the ticket’s three examples</li>
+<li>Test and benchmark results</li>
+<li>All five review comments addressed</li>
+</ul>
+</div>
+</div>
+<aside>The ticket primed the problem; the fleet’s accumulated rules primed the process. The solution was in neither. My part was choosing the work and reviewing the result.</aside>
+</section>
+
+<!-- 11 -->
+<section class="slide">
+<div class="head">
+<p class="eyebrow">How you know it’s primed</p>
+<h2>Check before you say go</h2>
+</div>
+<div class="cards">
+<div class="card rise" style="--i:0;"><p class="tag">Before go</p><h3>“Tell me what you’re about to do and why.”</h3><p class="card-text">If it matches what you have in mind, it’s primed. If not, keep talking.</p></div>
+<div class="card rise" style="--i:1;"><p class="tag">During</p><h3>The agent asks good questions</h3><p class="card-text">It raises something you hadn’t thought of, catching a misunderstanding before any code is written.</p></div>
+<div class="card rise" style="--i:2;"><p class="tag">Coming back</p><h3>“What are we working on? What’s next?”</h3><p class="card-text">Find out what the agent still remembers before you rely on it.</p></div>
+</div>
+<aside>The agent’s own questions are a good sign. When it asks about something you hadn’t thought of, the conversation is doing its job: catching a misunderstanding before any code is written, not after.</aside>
+</section>
+
+<!-- 12 -->
+<section class="slide dark">
+<div class="head">
+<p class="eyebrow">Where it leads</p>
+<h2>The same start scales to a team of agents</h2>
+</div>
+<div class="flow">
+<div class="node hot rise" style="--i:0;"><p class="tag">Prime</p><h3 class="node-title">Me and my terminal agent</h3><p class="node-text">A conversation, then a go with a named target.</p></div>
+<p class="arrow rise" style="--i:0;">→</p>
+<div class="node rise" style="--i:1;"><p class="tag">Split</p><h3 class="node-title">Terminal agent</h3><p class="node-text">Decides how to divide the work.</p></div>
+<p class="arrow rise" style="--i:1;">→</p>
+<div class="node rise" style="--i:2;"><p class="tag">Coordinate</p><h3 class="node-title">Managers</h3><p class="node-text">Run developer agents.</p></div>
+<p class="arrow rise" style="--i:2;">→</p>
+<div class="node rise" style="--i:3;"><p class="tag">Build</p><h3 class="node-title">Developer agents</h3><p class="node-text">Each in its own complete, running copy of the system.</p></div>
+<p class="arrow rise" style="--i:3;">→</p>
+<div class="node rise" style="--i:4;"><p class="tag">Return</p><h3 class="node-title">Verified PRs</h3><p class="node-text">Integrated and ready for review.</p></div>
+</div>
+<p class="note rise" style="--i:5;">The start never changes. The rest is in “The Agent Drives, I Navigate.”</p>
+<aside>I prime the pump with my terminal agent, it decides how to split the work, and managers coordinate developer agents, each working in its own complete, running copy of the system. They return integrated, verified pull requests for review.</aside>
+</section>
+
+<!-- 13 -->
+<section class="slide">
+<p class="eyebrow">Is it really that simple?</p>
+<div class="rule-l rise" style="--i:1;"><p class="quote">“Does that include zip files?” only sounds naive once someone has thought of it.</p></div>
+<div class="cards">
+<div class="card rise" style="--i:2;"><p class="tag">Anyone can</p><p class="card-text">Ask plain questions. The conversation teaches you as you go.</p></div>
+<div class="card rise" style="--i:3;"><p class="tag">Experience does</p><p class="card-text">Spot the gap, bring in the constraint, know when the agent’s understanding matches yours, and notice when its work is wrong.</p></div>
+<div class="card rise" style="--i:4;"><p class="tag">The skeptic</p><p class="card-text">Wasn’t missing the skill, just permission to talk to the agent normally.</p></div>
+</div>
+<aside>When I look back at what I ask the agent, I think almost anyone could do this. But not everyone would ask those particular questions. Experience is what turns plain questions into the right ones. My skeptical colleague was already an experienced engineer, which is probably why he caught on so fast.</aside>
+</section>
+
+<!-- 14 -->
+<section class="slide">
+<div class="head">
+<p class="eyebrow">Try it</p>
+<h2>Five steps, starting today</h2>
+</div>
+<div class="steps5">
+<div class="st rise" style="--i:0;"><p class="st-num">01</p><p class="st-text">Pick one small task you’re actually working on.</p></div>
+<div class="st rise" style="--i:1;"><p class="st-num">02</p><p class="st-text">Open your agent in that project’s folder.</p></div>
+<div class="st rise" style="--i:2;"><p class="st-num">03</p><p class="st-text">Ask plain questions until it understands the system, the gap and the target.</p></div>
+<div class="st rise" style="--i:3;"><p class="st-num">04</p><p class="st-text">Say go, and name the target.</p></div>
+<div class="st rise" style="--i:4;"><p class="st-num">05</p><p class="st-text">Check the result in the running system, not just the tests.</p></div>
+</div>
+<aside>Feel free to ask anything along the way. Worrying about cost held me back most. Once I switched to open-weight models, I felt free to ask for anything, and that freedom was good for learning. A low-cost subscription such as OpenCode Go, about $10 a month, with an agent like Pi goes a long way; right now I’d use glm-5.3-flash. Prices and models change quickly, so check what’s current.</aside>
+</section>
+
+<!-- 15 -->
+<section class="slide dark bottom">
+<div class="mark"></div>
+<h1 class="rise" style="font-size:104px;">Don’t spend your time building perfect prompts.</h1>
+<p class="lead rise" style="--i:1;">Build shared understanding through engineering conversation, as much as the work needs, then delegate and verify.</p>
+<p class="license">© 2026 Joseph Cava. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>.</p>
+<aside>Close here and invite people to try it on one small task this week.</aside>
+</section>
+
+</div></div>
+
+<div id="progress"></div>
+<div id="notes"><b>Speaker notes</b><div id="notes-text"></div></div>
+<div id="hud"><span id="count"></span><a href="./" title="Read the full article">Article</a><button id="btn-notes" title="Toggle speaker notes (N)">Notes</button><button id="btn-full" title="Fullscreen (F)">Full</button></div>
+
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var deck = document.getElementById('deck');
+  var count = document.getElementById('count');
+  var progress = document.getElementById('progress');
+  var notes = document.getElementById('notes');
+  var notesText = document.getElementById('notes-text');
+  var current = 0;
+
+  function fit() {
+    var s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    deck.style.transform = 'translate(-50%, -50%) scale(' + s + ')';
+  }
+
+  function show(n) {
+    n = Math.max(0, Math.min(slides.length - 1, n));
+    slides[current].classList.remove('active');
+    current = n;
+    slides[current].classList.add('active');
+    count.textContent = (current + 1) + ' / ' + slides.length;
+    progress.style.width = ((current + 1) / slides.length * 100) + '%';
+    var aside = slides[current].querySelector('aside');
+    notesText.textContent = aside ? aside.textContent : '';
+    if (location.hash !== '#' + (current + 1)) history.replaceState(null, '', '#' + (current + 1));
+  }
+
+  function fromHash() {
+    var n = parseInt(location.hash.slice(1), 10);
+    return isNaN(n) ? 0 : n - 1;
+  }
+
+  function toggleNotes() { notes.classList.toggle('open'); }
+  function toggleFull() {
+    if (!document.fullscreenElement) { document.documentElement.requestFullscreen && document.documentElement.requestFullscreen(); }
+    else { document.exitFullscreen && document.exitFullscreen(); }
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    switch (e.key) {
+      case 'ArrowRight': case 'ArrowDown': case 'PageDown': case ' ': case 'Enter':
+        e.preventDefault(); show(current + 1); break;
+      case 'ArrowLeft': case 'ArrowUp': case 'PageUp': case 'Backspace':
+        e.preventDefault(); show(current - 1); break;
+      case 'Home': show(0); break;
+      case 'End': show(slides.length - 1); break;
+      case 'n': case 'N': toggleNotes(); break;
+      case 'f': case 'F': toggleFull(); break;
+    }
+  });
+
+  document.getElementById('stage').addEventListener('click', function (e) {
+    if (e.target.closest('a')) return;
+    if (e.clientX < window.innerWidth / 3) show(current - 1); else show(current + 1);
+  });
+
+  var tx = null;
+  document.addEventListener('touchstart', function (e) { tx = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend', function (e) {
+    if (tx === null) return;
+    var dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 40) show(current + (dx < 0 ? 1 : -1));
+    tx = null;
+  });
+
+  document.getElementById('btn-notes').addEventListener('click', function (e) { e.stopPropagation(); toggleNotes(); });
+  document.getElementById('btn-full').addEventListener('click', function (e) { e.stopPropagation(); toggleFull(); });
+  window.addEventListener('resize', fit);
+  window.addEventListener('hashchange', function () { show(fromHash()); });
+
+  fit();
+  slides[0].classList.add('active');
+  show(fromHash());
+})();
+</script>
+</body>
+</html>

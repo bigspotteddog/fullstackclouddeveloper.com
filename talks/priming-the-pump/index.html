@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Priming the Pump</title>
+<meta name="description" content="Start working with an AI agent through an engineering conversation, not a perfect prompt.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Priming the Pump">
+<meta property="og:description" content="Start working with an AI agent through an engineering conversation, not a perfect prompt.">
+<meta property="og:url" content="https://fullstackclouddeveloper.com/talks/priming-the-pump/">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://fullstackclouddeveloper.com/talks/priming-the-pump/">
+<link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500..700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root {
+  --bg: #F5F2EA;
+  --surface: #FBF9F4;
+  --surface-2: #EAE3D3;
+  --line: #DDD5C4;
+  --text: #1B2436;
+  --muted: #4A5263;
+  --accent: #E8833A;
+  --accent-text: #A4471A;
+  --go-bg: #FBE6D6;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121A2B;
+    --surface: #1C2740;
+    --surface-2: #24314D;
+    --line: #2E3B57;
+    --text: #F2EEE4;
+    --muted: #B9C2D3;
+    --accent: #E8833A;
+    --accent-text: #F0A066;
+    --go-bg: #3A2A22;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121A2B;
+  --surface: #1C2740;
+  --surface-2: #24314D;
+  --line: #2E3B57;
+  --text: #F2EEE4;
+  --muted: #B9C2D3;
+  --accent: #E8833A;
+  --accent-text: #F0A066;
+  --go-bg: #3A2A22;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, 'Segoe UI', Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+/* ---------- layout ---------- */
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 16px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 56px; }
+@media (min-width: 1100px) { .wrap { grid-template-columns: 240px minmax(0, 720px); padding: 0 32px; justify-content: center; } }
+main { min-width: 0; padding-bottom: 96px; }
+
+/* ---------- hero ---------- */
+.hero { background: #121A2B; color: #F2EEE4; padding: 96px 0 72px; position: relative; }
+.hero .inner { max-width: 1180px; margin: 0 auto; padding: 0 16px; }
+@media (min-width: 1100px) { .hero .inner { padding: 0 32px; } }
+.hero .bar { width: 96px; height: 8px; background: var(--accent); margin-bottom: 40px; }
+.hero .eyebrow { color: #F0A066; }
+.hero h1 { font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif; font-weight: 700; font-size: clamp(48px, 9vw, 112px); line-height: 1.0; letter-spacing: -0.02em; margin: 12px 0 20px; }
+.hero .sub { font-size: clamp(20px, 2.6vw, 28px); color: #D3D9E4; margin: 0; max-width: 760px; line-height: 1.4; }
+.byline { margin-top: 28px; font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.08em; color: #8C97AB; }
+
+.eyebrow { font-family: 'JetBrains Mono', 'Courier New', monospace; font-size: 13px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-text); }
+
+.talk-links { margin: 28px 0 0; display: flex; flex-wrap: wrap; gap: 10px 22px; font: 600 14px/1.4 'JetBrains Mono', monospace; letter-spacing: 0.06em; }
+.talk-links a { color: #F0A066; text-decoration: none; border-bottom: 1px solid rgba(240,160,102,0.4); padding-bottom: 2px; }
+.talk-links a:hover { color: #F2EEE4; border-bottom-color: #F2EEE4; }
+@media print { .talk-links { display: none; } }
+
+/* ---------- toc ---------- */
+.toc { display: none; }
+@media (min-width: 1100px) {
+  .toc { display: block; position: sticky; top: 32px; align-self: start; padding-top: 64px; max-height: calc(100vh - 32px); overflow: auto; }
+}
+.toc ol { list-style: none; padding: 0; margin: 16px 0 0; }
+.toc li { margin: 0; }
+.toc a { display: block; padding: 6px 0 6px 14px; border-left: 2px solid var(--line); color: var(--muted); text-decoration: none; font-size: 14px; line-height: 1.4; }
+.toc a:hover { color: var(--text); }
+.toc a.on { color: var(--text); border-left-color: var(--accent); font-weight: 600; }
+.toc-mobile { margin-top: 40px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; }
+@media (min-width: 1100px) { .toc-mobile { display: none; } }
+.toc-mobile summary { cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-text); }
+.toc-mobile ol { margin: 12px 0 4px; padding-left: 20px; font-size: 16px; }
+.toc-mobile a { color: var(--text); text-decoration: none; }
+
+/* ---------- article typography ---------- */
+main h2 { font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif; font-size: clamp(28px, 4vw, 38px); line-height: 1.15; letter-spacing: -0.01em; margin: 80px 0 20px; padding-top: 24px; border-top: 1px solid var(--line); scroll-margin-top: 24px; }
+main h2:first-of-type { margin-top: 64px; }
+main p { margin: 0 0 20px; }
+main ul, main ol { margin: 0 0 22px; padding-left: 24px; }
+main li { margin-bottom: 10px; }
+main li::marker { color: var(--accent-text); font-weight: 600; }
+main strong { font-weight: 600; }
+a { color: var(--accent-text); }
+
+blockquote { margin: 28px 0; padding: 4px 0 4px 24px; border-left: 4px solid var(--accent); font-family: 'Space Grotesk', Arial, sans-serif; font-size: 22px; line-height: 1.4; font-weight: 500; }
+blockquote p { margin: 0; }
+
+.table-wrap { overflow-x: auto; margin: 28px 0; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+table { width: 100%; border-collapse: collapse; font-size: 16px; line-height: 1.5; }
+th, td { text-align: left; vertical-align: top; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+tr:last-child td { border-bottom: none; }
+th { background: var(--surface-2); font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-text); }
+td:first-child { font-family: 'Space Grotesk', Arial, sans-serif; font-weight: 700; font-size: 18px; white-space: nowrap; }
+@media (max-width: 600px) {
+  .table-wrap thead { display: none; }
+  .table-wrap tr { display: block; padding: 14px 16px; border-bottom: 1px solid var(--line); }
+  .table-wrap tr:last-child { border-bottom: none; }
+  .table-wrap td { display: block; padding: 2px 0; border: none; }
+  .table-wrap td:first-child { margin-bottom: 6px; }
+  .table-wrap td[data-label]::before { content: attr(data-label); display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-text); margin-top: 6px; }
+}
+
+/* pump metaphor */
+.pump { margin: 28px 0; background: #E8833A; color: #121A2B; border-radius: 16px; padding: 28px 28px; }
+.pump p { margin: 0; font-family: 'Space Grotesk', Arial, sans-serif; font-size: clamp(22px, 3vw, 28px); line-height: 1.3; font-weight: 600; }
+.pump .after { margin-top: 10px; font-family: 'Inter', Arial, sans-serif; font-size: 17px; font-weight: 500; line-height: 1.5; }
+
+/* principles */
+.principles { list-style: none; padding: 0; margin: 28px 0; counter-reset: p; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+.principles li { counter-increment: p; position: relative; margin: 0; padding: 16px 20px 16px 64px; border-bottom: 1px solid var(--line); font-weight: 500; }
+.principles li:last-child { border-bottom: none; }
+.principles li::before { content: counter(p); position: absolute; left: 22px; top: 14px; font-family: 'Space Grotesk', Arial, sans-serif; font-size: 22px; font-weight: 700; color: var(--accent-text); }
+
+/* seven questions */
+.qs { list-style: none; padding: 0; margin: 28px 0; counter-reset: q; }
+.qs li { counter-increment: q; position: relative; margin: 0; padding: 14px 0 14px 52px; border-bottom: 1px solid var(--line); }
+.qs li::before { content: counter(q, decimal-leading-zero); position: absolute; left: 0; top: 17px; font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 14px; color: var(--accent-text); }
+.qs .say { display: block; font-size: 19px; font-weight: 500; line-height: 1.45; }
+.qs .why { display: block; margin-top: 2px; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.06em; color: var(--muted); }
+.qs li.go { background: var(--go-bg); border-bottom: none; border-radius: 12px; margin-top: 8px; padding-left: 64px; padding-right: 16px; }
+.qs li.go::before { left: 16px; }
+.qs li.go .say { font-weight: 600; }
+
+.callout { margin: 28px 0; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 12px; padding: 20px 24px; }
+.callout p:last-child { margin-bottom: 0; }
+.callout .eyebrow { display: block; margin-bottom: 8px; }
+
+.steps { counter-reset: s; list-style: none; padding: 0; margin: 28px 0; }
+.steps li { counter-increment: s; position: relative; margin: 0; padding: 14px 0 14px 56px; border-bottom: 1px solid var(--line); font-size: 19px; font-weight: 500; }
+.steps li:last-child { border-bottom: none; }
+.steps li::before { content: counter(s, decimal-leading-zero); position: absolute; left: 0; top: 17px; font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 14px; color: var(--accent-text); }
+
+/* closing */
+.closing { margin-top: 56px; background: #121A2B; color: #F2EEE4; border-radius: 18px; padding: 40px 32px; }
+.closing p { margin: 0; font-family: 'Space Grotesk', Arial, sans-serif; font-size: clamp(22px, 3vw, 30px); line-height: 1.3; font-weight: 600; }
+.closing .after { margin-top: 14px; font-family: 'Inter', Arial, sans-serif; font-size: 17px; font-weight: 400; color: #B9C2D3; line-height: 1.6; }
+
+/* license footer */
+.license { border-top: 1px solid var(--line); padding: 28px 16px 48px; text-align: center; font-size: 14px; line-height: 1.6; color: var(--muted); }
+.license p { margin: 0 auto; max-width: 720px; }
+
+/* theme toggle */
+.theme { position: absolute; right: 16px; top: 16px; z-index: 10; background: rgba(18,26,43,0.85); color: #F2EEE4; border: 1px solid #2E3B57; border-radius: 999px; padding: 6px 14px; font: 600 12px/1.4 'JetBrains Mono', monospace; letter-spacing: 0.1em; cursor: pointer; }
+
+@media print {
+  .theme, .toc, .toc-mobile { display: none !important; }
+  body { background: #fff; color: #000; font-size: 11pt; }
+  .hero { background: none; color: #000; padding: 0 0 24px; }
+  .hero .sub, .byline { color: #333; }
+  .wrap { display: block; }
+  main h2 { break-after: avoid; }
+  .table-wrap, .qs, .principles, .pump, blockquote { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<button class="theme" id="theme" type="button" aria-label="Toggle light or dark theme">Theme</button>
+
+<header class="hero">
+<div class="inner">
+<div class="bar"></div>
+<div class="eyebrow">Getting started with AI agents</div>
+<h1>Priming the Pump</h1>
+<p class="sub">Start with an engineering conversation, not a perfect prompt.</p>
+<p class="talk-links"><a href="slides.html">View the slides →</a><a href="../">All talks</a><a href="/">fullstackclouddeveloper.com</a></p>
+<p class="byline">Nov 11, 2026 · @Joseph</p>
+</div>
+</header>
+
+<div class="wrap">
+
+<nav class="toc" aria-label="Contents">
+<div class="eyebrow">Contents</div>
+<ol id="toc-list">
+<li><a href="#skeptic">The skeptic who called me</a></li>
+<li><a href="#barrier">The real barrier</a></li>
+<li><a href="#means">What priming the pump means</a></li>
+<li><a href="#looks">What it looks like</a></li>
+<li><a href="#far">How far to go</a></li>
+<li><a href="#primed">How you know it’s primed</a></li>
+<li><a href="#leads">Where it leads</a></li>
+<li><a href="#simple">Is it really that simple?</a></li>
+<li><a href="#try">Try it</a></li>
+</ol>
+</nav>
+
+<main>
+
+<details class="toc-mobile">
+<summary>Contents</summary>
+<ol>
+<li><a href="#skeptic">The skeptic who called me</a></li>
+<li><a href="#barrier">The real barrier</a></li>
+<li><a href="#means">What priming the pump means</a></li>
+<li><a href="#looks">What it looks like</a></li>
+<li><a href="#far">How far to go</a></li>
+<li><a href="#primed">How you know it’s primed</a></li>
+<li><a href="#leads">Where it leads</a></li>
+<li><a href="#simple">Is it really that simple?</a></li>
+<li><a href="#try">Try it</a></li>
+</ol>
+</details>
+
+<h2 id="skeptic">The skeptic who called me</h2>
+
+<p>One of the biggest AI skeptics at my company called me one day. “I tried it and it didn’t work for me,” he said. “I see you doing it, and I don’t believe what I’m seeing. Show me how you do it.”</p>
+
+<p>So we paired. I asked what he was working on and had him open Claude Code in that project’s folder. I told him I don’t use big prompts; I just talk to it like I would anyone else. Then I explained how I “prime the pump” and fed him a few plain questions to ask it. He caught on right away.</p>
+
+<p>He went on to become one of the best AI engineers at the company, and he started helping others get going. His skill hadn’t changed. What changed was how he started the conversation.</p>
+
+<h2 id="barrier">The real barrier</h2>
+
+<p>The barrier usually isn’t the AI. It’s the belief that you have to write an elaborate prompt, or a full spec, before you’ll get anything useful.</p>
+
+<p>So people either spend an hour crafting the perfect prompt, or they type a one-liner, get something generic back, and decide AI doesn’t work. Both start in the wrong place.</p>
+
+<p>I use plain, almost naive questions that anyone can ask. No prompt engineering and no spec. It’s the approach I use in my own work and the first thing I show teammates who are getting started.</p>
+
+<h2 id="means">What priming the pump means</h2>
+
+<div class="pump">
+<p>An old hand pump won’t draw water from a dry start.</p>
+<p class="after">You pour a little water in first, and then it flows.</p>
+</div>
+
+<p>Working with an AI agent is the same. Instead of a perfect prompt, I start an engineering conversation: I ask about the existing system, clarify requirements, and talk through constraints. The agent asks questions too. It’s very much like a conversation with another engineer: the same questions you’d ask a teammate while you look at the code together. Each round points more clearly at the target.</p>
+
+<p>Then I say “go,” and the go always names its target: “implement what we just discussed,” not just “go.” The agent implements, tests, and verifies the work, and comes back with questions when it needs to.</p>
+
+<p>The principles are simple:</p>
+
+<ol class="principles">
+<li>Conversation builds the context, in both directions.</li>
+<li>The effort grows with the scope of the work.</li>
+<li>“Go” always names its target.</li>
+<li>Engineering judgment sets the direction. Agents propose the implementation, and review decides.</li>
+<li>Working, verified software is what counts.</li>
+</ol>
+
+<h2 id="looks">What it looks like</h2>
+
+<p>This is the kind of conversation I had my colleague start, with the agent open in his project folder. The details are illustrative, but the shape is real:</p>
+
+<ol class="qs">
+<li><span class="say">“What is this project?”</span><span class="why">Get oriented.</span></li>
+<li><span class="say">“How do scans get into the system?”</span><span class="why">Trace the path that matters.</span></li>
+<li><span class="say">“Does that include zip files?”</span><span class="why">Probe the gap.</span></li>
+<li><span class="say">“What needs to happen to make it include zip files?”</span><span class="why">Let the agent find the work.</span></li>
+<li><span class="say">“What’s the best way to receive those if the files are large?”</span><span class="why">Bring in a constraint.</span></li>
+<li><span class="say">“What needs to change in the scanner project to do that?”</span><span class="why">Narrow to the target.</span></li>
+<li class="go"><span class="say">“Go ahead and make those changes to the scanner, and test them end to end.”</span><span class="why">Go, with a named target.</span></li>
+</ol>
+
+<p>None of these questions is clever. They’re what you’d ask another engineer who knows the project. Each answer sets up the next question, and by the time you say go, the agent has read the code itself. It knows the system, the gap, the constraint, and the target, and you never wrote a prompt.</p>
+
+<h2 id="far">How far to go</h2>
+
+<p>Prime only as much as the work needs. I often build iteratively, each round of conversation sharpening the target, and the size of the work decides where the conversation ends up:</p>
+
+<div class="table-wrap">
+<table>
+<thead><tr><th>Scope</th><th>The conversation</th><th>What it produces</th></tr></thead>
+<tbody>
+<tr><td>A task</td><td data-label="The conversation">A few questions, like the example above</td><td data-label="What it produces">Enough shared understanding to do that one thing</td></tr>
+<tr><td>A feature</td><td data-label="The conversation">A longer discussion of requirements and design</td><td data-label="What it produces">Tickets the agents can work from</td></tr>
+<tr><td>An initiative</td><td data-label="The conversation">A larger discussion, over several sessions if needed</td><td data-label="What it produces">A document that outlasts any one session</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Writing it down matters as the work grows. An agent’s memory of a long session gets compressed and details are lost, so a larger discussion ends up as a document or tickets the agent can always go back to. Prompt engineering spends heavy effort on everything, and spec-driven development writes a spec for everything. Priming the pump spends effort in proportion to the work.</p>
+
+<div class="callout">
+<span class="eyebrow">A good ticket is a pump someone already primed</span>
+<p>When one exists, priming can be a single question. Recently I asked my agent to “look for any tickets regarding Firebase,” then “which should we start with?” and “yes, do both.” About 35 words from me later, a PR was posted on the ticket with the fix, before-and-after results for the ticket’s three examples, and test and benchmark results, and all five review comments had been addressed. The ticket primed the problem; the fleet’s accumulated rules primed the process. The solution was in neither. My part was choosing the work and reviewing the result.</p>
+</div>
+
+<h2 id="primed">How you know it’s primed</h2>
+
+<p>A simple check before you say go: ask the agent to tell you what it’s about to do and why. If its answer matches what you have in mind, it’s primed. If it doesn’t, keep talking.</p>
+
+<p>The agent’s own questions are a good sign too. When it asks about something you hadn’t thought of, the conversation is doing its job: catching a misunderstanding before any code is written, not after.</p>
+
+<p>The same habit helps when you come back to a session later. “What are we working on? What’s next?” tells you what the agent still remembers before you rely on it.</p>
+
+<h2 id="leads">Where it leads</h2>
+
+<p>The same approach scales from one agent to a team of them. I prime the pump with my terminal agent, it decides how to split the work, and managers coordinate developer agents, each working in its own complete, running copy of the system. They return integrated, verified pull requests for review.</p>
+
+<p>The start never changes: a conversation, then a go with a named target. I describe the rest in <a href="../the-agent-drives-i-navigate/">The Agent Drives, I Navigate</a>.</p>
+
+<h2 id="simple">Is it really that simple?</h2>
+
+<p>When I look back at what I ask the agent, I think almost anyone could do this. The questions are that plain.</p>
+
+<p>But anyone can ask those questions, and not everyone would ask those particular ones. “Does that include zip files?” only sounds naive once someone has thought of it. Spotting that gap, bringing in the large-file constraint, and knowing when the agent’s understanding matches mine all come from engineering experience. So does noticing when its work is wrong.</p>
+
+<p>So anyone can start this way, and the conversation teaches you as you go. Experience is what turns plain questions into the right ones. My skeptical colleague was already an experienced engineer, which is probably why he caught on so fast. He wasn’t missing the skill, just permission to talk to the agent normally.</p>
+
+<h2 id="try">Try it</h2>
+
+<ol class="steps">
+<li>Pick one small task you’re actually working on.</li>
+<li>Open your agent in that project’s folder.</li>
+<li>Ask plain questions until the agent understands the system, the gap, and the target.</li>
+<li>Say go, and name the target.</li>
+<li>Check the result in the running system, not just the tests.</li>
+</ol>
+
+<p>Feel free to ask anything along the way. For me, worrying about cost was what held me back most. Once I switched to open-weight models, I felt free to ask for anything, even though they were sometimes less capable, and that freedom was good for learning. If you’re learning, a low-cost subscription such as OpenCode Go (about $10 a month) with an agent like Pi goes a long way. Right now I’d use glm-5.3-flash with it. Prices and models change quickly, so check what’s current.</p>
+
+<div class="closing">
+<p>Don’t spend your time building perfect prompts.</p>
+<p class="after">Build shared understanding through engineering conversation, as much as the work needs, then delegate and verify.</p>
+</div>
+
+</main>
+</div>
+
+<footer class="license">
+<p>© 2026 Joseph Cava. This work is licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">Creative Commons Attribution 4.0 International (CC BY 4.0)</a>. You may share and adapt it with credit.</p>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  try { var saved = localStorage.getItem('theme'); if (saved) root.setAttribute('data-theme', saved); } catch (e) {}
+  document.getElementById('theme').addEventListener('click', function () {
+    var cur = root.getAttribute('data-theme');
+    if (!cur) cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    var next = cur === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  });
+
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc-list a'));
+  var map = {};
+  links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+  var heads = Array.prototype.slice.call(document.querySelectorAll('main h2[id]'));
+  if (!('IntersectionObserver' in window)) return;
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) {
+        links.forEach(function (a) { a.classList.remove('on'); });
+        var a = map[en.target.id]; if (a) a.classList.add('on');
+      }
+    });
+  }, { rootMargin: '0px 0px -75% 0px' });
+  heads.forEach(function (h) { obs.observe(h); });
+})();
+</script>
+</body>
+</html>
