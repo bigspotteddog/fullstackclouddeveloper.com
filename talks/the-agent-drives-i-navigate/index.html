@@ -275,7 +275,7 @@ td:first-child { font-weight: 600; min-width: 150px; }
 <li><strong>Real work, verified on my machine.</strong> Once agents could write real code, I eventually worked with three to five at a time on a company’s real codebase. Each coordinated its own sub-agents rather than running on its own compute, and the end-to-end verification ran against the entire system on my own machine.</li>
 <li><strong>Agents that check their own work.</strong> Around the same time, I built my own agents to run the same loop. One of them ended up in the browser, where it could validate its work against the running application.</li>
 <li><strong>Parallel, test-first, end to end.</strong> That grew into multiple agents in separate browser tabs, each on its own branch, doing test-first work validated end to end. That work continues, and it can build and validate full-stack applications.</li>
-<li><strong>The fleet.</strong> The current fleet applies the same process in a different environment: separate compute instances instead of browser tabs.</li>
+<li><strong>The fleet.</strong> The current fleet applies the same process in a different environment: separate compute instances, on a laptop or in the cloud, instead of browser tabs.</li>
 </ol>
 
 <p>One thing stayed constant through every stage: human direction, agent execution, human review, merge. What changed is the agents. As they got better at implementation, the same loop could carry real work, and testing moved from me judging a plan on paper to agents validating working software in the running system before I ever see it.</p>
