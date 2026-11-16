@@ -557,9 +557,9 @@ td:first-child { font-weight: 600; min-width: 150px; }
 
 <h3>What does it cost?</h3>
 
-<p>A few hundred dollars a month: roughly half for the fleet’s cloud compute and inference, and the rest for my terminal agent’s subscription. At the PR rate in <a href="#s12">§12</a>, that works out to a few dollars per PR. Fleet developers and managers run on glm-5.3-flash. My terminal agent runs in Claude Code, and so does any manager work it does itself. I went without Claude Code for a while but switched back for my terminal agent when shared inference rate limits became a problem.</p>
+<p>Less than you might expect. My own fleet costs about $30 a month for inference and less than $20 a month for AWS infrastructure. I keep it that low by running the agents on my laptop instead of giving each one its own cloud instance. Running the same fleet fully in the cloud would cost me roughly $200 a month for inference plus about $200 for AWS resources. Fleet developers and managers run on glm-5.3-flash. My terminal agent runs in Claude Code, and so does any manager work it does itself. I went without Claude Code for a while but switched back for my terminal agent when shared inference rate limits became a problem.</p>
 
-<p>The process itself can be much cheaper. My browser-based setup runs the same process for about $30 a month, including both the browser agents and the agents that improve the system itself. The fleet costs more because it gives every agent its own complete environment, not because the method needs it.</p>
+<p>The process itself can be much cheaper. My browser-based setup runs the same process for about $30 a month, including both the browser agents and the agents that improve the system itself. Cost grows with how much isolation you give each agent, not with the method.</p>
 
 <h3>Which tools and models?</h3>
 

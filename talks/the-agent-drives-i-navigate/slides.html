@@ -378,10 +378,10 @@ p { font-size: 32px; line-height: 1.4; }
 <div class="cards">
 <div class="card rise" style="--i:0;"><p class="stat">6+</p><p class="card-text">PRs per working day in a typical month, across more than a dozen repositories</p></div>
 <div class="card rise" style="--i:1;"><p class="stat">Next day</p><p class="card-text">Most PRs are reviewed and merged by the end of the next day</p></div>
-<div class="card rise" style="--i:2;"><p class="stat">A few $</p><p class="card-text">Per PR. A few hundred a month covers compute, inference and my terminal agent</p></div>
+<div class="card rise" style="--i:2;"><p class="stat">~$50</p><p class="card-text">A month for my own fleet: about $30 inference, under $20 AWS, agents on my laptop</p></div>
 </div>
 <p class="note rise" style="--i:3;">PR volume isn’t the point. The right measure is vertical slices of value delivered; PRs are what most organizations still count.</p>
-<aside>Each epic is broken into small, verifiable slices, and each slice becomes a PR that carries end-to-end evidence and passes the same team review as everyone else’s work. Ticket counts undersell this: initiatives often arrive as one line, like “support monorepos across the entire system.” Turning that into architecture, a plan, tickets and PRs is the job. Cost: roughly half for fleet compute and inference, the rest for the terminal agent subscription. Fleet developers run on glm-5.3-flash; my terminal agent is Claude Code. The browser-based setup runs the same process for about $30 a month. The fleet costs more because every agent gets its own complete environment, not because the method needs it.</aside>
+<aside>Each epic is broken into small, verifiable slices, and each slice becomes a PR that carries end-to-end evidence and passes the same team review as everyone else’s work. Ticket counts undersell this: initiatives often arrive as one line, like “support monorepos across the entire system.” Turning that into architecture, a plan, tickets and PRs is the job. Cost: my own fleet runs on my laptop for about $30 a month in inference and under $20 in AWS infrastructure. Running it fully in the cloud would be roughly $200 for inference plus about $200 for AWS. Fleet developers run on glm-5.3-flash; my terminal agent is Claude Code. The browser-based setup runs the same process for about $30 a month. Cost grows with how much isolation you give each agent, not with the method.</aside>
 </section>
 
 <section class="slide">
