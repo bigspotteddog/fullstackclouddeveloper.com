@@ -1,435 +1,1310 @@
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>simplebizdevelopment - Technical Solutions for Growing Businesses</title>
-    <link rel="stylesheet" href="styles.css">
-    <style id="custom-css-rules">* { margin: 0px; padding: 0px; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; color: rgb(26, 26, 26); line-height: 1.6; background-color: rgb(255, 255, 255); }
-a { text-decoration: none; color: inherit; }
-.container { max-width: 1200px; margin: 0px auto; padding: 0px 1rem; }
-@keyframes slideInRight { 
-  0% { opacity: 0; transform: translateX(30px); }
-  100% { opacity: 1; transform: translateX(0px); }
-}
-@keyframes bounce { 
-  0%, 100% { transform: translateY(-4px); }
-  50% { transform: translateY(4px); }
-}
-.nav-menu a:hover, .footer-section a:hover { color: rgb(0, 102, 204); }
-.btn-primary:hover { background-color: rgb(0, 82, 163); transform: translateY(-2px); box-shadow: rgba(0, 102, 204, 0.3) 0px 4px 12px; }
-.btn-secondary:hover { background-color: rgb(240, 240, 240); color: rgb(0, 82, 163); border-color: white; }
-.form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: rgb(0, 102, 204); box-shadow: rgba(0, 102, 204, 0.1) 0px 0px 0px 3px; }
-a.btn.btn-secondary:hover { fill: rgb(0, 69, 138) !important; color: rgb(0, 69, 138) !important; }
-.case-study { cursor: pointer; }
-.case-study:hover { transform: translateY(-8px) !important; box-shadow: rgba(0, 0, 0, 0.15) 0px 12px 24px !important; }
-.case-study:hover h3 { transition: color 0.3s; color: rgb(0, 102, 204) !important; }
-.case-study:hover .case-subtitle { transition: color 0.3s; color: rgb(0, 102, 204) !important; }
-.tag:hover { transform: scale(1.05); transition: background-color 0.3s, color 0.3s, transform 0.2s; cursor: pointer; background-color: rgb(0, 102, 204) !important; color: white !important; }
-.service-card { cursor: pointer; }
-.service-card:hover { transform: translateY(-8px) !important; box-shadow: rgba(0, 0, 0, 0.15) 0px 12px 24px !important; }
-.service-card:hover .service-icon { transform: scale(1.15) rotate(5deg); transition: transform 0.3s; }
-.service-card:hover h3 { transition: color 0.3s; color: rgb(0, 102, 204) !important; }
-@media (max-width: 768px) {
-  .hamburger { display: flex !important; }
-  .nav-menu { left: 0px; top: 60px; background-color: white; width: 100%; text-align: center; gap: 0px; border-bottom: 1px solid rgb(224, 224, 224); padding: 1rem 0px; position: absolute !important; flex-direction: column !important; display: none !important; }
-  .nav-menu.active { display: flex !important; }
-  .nav-menu li { padding: 1rem 0px; }
-  [style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; gap: 2rem !important; }
-  [style*="text-align: left"] { text-align: center !important; }
-  h1 { font-size: 2.2rem !important; }
-  [style*="font-size: 1.3rem"] { font-size: 1.1rem !important; }
-  [style*="display: flex"][style*="gap: 1rem"] { flex-direction: column !important; justify-content: center !important; }
-  [style*="display: flex"][style*="gap: 1rem"] .btn { width: 100% !important; }
-  .hero { padding: 3rem 1rem !important; }
-  .contact-form { padding: 1.5rem !important; }
-  .partner p { font-size: 1rem !important; }
-  h2 { font-size: 2rem !important; }
-}
-@media (max-width: 480px) {
-  .container { padding: 0px 0.75rem; }
-  h1 { font-size: 1.8rem !important; }
-  [style*="font-size: 1.3rem"] { font-size: 1rem !important; }
-  .service-icon, [style*="font-size: 3rem"] { font-size: 2.5rem !important; }
-  [style*="gap: 0.5rem"] { gap: 0.25rem !important; }
-  [style*="padding: 0.4rem"] { padding: 0.3rem 0.6rem !important; font-size: 0.8rem !important; }
-}
-ul.nav-main li a:hover { fill: rgba(0, 0, 0, 0.667) !important; color: rgba(0, 0, 0, 0.667) !important; }
-ul.nav-main li a:hover { fill: rgb(0, 0, 0) !important; color: rgb(0, 0, 0) !important; }
-ul.nav-main li a:hover { fill: rgb(0, 0, 0) !important; color: rgb(0, 0, 0) !important; }
-</style>
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar" style="position: absolute; z-index: 1000; width: 100vw; top: 0px;">
-        <div class="container">
-            <div class="nav-wrapper" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 0;">
-                <div class="logo" style="display: flex; align-items: center; gap: 0.5rem; color: #1a1a1a;">
-                    <img src="imgs/simplebizdevelopment-mascot.png" alt="simplebizdevelopment mascot" class="logo-icon" style="height: 40px; width: auto; transform: rotate(-8deg);">
-                    <div class="logo-text" style="display: flex; flex-direction: column; justify-content: center;">
-                        <div class="logo-name" style="font-weight: 700; font-size: 1.2rem; line-height: 1.2; color: rgb(0, 0, 0) !important; fill: rgb(0, 0, 0) !important;">Simple Biz Development</div>
-                        <div class="logo-tagline" style="font-size: 12px !important; color: rgba(0, 0, 0, 0.667) !important; font-weight: 700 !important; fill: rgba(0, 0, 0, 0.667) !important;">Technical Solutions</div>
-                    </div>
-                </div>
-                <ul class="nav-menu" style="display: flex; list-style: none; gap: 2rem; align-items: center;">
-                    <li><a href="#services" style="transition: color 0.3s; color: rgba(0, 0, 0, 0.667) !important; font-weight: 700 !important; fill: rgba(0, 0, 0, 0.667) !important;">Services</a></li>
-                    <li><a href="#approach" style="transition: color 0.3s; color: rgba(0, 0, 0, 0.667) !important; font-weight: 700 !important; fill: rgba(0, 0, 0, 0.667) !important;">Our Approach</a></li>
-                    <li><a href="#experience" style="transition: color 0.3s; color: rgba(0, 0, 0, 0.667) !important; font-weight: 700 !important; fill: rgba(0, 0, 0, 0.667) !important;">Experience</a></li>
-                    <li><a href="#why-us" style="transition: color 0.3s; color: rgba(0, 0, 0, 0.667) !important; font-weight: 700 !important; fill: rgba(0, 0, 0, 0.667) !important;">Why Us?</a></li>
-                    <li><a href="#contact" class="btn btn-primary" style="color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; border: none; display: inline-block; text-align: center; background-color: #0066cc;">Get a Quote</a></li>
-                </ul>
-                <div class="hamburger" style="display: none; flex-direction: column; cursor: pointer;">
-                    <span style="width: 25px; height: 3px; background-color: #1a1a1a; margin: 5px 0; transition: 0.3s;"></span>
-                    <span style="width: 25px; height: 3px; background-color: #1a1a1a; margin: 5px 0; transition: 0.3s;"></span>
-                    <span style="width: 25px; height: 3px; background-color: #1a1a1a; margin: 5px 0; transition: 0.3s;"></span>
-                </div>
-            </div>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Full Stack Cloud Developer - Create Stunning Landing Pages in Minutes</title>
+    <meta
+      name="description"
+      content="Build beautiful, high-converting landing pages with our intuitive drag-and-drop editor. Mix and match pre-built sections, customize everything, and launch in minutes."
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link id="theme-css" rel="stylesheet" href="pencil.css" />
+    <style id="default-styles">
+      body {
+        /* font-family: 'Inter', sans-serif; */
+      }
+
+      .navbar-toggler {
+        z-index: 1001;
+        /* Ensure it's above other elements */
+      }
+
+      .nav-link {
+      }
+
+      @keyframes up-down {
+        0%,
+        100% {
+          transform: translateY(3px);
+        }
+
+        50% {
+          transform: translateY(-3px);
+        }
+      }
+
+      .lead,
+      .text-muted {
+      }
+
+      .py-5 {
+        padding-top: 6rem !important;
+        padding-bottom: 6rem !important;
+      }
+
+      .btn {
+        transition: all 0.3s ease;
+      }
+
+      .btn-white {
+      }
+
+      .btn-white:hover {
+      }
+
+      .btn:hover {
+        transform: translateY(-3px);
+        /* box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3); */
+      }
+
+      #features .card:hover,
+      #pricing .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3) !important;
+      }
+
+      .btn.watch-demo {
+      }
+
+      .btn.watch-demo:hover {
+      }
+
+      .hero.mine {
+        padding: 8rem 0 6rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        z-index: 2;
+      }
+
+      .hero.mine::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        opacity: 0.3;
+        z-index: 0;
+      }
+
+      #gradient-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+
+      .hero.mine > * {
+        position: relative;
+        z-index: 2;
+        /* Content on top of both layers */
+      }
+
+      .pricing-card.featured .pricing-features .check {
+      }
+
+      .pricing-features .check {
+        font-weight: bold;
+      }
+
+      .pricing-card.featured {
+        transform: scale(1.05);
+      }
+
+      .pricing-card.featured:hover {
+        transform: scale(1.05) translateY(-5px);
+      }
+
+      .animate-on-scroll {
+        animation: fadeInUp 0.6s ease-out;
+      }
+
+      #features .card,
+      #pricing .card {
+        transition: all 0.3s ease;
+      }
+
+      .pricing-card {
+        padding: 2rem;
+        text-align: center;
+        position: relative;
+        transition: all 0.3s ease;
+      }
+
+      .pricing-badge {
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+
+      .enterprise-highlight {
+        padding: 2rem;
+        margin-top: 3rem;
+        text-align: center;
+      }
+
+      .tech-badges {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-bottom: 1.5rem;
+      }
+
+      .tech-badge {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .cta {
+      }
+
+      #demo {
+        cursor: auto;
+        display: block;
+        object-fit: contain;
+        object-position: 50% 50%;
+        transform: scale(0.75);
+        transform-origin: 0 0;
+        width: 133%;
+        height: 133%;
+      }
+    </style>
+    <style id="keyframe-styles">
+      @keyframes slideIn {
+        from {
+          transform: translateX(400px);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideOut {
+        from {
+          transform: translateX(0);
+          opacity: 1;
+        }
+        to {
+          transform: translateX(400px);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body style="">
+    <nav
+      class="navbar navbar-expand-lg fixed-top bg-white shadow-sm"
+      style="
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: none;
+        opacity: 0.9;
+        padding: 1rem;
+      "
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold text-primary" href="#home">
+          <i class="fas fa-magic"></i> <span>Full Stack Cloud Developer</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li
+              class="nav-item"
+              style="
+                animation: 2s ease-in-out 0s infinite alternate-reverse both
+                  running up-down;
+              "
+            >
+              <a
+                class="nav-link"
+                href="#demo-container"
+                contenteditable="false"
+                style="
+                  outline: none;
+                  color: var(--bs-primary);
+                  font-weight: 600;
+                "
+                >Try It!</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#features" style="font-weight: 400"
+                >Features</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#how-it-works">How It Works</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#pricing">Pricing</a>
+            </li>
+          </ul>
+          <div class="ms-lg-3">
+            <a href="#" class="btn me-2 p-2" style="font-weight: 600"
+              >Sign In</a
+            >
+            <a href="#pricing" class="btn btn-primary p-2">Get Started</a>
+          </div>
         </div>
+      </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" style="padding: 12rem 0rem; position: relative;">
-        <canvas id="gradient-canvas" data-gradient-colors="200,45,45|210,40,50|220,45,50" data-animation-speed="0.015" data-hue-variation="15" data-wave-opacity="0.25" data-wave-layers="5" data-wave-movement-speed="0.8" data-wave-movement-size="150" data-blob-radius="200" data-blob-radius-variation="50" width="1940" height="1154" style="position: absolute; top: -20%; left: -20%; width: 200%; height: 140%; z-index: 0; transform: skewY(-15deg); transform-origin: 0px center; border-radius: 40%; opacity: 0.7;"></canvas>
-        <div class="container">
-            <div class="hero-wrapper" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; position: relative; z-index: 1;">
-                <div class="hero-content" style="text-align: left;">
-                    <h1 contenteditable="false" class="" style="outline: none; font-size: 3.5rem; line-height: 1.2; margin-bottom: 1.5rem; color: rgb(255, 255, 255) !important; fill: rgb(255, 255, 255) !important;">Technical Solutions for Your Business</h1>
-                    <p style="font-size: 1.3rem; margin-bottom: 2rem; color: rgb(255, 255, 255) !important; fill: rgb(255, 255, 255) !important; font-weight: 500 !important;">From professional websites to custom business software. We build exactly what you need—whether you're just starting out or ready to scale.</p>
-                    <div class="hero-buttons" style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <a href="#contact" class="btn btn-primary" style="border-radius: 50px; padding: 0.75rem 1.5rem; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; border: none; display: inline-block; text-align: center; background-color: #0066cc; color: white; animation: bounce 3.5s infinite; box-shadow: 0 8px 16px rgba(0, 102, 204, 0.3);">Start Your Project</a>
-                        <a class="btn btn-secondary" href="#experience" style="display: inline-flex; align-items: center; gap: 8px; cursor: pointer; padding: 0.75rem 1.5rem; color: white; background-color: rgba(255, 255, 255, 0) !important; border-color: rgba(255, 255, 255, 0) !important; font-weight: 600; font-size: 1rem; border-radius: 0.5rem; transition: all 0.3s ease;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="11" style=""></circle>
-    <polygon points="10 8 10 16 16 12" style=""></polygon>
-  </svg>See What We Build</a>
-                    </div>
-                </div>
-                <div class="hero-image" style="text-align: center; animation: slideInRight 0.8s ease-out;">
-                    <div class="browser-mockup" style="background-color: white; border-radius: 0.75rem; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2); overflow: visible; max-width: 100%; position: relative;">
-                        <div class="browser-header" style="background-color: #f0f0f0; border-bottom: 1px solid #e0e0e0; padding: 0.5rem 1rem; border-top-left-radius: 12px; border-top-right-radius: 12px; display: flex; justify-content: flex-start; align-items: center;">
-    <div class="browser-controls" style="display: flex; gap: 0.5rem;">
-        <span style="width: 12px; height: 12px; border-radius: 50%; background-color: #ff5f56;"></span><span style="width: 12px; height: 12px; border-radius: 50%; background-color: #ffbd2e;"></span><span style="width: 12px; height: 12px; border-radius: 50%; background-color: #27c93f;"></span>
-    </div>
-    <span style="flex: 1 1 0%; display: flex; justify-content: center; font-size: 0.875rem; color: rgb(68, 68, 68);">https://your-website.com</span>
-</div>
-                        <div class="browser-content" style="overflow: hidden; max-height: 340px; position: relative; z-index: 2; border-style: solid; border-color: rgb(170, 170, 170); border-width: 0px 1px 1px;">
-                            <img src="imgs/screenshot.png" alt="Website design example" style="width: 100%; height: auto; display: block;">
-                        </div>
-                        <img src="imgs/mascot-thumbs-up.png" alt="mascot" class="browser-mascot" style="position: absolute; top: -40px; right: -30px; height: 80px; z-index: 10; animation: 3.5s ease -0.5s infinite normal none running bounce;">
-                        <img src="imgs/mascot-wrench-right.png" alt="mascot with wrench" class="browser-mascot-wrench" style="position: absolute; top: 140px; left: -40px; height: 100px; z-index: 9; animation: 3.5s ease -1s infinite normal none running bounce;">
-                        <img src="imgs/mascot-hammer-left.png" alt="mascot with hammer" class="browser-mascot-hammer" style="position: absolute; top: 50%; left: 40%; height: 100px; z-index: 8; animation: 3.5s ease -0.875s infinite normal none running bounce;">
-                        <img src="imgs/mascot-saw.png" alt="mascot with saw" class="browser-mascot-saw" style="position: absolute; bottom: -20px; left: -30px; height: 90px; z-index: 7; animation: 3.5s ease -0.25s infinite normal none running bounce;">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Your Technical Partner -->
-    <section class="partner" style="padding: 0px 1rem 4rem; background-color: rgb(255, 255, 255); text-align: center;">
-        <div class="container">
-            <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Your Technical Partner</h2>
-            <p style="font-size: 1.1rem; color: #666666; max-width: 700px; margin: 0 auto; line-height: 1.8;">You don't need a full-time IT department. You need a partner who can solve technical problems as they arise. We bring 20+ years of experience to build what your business needs.</p>
-        </div>
-    </section>
-
-    <!-- How We Can Help -->
-    <section class="how-we-help" id="services" style="padding: 4rem 1rem; background-color: #f9f9f9; text-align: center;">
-        <div class="container">
-            <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">How We Can Help</h2>
-            <p class="section-subtitle" style="font-size: 1.1rem; color: #666666; max-width: 700px; margin: 0 auto 3rem auto; line-height: 1.8;">Practical solutions tailored to your business stage.</p>
-            
-            <div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
-    <div class="service-card" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; padding: 2rem; background-color: white; border-radius: 0.75rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 8px; text-align: center;">
-        <div class="service-icon" style="font-size: 3rem; margin-bottom: 1rem;">🌐</div>
-        <h3 style="font-size: 1.3rem; margin-bottom: 1rem; color: #1a1a1a;">Professional Websites</h3>
-        <p style="color: #666666; line-height: 1.6;">Your website is your digital storefront. We build high-quality,
-            mobile-friendly sites that establish credibility, explain your services, and drive new customers to your
-            business.</p>
-    </div>
-    <div class="service-card" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; padding: 2rem; background-color: white; border-radius: 0.75rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 8px; text-align: center;">
-        <div class="service-icon" style="font-size: 3rem; margin-bottom: 1rem;">🛒</div>
-        <h3 style="font-size: 1.3rem; margin-bottom: 1rem; color: #1a1a1a;">E-Commerce Solutions</h3>
-        <p style="color: #666666; line-height: 1.6;">Ready to sell online? We build secure, easy-to-manage online
-            stores. Whether you need a simple shop or a complex marketplace, we help you turn visitors into paying
-            customers.</p>
-    </div>
-    <div class="service-card" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; padding: 2rem; background-color: white; border-radius: 0.75rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 8px; text-align: center;">
-        <div class="service-icon" style="font-size: 3rem; margin-bottom: 1rem;">☁️</div>
-        <h3 style="font-size: 1.3rem; margin-bottom: 1rem; color: #1a1a1a;">Custom Cloud Software</h3>
-        <p style="color: #666666; line-height: 1.6;">Access your business tools from anywhere. We build
-            zero-installation web applications that run in the cloud, giving you secure access to your data from any
-            device.</p>
-    </div>
-    <div class="service-card" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; padding: 2rem; background-color: white; border-radius: 0.75rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 8px; text-align: center;">
-        <div class="service-icon" style="font-size: 3rem; margin-bottom: 1rem;">🔗</div>
-        <h3 style="font-size: 1.3rem; margin-bottom: 1rem; color: #1a1a1a;">Systems Integration</h3>
-        <p style="color: #666666; line-height: 1.6;">Stop manual data entry. We connect your different business tools
-            (CRM, accounting, email) so they talk to each other automatically, saving you hours of busywork.</p>
-    </div>
-    <div class="service-card" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; padding: 2rem; background-color: white; border-radius: 0.75rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 8px; text-align: center;">
-        <div class="service-icon" style="font-size: 3rem; margin-bottom: 1rem;">🚀</div>
-        <h3 style="font-size: 1.3rem; margin-bottom: 1rem; color: #1a1a1a;">MVP Development</h3>
-        <p style="color: #666666; line-height: 1.6;">Have a new product idea? We rapidly build "Minimum Viable Products"
-            to help you test your concept in the market without spending a fortune on development.</p>
-    </div>
-    <div class="service-card" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; padding: 2rem; background-color: white; border-radius: 0.75rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 8px; text-align: center;">
-        <div class="service-icon" style="font-size: 3rem; margin-bottom: 1rem;">📈</div>
-        <h3 style="font-size: 1.3rem; margin-bottom: 1rem; color: #1a1a1a;">Growth Partner</h3>
-        <p style="color: #666666; line-height: 1.6;">As your business grows, your needs change. We stick around to
-            upgrade your systems, ensuring your technology handles more customers without breaking.</p>
-    </div>
-</div>
-        </div>
-    </section>
-
-    <!-- Why Work With Us -->
-    <section class="why-us" id="why-us" style="padding: 4rem 1rem; background-color: #ffffff; text-align: center;">
-        <div class="container">
-            <h2 style="font-size: 2.5rem; margin-bottom: 3rem;">Why Work With Us?</h2>
-            <div class="reasons-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem;">
-                <div class="reason" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
-                    <h3 style="font-size: 1.3rem; margin-bottom: 1rem; color: #1a1a1a;">One-Stop Shop</h3>
-                    <p style="color: #666666; line-height: 1.6;">No need to hire separate web designers, developers, and consultants. We handle the entire technical side of your business.</p>
-                </div>
-                <div class="reason" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
-                    <h3 style="font-size: 1.3rem; margin-bottom: 1rem; color: #1a1a1a;">Built for Growth</h3>
-                    <p style="color: #666666; line-height: 1.6;">We build with professional standards from day one. This means you won't have to pay to rebuild your website just because your business grew.</p>
-                </div>
-                <div class="reason" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
-                    <h3 style="font-size: 1.3rem; margin-bottom: 1rem; color: #1a1a1a;">20+ Years Experience</h3>
-                    <p style="color: #666666; line-height: 1.6;">We've built systems for startups and massive enterprises. We bring that same level of quality and reliability to your business.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Proven Results / Case Studies -->
-    <section class="case-studies" id="experience" style="padding: 4rem 1rem; background-color: #f9f9f9;">
-        <div class="container">
-            <h2 style="font-size: 2.5rem; margin-bottom: 3rem; text-align: center;">Proven Results</h2>
-            
-            <div class="case-studies-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-    <div class="case-study" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; padding: 2rem; background-color: white; border-radius: 0.75rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 8px;">
-        <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; color: #1a1a1a;">Automated Vending System</h3>
-        <p class="case-subtitle" style="font-size: 0.9rem; color: #666666; margin-bottom: 1rem;">Consulting Project</p>
-        <p style="color: #666666; line-height: 1.6; margin-bottom: 1.5rem;">Built a complete cloud-based vending
-            ecosystem using a custom REST-based ORM. This enabled seamless synchronization of animation, media
-            advertising, inventory, pricing, and configurations between the cloud management system and local vending
-            machines.</p>
-        <div class="tags" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-            <span class="tag" style="padding: 0.4rem 0.8rem; background-color: #f0f7ff; color: #0066cc; border-radius: 20px; font-size: 0.85rem; transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;">IoT &amp; Hardware</span>
-            <span class="tag" style="padding: 0.4rem 0.8rem; background-color: #f0f7ff; color: #0066cc; border-radius: 20px; font-size: 0.85rem; transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;">Cloud Logistics</span>
-            <span class="tag" style="padding: 0.4rem 0.8rem; background-color: #f0f7ff; color: #0066cc; border-radius: 20px; font-size: 0.85rem; transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;">Fintech &amp; POS</span>
-        </div>
-    </div>
-    <div class="case-study" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; padding: 2rem; background-color: white; border-radius: 0.75rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 8px;">
-        <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; color: #1a1a1a;">Startup Launch</h3>
-        <p class="case-subtitle" style="font-size: 0.9rem; color: #666666; margin-bottom: 1rem;">Rapid Delivery</p>
-        <p style="color: #666666; line-height: 1.6; margin-bottom: 1.5rem;">Built the entire financial infrastructure
-            for a brand new startup in just 6 weeks. Led a 5-person team to launch a cloud-based POS and credit system
-            in time for a major trade show debut.</p>
-        <div class="tags" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-            <span class="tag" style="padding: 0.4rem 0.8rem; background-color: #f0f7ff; color: #0066cc; border-radius: 20px; font-size: 0.85rem; transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;">Fintech Integration</span>
-            <span class="tag" style="padding: 0.4rem 0.8rem; background-color: #f0f7ff; color: #0066cc; border-radius: 20px; font-size: 0.85rem; transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;">Team Leadership</span>
-        </div>
-    </div>
-    <div class="case-study" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; padding: 2rem; background-color: white; border-radius: 0.75rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 8px;">
-        <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; color: #1a1a1a;">Business Growth</h3>
-        <p class="case-subtitle" style="font-size: 0.9rem; color: #666666; margin-bottom: 1rem;">Scaling Market Reach
+    <section
+      class="hero mine py-5 text-center position-relative overflow-hidden bg-dark text-light"
+      style="padding-top: 8rem !important; padding-bottom: 6rem !important"
+      id="home"
+    >
+      <canvas id="gradient-canvas" width="1292" height="1265" class=""></canvas>
+      <div class="container">
+        <h1 class="display-3 fw-bold mb-3 text-light">
+          Create Stunning Landing Pages<br />in Minutes
+        </h1>
+        <p class="lead mb-4 mx-auto" style="max-width: 800px; opacity: 0.8">
+          Build beautiful, high-converting landing pages with our intuitive
+          drag-and-drop editor. Mix and match pre-built sections, customize
+          everything, and launch in minutes.
         </p>
-        <p style="color: #666666; line-height: 1.6; margin-bottom: 1.5rem;">Scaled product footprint from 10-20% to 100%
-            of a casino floor. By integrating systems monitoring, progressive loyalty bonuses, and composited
-            multi-media into every machine on a unified platform, the technology became essential for operators.</p>
-        <div class="tags" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-            <span class="tag" style="padding: 0.4rem 0.8rem; background-color: #f0f7ff; color: #0066cc; border-radius: 20px; font-size: 0.85rem; transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;">Business Growth</span>
-            <span class="tag" style="padding: 0.4rem 0.8rem; background-color: #f0f7ff; color: #0066cc; border-radius: 20px; font-size: 0.85rem; transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;">System Upgrade</span>
+        <div class="d-flex justify-content-center gap-3 mt-3">
+          <a href="#pricing" class="btn btn-outline-primary btn-lg text-light">
+            <i class="fas fa-play me-2"></i> <span>Get Started</span>
+          </a>
+          <a
+            class="btn btn-primary btn-lg"
+            href="#demo-container"
+            style="
+              width: 160px;
+              outline: none;
+              animation: 2s ease-in-out 0s infinite alternate-reverse both
+                running up-down;
+            "
+          >
+            <i class="fas fa-magic me-2"></i> <span>Try It!</span></a
+          >
         </div>
-    </div>
-    <div class="case-study" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; padding: 2rem; background-color: white; border-radius: 0.75rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 8px;">
-        <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; color: #1a1a1a;">Platform for 500k+ Students</h3>
-        <p class="case-subtitle" style="font-size: 0.9rem; color: #666666; margin-bottom: 1rem;">Education at Scale</p>
-        <p style="color: #666666; line-height: 1.6; margin-bottom: 1.5rem;">Unified 4 disparate databases across 3
-            different programming languages. Engineered a custom REST-based ORM to create a unified server/user
-            interface that automated registration, scheduling, grading, and certificate tracking for 500k+ students.</p>
-        <div class="tags" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-            <span class="tag" style="padding: 0.4rem 0.8rem; background-color: #f0f7ff; color: #0066cc; border-radius: 20px; font-size: 0.85rem; transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;">Custom Platform</span>
-            <span class="tag" style="padding: 0.4rem 0.8rem; background-color: #f0f7ff; color: #0066cc; border-radius: 20px; font-size: 0.85rem; transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;">High Reliability</span>
+
+        <div style="padding-top: 100px" id="demo-container">
+          <p style="opacity: 0.7">
+            * While your mouse is over the demo the main page will not scroll.
+          </p>
+          <div class="card pencil p-2 bg-primary" id="demo-panel">
+            <div class="" contenteditable="false" style="outline: none">
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <div class="d-flex gap-1" style="position: absolute">
+                  <div
+                    class="rounded-circle"
+                    style="width: 12px; height: 12px; background-color: #ef4444"
+                  ></div>
+                  <div
+                    class="rounded-circle"
+                    style="width: 12px; height: 12px; background-color: #f59e0b"
+                  ></div>
+                  <div
+                    class="rounded-circle"
+                    style="width: 12px; height: 12px; background-color: #10b981"
+                  ></div>
+                </div>
+                <div
+                  class="bg-white rounded-pill px-3 py-1 text-center mx-auto"
+                  style="
+                    font-size: 0.8rem;
+                    color: var(--bs-primary-text-emphasis);
+                  "
+                >
+                  fullstackclouddeveloper.com/editor
+                </div>
+              </div>
+              <div class="rounded-3 position-relative" style="height: 540px">
+                <iframe
+                  id="demo"
+                  src="/?url=feane"
+                  class="card"
+                  allow="fullscreen *; keyboard-map *"
+                ></iframe>
+              </div>
+            </div>
+          </div>
         </div>
-    </div>
-    <div class="case-study" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; padding: 2rem; background-color: white; border-radius: 0.75rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 8px;">
-        <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; color: #1a1a1a;">Cloud Transformation</h3>
-        <p class="case-subtitle" style="font-size: 0.9rem; color: #666666; margin-bottom: 1rem;">To The Cloud and Beyond
+      </div>
+    </section>
+
+    <section id="features" class="py-5 bg-light">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="display-4 fw-bold mb-3" style="outline: none">
+            Everything You Need to Build<br />Amazing Pages
+          </h2>
+          <p class="lead mx-auto" style="max-width: 600px">
+            Our powerful editor combines simplicity with professional features,
+            giving you complete control over every aspect of your landing page.
+          </p>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          <div class="col">
+            <div class="card h-100 p-4 shadow-sm">
+              <div class="mb-3">
+                <i class="fas fa-layer-group fs-1 text-primary"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-2">Mix &amp; Match Sections</h3>
+              <p class="text-muted">
+                Choose from dozens of pre-built sections and arrange them as
+                simple as pages in a flip book. Headers, features, testimonials,
+                pricing - everything you need.
+              </p>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100 p-4 shadow-sm">
+              <div class="mb-3">
+                <i class="fas fa-edit fs-1 text-primary"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-2">Direct HTML Editing</h3>
+              <p class="text-muted">
+                Click any element to edit text, change colors, adjust fonts,
+                swap images, and modify any style property. No coding knowledge
+                required.
+              </p>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100 p-4 shadow-sm">
+              <div class="mb-3">
+                <i class="fas fa-mobile-alt fs-1 text-primary"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-2">Mobile Responsive</h3>
+              <p class="text-muted">
+                Every template and section is fully responsive. Your pages will
+                look perfect on desktop, tablet, and mobile devices
+                automatically.
+              </p>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100 p-4 shadow-sm">
+              <div class="mb-3">
+                <i class="fas fa-envelope fs-1 text-primary"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-2">Built-in Contact Forms</h3>
+              <p class="text-muted">
+                Every page includes customizable contact forms. With our hosted
+                plan, we process submissions and let you name your own custom
+                fields for any data you need.
+              </p>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100 p-4 shadow-sm">
+              <div class="mb-3">
+                <i class="fas fa-rocket fs-1 text-primary"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-2">Lightning Fast</h3>
+              <p class="text-muted">
+                Optimized code and modern web standards ensure your pages load
+                instantly, improving user experience and search rankings.
+              </p>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100 p-4 shadow-sm">
+              <div class="mb-3">
+                <i class="fas fa-chart-line fs-1 text-primary"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-2">Analytics Ready</h3>
+              <p class="text-muted">
+                Built-in tracking and analytics integration helps you measure
+                performance and optimize your pages for better conversions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="py-5">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="display-4 fw-bold mb-3">How It Works</h2>
+          <p class="lead mx-auto" style="max-width: 600px">
+            From idea to published page in just three simple steps. No design
+            experience or technical skills required.
+          </p>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-5">
+          <div class="col">
+            <div class="text-center">
+              <div
+                class="mx-auto mb-3 bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                style="
+                  width: 60px;
+                  height: 60px;
+                  font-size: 1.5rem;
+                  font-weight: 700; /* background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); */
+                "
+              >
+                1
+              </div>
+              <h3 class="h5 fw-bold mb-2">Choose Your Sections</h3>
+              <p class="text-muted">
+                Browse our library of professionally designed sections. Pick the
+                ones that match your goals and arrange them in any order.
+              </p>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="text-center">
+              <div
+                class="mx-auto mb-3 bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                style="
+                  width: 60px;
+                  height: 60px;
+                  font-size: 1.5rem;
+                  font-weight: 700; /* background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); */
+                "
+              >
+                2
+              </div>
+              <h3 class="h5 fw-bold mb-2">Customize Everything</h3>
+              <p class="text-muted">
+                Click any element to edit. Change text, colors, fonts, images,
+                and styling with our intuitive visual editor.
+              </p>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="text-center">
+              <div
+                class="mx-auto mb-3 bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                style="
+                  width: 60px;
+                  height: 60px;
+                  font-size: 1.5rem;
+                  font-weight: 700; /* background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); */
+                "
+              >
+                3
+              </div>
+              <h3 class="h5 fw-bold mb-2">Publish &amp; Share</h3>
+              <p class="text-muted">
+                Hit publish and your page goes live instantly. Share your custom
+                URL or embed it on your existing website.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="pricing py-5 bg-light">
+      <div class="container">
+        <div class="text-center mb-5 section-header">
+          <h2 class="display-4 fw-bold mb-3 section-title">
+            Choose Your Perfect Plan
+          </h2>
+          <p class="lead mx-auto section-subtitle">
+            From DIY creators to enterprise solutions, we have the right plan
+            for your needs. All plans include our powerful drag-and-drop editor
+            and professional templates.
+          </p>
+        </div>
+
+        <div
+          class="pricing-grid row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-5"
+        >
+          <!-- Free Plan -->
+          <div class="col">
+            <div class="pricing-card card h-100 p-4 animate-on-scroll">
+              <div class="pricing-plan h5 fw-bold mb-2">DIY Creator</div>
+              <div class="pricing-price display-4 fw-bold">Free</div>
+              <div class="pricing-period text-muted mb-4">Forever</div>
+              <p class="pricing-description text-muted mb-4">
+                Perfect for individuals and small businesses who want to create
+                and host their own landing pages.
+              </p>
+              <ul class="pricing-features list-unstyled text-start mb-4">
+                <li class="d-flex align-items-center mb-2">
+                  <span class="check me-2">✓</span>
+                  <span>Full access to page editor </span>
+                </li>
+                <li class="d-flex align-items-center mb-2">
+                  <span class="check me-2">✓</span>
+                  <span>All template sections</span>
+                </li>
+                <li class="d-flex align-items-center mb-2">
+                  <span class="check me-2">✓</span> <span>Unlimited pages</span>
+                </li>
+                <li class="d-flex align-items-center mb-2">
+                  <span class="check me-2">✓</span> <span>Export HTML/CSS</span>
+                </li>
+                <li class="d-flex align-items-center mb-2">
+                  <span class="check me-2">✓</span>
+                  <span>Self-hosting required</span>
+                </li>
+                <li class="d-flex align-items-center mb-2">
+                  <span class="check me-2">✓</span>
+                  <span>Community support</span>
+                </li>
+              </ul>
+              <a
+                href="#"
+                class="pricing-cta btn btn-primary w-100 mt-auto p-3"
+                style="font-weight: 600"
+                >Get Started Free</a
+              >
+            </div>
+          </div>
+
+          <!-- Hosted Plan -->
+          <div class="col">
+            <div
+              class="pricing-card bg-primary text-light featured card h-100 p-4 position-relative animate-on-scroll"
+            >
+              <div
+                class="pricing-badge position-absolute translate-middle-x bg-success text-white rounded-pill"
+                style="zoom: 120%"
+              >
+                Most Popular
+              </div>
+              <div class="pricing-plan h5 fw-bold mb-2 mt-3">Hosted Pro</div>
+              <div class="pricing-price display-4 fw-bold">$23</div>
+              <div class="pricing-period text-light mb-4">per month</div>
+              <p class="pricing-description text-white-75 mb-4">
+                Same powerful editor, but we handle all the hosting so you can
+                focus on creating amazing pages.
+              </p>
+              <ul class="pricing-features list-unstyled text-start mb-4">
+                <li class="d-flex align-items-center mb-2">
+                  <span class="check me-2" style="color: var(--bs-dard)"
+                    >✓</span
+                  >
+                  <span>Everything in DIY Creator</span>
+                </li>
+                <li class="d-flex align-items-center mb-2">
+                  <span class="check me-2" style="color: var(--bs-light)"
+                    >✓</span
+                  >
+                  <span>Professional hosting included</span>
+                </li>
+                <li class="d-flex align-items-center mb-2">
+                  <span class="check me-2">✓</span>
+                  <span>Custom domain support</span>
+                </li>
+                <li class="d-flex align-items-center mb-2">
+                  <span class="check me-2">✓</span>
+                  <span>SSL certificates</span>
+                </li>
+                <li class="d-flex align-items-center mb-2">
+                  <span class="check me-2">✓</span>
+                  <span>Contact form processing</span>
+                </li>
+                <li class="d-flex align-items-center mb-2">
+                  <span class="check me-2">✓</span>
+                  <span>Custom form fields (name your own)</span>
+                </li>
+                <li class="d-flex align-items-center mb-2">
+                  <span class="check me-2">✓</span>
+                  <span>99.9% uptime guarantee</span>
+                </li>
+              </ul>
+              <a
+                href="#"
+                class="pricing-cta featured btn bg-white w-100 mt-auto p-3"
+                style="color: var(--bs-primary)"
+                >Get Started</a
+              >
+            </div>
+          </div>
+
+          <!-- Custom Plan -->
+          <div class="col">
+            <div class="pricing-card card h-100 p-4 animate-on-scroll">
+              <div class="pricing-plan h5 fw-bold mb-2">Custom Development</div>
+              <div
+                class="pricing-price display-4 fw-bold"
+                contenteditable="false"
+                style="outline: none"
+              >
+                Contact Us
+              </div>
+              <div class="pricing-period text-muted mb-4">Project-based</div>
+              <p class="pricing-description text-muted mb-4">
+                Need something beyond a landing page? Our principal engineers
+                build custom enterprise solutions.
+              </p>
+              <ul class="pricing-features list-unstyled text-start mb-4">
+                <li class="d-flex align-items-center mb-2">
+                  <span class="check me-2">✓</span>
+                  <span contenteditable="false" class="" style="outline: none"
+                    >Custom web applications</span
+                  >
+                </li>
+                <li class="d-flex align-items-center mb-2">
+                  <span class="check me-2">✓</span>
+                  <span>Enterprise integrations</span>
+                </li>
+                <li class="d-flex align-items-center mb-2">
+                  <span class="check me-2">✓</span> <span>Database design</span>
+                </li>
+                <li class="d-flex align-items-center mb-2">
+                  <span class="check me-2">✓</span> <span>API development</span>
+                </li>
+                <li class="d-flex align-items-center mb-2">
+                  <span class="check me-2">✓</span>
+                  <span>Cloud architecture</span>
+                </li>
+                <li class="d-flex align-items-center mb-2">
+                  <span class="check me-2">✓</span>
+                  <span>DevOps &amp; deployment</span>
+                </li>
+                <li class="d-flex align-items-center mb-2">
+                  <span class="check me-2">✓</span>
+                  <span>Ongoing maintenance</span>
+                </li>
+                <li class="d-flex align-items-center mb-2">
+                  <span class="check me-2">✓</span>
+                  <span>Dedicated project manager</span>
+                </li>
+              </ul>
+              <a
+                href="#"
+                class="pricing-cta btn btn-primary w-100 mt-auto p-3"
+                style="font-weight: 600"
+                >Schedule Consultation</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container enterprise-highlight pencil">
+        <h3 class="enterprise-title">Enterprise-Grade Development Team</h3>
+        <p class="enterprise-description text-muted">
+          Our team consists of principal engineers with decades of experience
+          building scalable enterprise systems. We've architected solutions
+          running on major cloud platforms, handling millions of users and
+          transactions.
         </p>
-        <p style="color: #666666; line-height: 1.6; margin-bottom: 1.5rem;">Led the transition of a flagship
-            "shrink-wrapped" product to the cloud. Built the Proof of Concept that proved we could transform a
-            traditional app into a scalable, multi-tenant SaaS on AWS. Completed on-time and under budget.</p>
-        <div class="tags" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-            <span class="tag" style="padding: 0.4rem 0.8rem; background-color: #f0f7ff; color: #0066cc; border-radius: 20px; font-size: 0.85rem; transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;">Cloud Architecture</span>
-            <span class="tag" style="padding: 0.4rem 0.8rem; background-color: #f0f7ff; color: #0066cc; border-radius: 20px; font-size: 0.85rem; transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;">SaaS Migration</span>
+        <div class="tech-badges">
+          <span class="tech-badge">HTML</span>
+          <span class="tech-badge">CSS</span>
+          <span class="tech-badge">JavaScript</span>
+          <span class="tech-badge">Java</span>
+          <span class="tech-badge">Node.js</span>
+          <span class="tech-badge">PostgreSQL</span>
+          <span class="tech-badge">NoSQL</span>
+          <span class="tech-badge">Ecommerce</span>
+          <span class="tech-badge">Integrations</span>
+          <span class="tech-badge">APIs</span>
+          <span class="tech-badge">MVPs</span>
+          <span class="tech-badge">AI</span>
+          <span class="tech-badge">AWS</span>
+          <span class="tech-badge">Google Cloud</span>
+          <span class="tech-badge">Microsoft Azure</span>
+          <span class="tech-badge">Kubernetes</span>
+          <span class="tech-badge">Microservices</span>
         </div>
-    </div>
-    <div class="case-study" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; padding: 2rem; background-color: white; border-radius: 0.75rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 8px;">
-        <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; color: #1a1a1a;">Technical Mentorship</h3>
-        <p class="case-subtitle" style="font-size: 0.9rem; color: #666666; margin-bottom: 1rem;">Education &amp;
-            Training</p>
-        <p style="color: #666666; line-height: 1.6; margin-bottom: 1.5rem;">Leveraging 20+ years of teaching experience
-            (university adjunct faculty, Corporate Training) to build strong engineering cultures. We don't just write
-            code; We train teams to maintain it, ensuring long-term success for your business.</p>
-        <div class="tags" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-            <span class="tag" style="padding: 0.4rem 0.8rem; background-color: #f0f7ff; color: #0066cc; border-radius: 20px; font-size: 0.85rem; transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;">Team Building</span>
-            <span class="tag" style="padding: 0.4rem 0.8rem; background-color: #f0f7ff; color: #0066cc; border-radius: 20px; font-size: 0.85rem; transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;">Knowledge Transfer</span>
-        </div>
-    </div>
-</div>
-        </div>
+        <a
+          class="btn btn-primary"
+          href="#"
+          style="
+            /* background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); */
+            padding: 1rem;
+            font-weight: 600;
+          "
+        >
+          <i class="fas fa-calendar"></i> <span>Book a Strategy Call</span></a
+        >
+      </div>
     </section>
 
-    <!-- Approach Section -->
-    <section class="approach" id="approach" style="background-color: #f0f7ff; padding: 4rem 1rem; text-align: center;">
-        <div class="container">
-            <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Our Approach</h2>
-            <p style="font-size: 1.1rem; color: #666666; max-width: 700px; margin: 0 auto; line-height: 1.8;">We combine deep technical expertise with a focus on understanding your business goals. From initial consultation to ongoing support, we're here to deliver solutions that actually work for your company.</p>
-        </div>
+    <section class="py-5 text-center cta" style="">
+      <div class="container">
+        <h2 class="display-4 fw-bold mb-3" style="">
+          Ready to Build Your First Page?
+        </h2>
+        <p
+          class="lead mb-4 mx-auto"
+          style="max-width: 800px; outline: none"
+          contenteditable="false"
+        >
+          Join thousands of businesses creating beautiful landing pages with
+          Full Stack Cloud Developer.<br />
+          Get started today - no credit card required for the free plan.
+        </p>
+
+        <form
+          id="signupForm"
+          class="d-flex justify-content-center gap-2 mx-auto"
+          style="max-width: 600px"
+        >
+          <input
+            type="email"
+            class="form-control"
+            placeholder="Enter your email address"
+            required=""
+          />
+          <button
+            type="submit"
+            class="btn btn-primary"
+            style="
+              width: 180px;
+              padding: 1rem; /* background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); */
+              font-weight: 600;
+            "
+          >
+            Get Started
+          </button>
+        </form>
+
+        <p class="mt-3 text-white-50" style="font-size: 0.9rem">
+          <span class="check me-1">✓</span>
+          <span class="me-2">Free plan available</span>
+          <span class="check me-1">✓</span>
+          <span class="me-2">No credit card required</span>
+          <span class="check me-1">✓</span> <span>Upgrade anytime</span>
+        </p>
+      </div>
     </section>
 
-    <!-- Contact / Quote Section -->
-    <section class="contact-section" id="contact" style="padding: 5rem 1rem; background-color: #ffffff;">
-        <div class="container">
-            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">Let's Build Your Business</h2>
-            <p style="text-align: center; font-size: 1.1rem; color: #666666; margin-bottom: 3rem;">Need a website? A custom tool? Or just advice on what to do next? Fill out the form below.</p>
-            
-            <form class="contact-form" id="contactForm" style="max-width: 600px; margin: 0 auto; background-color: #f8f8f8; padding: 2.5rem; border-radius: 0.75rem;">
-                <div class="form-group" style="margin-bottom: 1.5rem;">
-                    <label for="name" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #1a1a1a;">Name</label>
-                    <input type="text" id="name" name="name" placeholder="Your Name" required="" style="width: 100%; padding: 0.75rem; border: 1px solid #e0e0e0; border-radius: 0.5rem; font-family: inherit; font-size: 1rem; color: #1a1a1a; transition: border-color 0.3s ease;">
-                </div>
-
-                <div class="form-group" style="margin-bottom: 1.5rem;">
-                    <label for="email" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #1a1a1a;">Email</label>
-                    <input type="email" id="email" name="email" placeholder="your@email.com" required="" style="width: 100%; padding: 0.75rem; border: 1px solid #e0e0e0; border-radius: 0.5rem; font-family: inherit; font-size: 1rem; color: #1a1a1a; transition: border-color 0.3s ease;">
-                </div>
-
-                <div class="form-group" style="margin-bottom: 1.5rem;">
-                    <label for="project-type" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #1a1a1a;">Project Type</label>
-                    <select id="project-type" name="project-type" required="" style="width: 100%; padding: 0.75rem; border: 1px solid #e0e0e0; border-radius: 0.5rem; font-family: inherit; font-size: 1rem; color: #1a1a1a; transition: border-color 0.3s ease;">
-                        <option value="">Select a project type...</option>
-                        <option value="website">Professional Website</option>
-                        <option value="ecommerce">E-Commerce Solution</option>
-                        <option value="software">Custom Cloud Software</option>
-                        <option value="integration">Systems Integration</option>
-                        <option value="mvp">MVP Development</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-
-                <div class="form-group" style="margin-bottom: 1.5rem;">
-                    <label for="message" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #1a1a1a;">Message</label>
-                    <textarea id="message" name="message" placeholder="Tell us about your project..." rows="6" required="" style="width: 100%; padding: 0.75rem; border: 1px solid #e0e0e0; border-radius: 0.5rem; font-family: inherit; font-size: 1rem; color: #1a1a1a; transition: border-color 0.3s ease; resize: vertical;"></textarea>
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-large" style="width: 100%; margin-top: 1rem; padding: 1rem 2.5rem; font-size: 1.1rem; background-color: #0066cc; color: white; border-radius: 0.5rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; border: none; display: block; text-align: center;">Send Message</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer" style="background-color: #1a1a1a; color: white; padding: 3rem 1rem 1.5rem;">
-        <div class="container">
-            <div class="footer-content" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
-                <div class="footer-section">
-                    <h4 style="margin-bottom: 1rem; font-size: 1.1rem;">simplebizdevelopment</h4>
-                    <p>Technical Solutions</p>
-                </div>
-                <div class="footer-section">
-                    <h4 style="margin-bottom: 1rem; font-size: 1.1rem;">Connect</h4>
-                    <ul style="list-style: none;">
-                        <li style="margin-bottom: 0.5rem;"><a href="https://linkedin.com" target="_blank" style="color: #ccc; transition: color 0.3s ease;">LinkedIn</a></li>
-                        <li style="margin-bottom: 0.5rem;"><a href="https://github.com" target="_blank" style="color: #ccc; transition: color 0.3s ease;">GitHub</a></li>
-                        <li style="margin-bottom: 0.5rem;"><a href="mailto:hello@simplebizdevelopment.com" style="color: #ccc; transition: color 0.3s ease;">Email</a></li>
-                    </ul>
-                </div>
+    <footer class="footer bg-dark text-white py-5">
+      <div class="container">
+        <div
+          class="footer-content row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mb-5"
+        >
+          <div class="footer-section col">
+            <h3 class="h5 mb-3 text-white">
+              <i class="fas fa-magic me-2"></i> <span>Full Stack Cloud Developer</span>
+            </h3>
+            <p class="text-white-50 mb-3">
+              The easiest way to create stunning landing pages that convert
+              visitors into customers.
+            </p>
+            <div class="social-links d-flex gap-3">
+              <a href="#" class="text-white-50 fs-5"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" class="text-white-50 fs-5"
+                ><i class="fab fa-facebook"></i
+              ></a>
+              <a href="#" class="text-white-50 fs-5"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a href="#" class="text-white-50 fs-5"
+                ><i class="fab fa-instagram"></i
+              ></a>
             </div>
-            <div class="footer-bottom" style="border-top: 1px solid #333; padding-top: 1.5rem; text-align: center; color: #999;">
-                <p>© 2025 simplebizdevelopment. All rights reserved.</p>
-            </div>
+          </div>
+
+          <div class="footer-section col">
+            <h3 class="h5 mb-3 text-white">Product</h3>
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <a href="#" class="text-white-50 text-decoration-none"
+                  >Features</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#" class="text-white-50 text-decoration-none"
+                  >Templates</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#" class="text-white-50 text-decoration-none"
+                  >Pricing</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#" class="text-white-50 text-decoration-none"
+                  >Integrations</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#" class="text-white-50 text-decoration-none">API</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-section col">
+            <h3 class="h5 mb-3 text-white">Resources</h3>
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <a href="#" class="text-white-50 text-decoration-none"
+                  >Help Center</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#" class="text-white-50 text-decoration-none"
+                  >Tutorials</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#" class="text-white-50 text-decoration-none">Blog</a>
+              </li>
+              <li class="mb-2">
+                <a href="#" class="text-white-50 text-decoration-none"
+                  >Community</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#" class="text-white-50 text-decoration-none"
+                  >Webinars</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-section col">
+            <h3 class="h5 mb-3 text-white">Company</h3>
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <a href="#" class="text-white-50 text-decoration-none"
+                  >About Us</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#" class="text-white-50 text-decoration-none"
+                  >Careers</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#" class="text-white-50 text-decoration-none"
+                  >Contact</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#" class="text-white-50 text-decoration-none"
+                  >Privacy Policy</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#" class="text-white-50 text-decoration-none"
+                  >Terms of Service</a
+                >
+              </li>
+            </ul>
+          </div>
         </div>
+
+        <div class="footer-bottom text-center pt-4 border-top border-secondary">
+          <p class="text-white-50">
+            © 2024 Full Stack Cloud Developer. All rights reserved. Built with ❤️ for creators
+            everywhere.
+          </p>
+        </div>
+      </div>
     </footer>
 
-    <script src="script.js"></script>
-<!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
-<!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
-</body></html>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Form submission
+      document
+        .getElementById("signupForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const email = this.querySelector('input[type="email"]').value;
+
+          // Here you would typically send the email to your backend
+          alert(
+            `Thanks for your interest! We'll send access details to ${email} so you can start building your landing page.`
+          );
+
+          // Reset form
+          this.reset();
+        });
+
+      // Add scroll effect to navbar
+      window.addEventListener("scroll", function () {
+        const navbar = document.querySelector(".navbar");
+        if (window.scrollY > 100) {
+          navbar.style.background = "rgba(255, 255, 255, 0.98)";
+          navbar.style.boxShadow = "0 2px 20px rgba(0, 0, 0, 0.1)";
+        } else {
+          navbar.style.background = "rgba(255, 255, 255, 0.95)";
+          navbar.style.boxShadow = "none";
+        }
+      });
+
+      // Animate elements on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-on-scroll");
+          }
+        });
+      }, observerOptions);
+
+      // Observe all feature cards, steps, and pricing cards
+      document
+        .querySelectorAll(".feature-card, .step, .pricing-card")
+        .forEach((el) => {
+          observer.observe(el);
+        });
+    </script>
+
+    <script id="liquid-script">
+      class LiquidGradient {
+        constructor() {
+          this.canvas = document.getElementById("gradient-canvas");
+          this.gl =
+            this.canvas.getContext("webgl") ||
+            this.canvas.getContext("experimental-webgl");
+
+          if (!this.gl) {
+            alert("WebGL not supported in your browser.");
+            return;
+          }
+
+          this.speed = 0.5;
+          this.scale = 1.0;
+
+          this.colorStops = [
+            [10 / 255, 88 / 255, 202 / 255, 1], // #0a58ca
+            [8 / 255, 66 / 255, 152 / 255, 1], // #084298
+            [5 / 255, 44 / 255, 101 / 255, 1], // #052c65
+          ];
+
+          this.vertexShaderSource = `
+          attribute vec2 a_position;
+          
+          void main() {
+            gl_Position = vec4(a_position, 0.0, 1.0);
+          }
+        `;
+
+          this.fragmentShaderSource = `
+          precision mediump float;
+          
+          uniform float u_time;
+          uniform vec2 u_resolution;
+          uniform float u_scale;
+          uniform vec4 u_colors[3];
+          
+          // Simplex 2D noise function
+          vec3 permute(vec3 x) { return mod(((x*34.0)+1.0)*x, 289.0); }
+          
+          float snoise(vec2 v) {
+            const vec4 C = vec4(0.211324865405187, 0.366025403784439,
+                              -0.577350269189626, 0.024390243902439);
+            vec2 i  = floor(v + dot(v, C.yy));
+            vec2 x0 = v -   i + dot(i, C.xx);
+            vec2 i1;
+            i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+            vec4 x12 = x0.xyxy + C.xxzz;
+            x12.xy -= i1;
+            i = mod(i, 289.0);
+            vec3 p = permute(permute(i.y + vec3(0.0, i1.y, 1.0))
+                  + i.x + vec3(0.0, i1.x, 1.0));
+            vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy),
+                                  dot(x12.zw,x12.zw)), 0.0);
+            m = m*m;
+            m = m*m;
+            vec3 x = 2.0 * fract(p * C.www) - 1.0;
+            vec3 h = abs(x) - 0.5;
+            vec3 ox = floor(x + 0.5);
+            vec3 a0 = x - ox;
+            m *= 1.79284291400159 - 0.85373472095314 * (a0*a0 + h*h);
+            vec3 g;
+            g.x  = a0.x  * x0.x  + h.x  * x0.y;
+            g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+            return 130.0 * dot(m, g);
+          }
+          
+          void main() {
+            vec2 st = gl_FragCoord.xy / u_resolution.xy;
+            st.x *= u_resolution.x / u_resolution.y;
+            
+            // Animated noise fields
+            float noise1 = snoise(st * u_scale + vec2(u_time * 0.2, u_time * 0.1)) * 0.5 + 0.5;
+            float noise2 = snoise(st * u_scale * 0.8 + vec2(-u_time * 0.15, u_time * 0.05)) * 0.5 + 0.5;
+            float noise3 = snoise(st * u_scale * 1.5 + vec2(u_time * 0.1, -u_time * 0.2)) * 0.5 + 0.5;
+            
+            // Combine noise fields
+            float combinedNoise = noise1 * 0.5 + noise2 * 0.3 + noise3 * 0.2;
+            
+            // Create a flowing gradient using our noise
+            vec4 color = mix(u_colors[0], u_colors[1], smoothstep(0.2, 0.8, combinedNoise));
+            color = mix(color, u_colors[2], smoothstep(0.4, 0.9, noise2));
+            
+            gl_FragColor = color;
+          }
+        `;
+
+          this.init();
+          this.resize();
+          window.addEventListener("resize", this.resize.bind(this));
+          this.animate();
+        }
+
+        init() {
+          // Create shader program
+          const vertexShader = this.createShader(
+            this.gl.VERTEX_SHADER,
+            this.vertexShaderSource
+          );
+          const fragmentShader = this.createShader(
+            this.gl.FRAGMENT_SHADER,
+            this.fragmentShaderSource
+          );
+          this.program = this.createProgram(vertexShader, fragmentShader);
+
+          // Look up attribute and uniform locations
+          this.positionAttributeLocation = this.gl.getAttribLocation(
+            this.program,
+            "a_position"
+          );
+          this.timeUniformLocation = this.gl.getUniformLocation(
+            this.program,
+            "u_time"
+          );
+          this.resolutionUniformLocation = this.gl.getUniformLocation(
+            this.program,
+            "u_resolution"
+          );
+          this.scaleUniformLocation = this.gl.getUniformLocation(
+            this.program,
+            "u_scale"
+          );
+          this.colorsUniformLocation = this.gl.getUniformLocation(
+            this.program,
+            "u_colors"
+          );
+
+          // Create position buffer and set attributes
+          const positionBuffer = this.gl.createBuffer();
+          this.gl.bindBuffer(this.gl.ARRAY_BUFFER, positionBuffer);
+
+          // Two triangles that cover the entire canvas
+          const positions = [-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1];
+          this.gl.bufferData(
+            this.gl.ARRAY_BUFFER,
+            new Float32Array(positions),
+            this.gl.STATIC_DRAW
+          );
+        }
+
+        createShader(type, source) {
+          const shader = this.gl.createShader(type);
+          this.gl.shaderSource(shader, source);
+          this.gl.compileShader(shader);
+
+          const success = this.gl.getShaderParameter(
+            shader,
+            this.gl.COMPILE_STATUS
+          );
+          if (success) {
+            return shader;
+          }
+
+          console.error(this.gl.getShaderInfoLog(shader));
+          this.gl.deleteShader(shader);
+        }
+
+        createProgram(vertexShader, fragmentShader) {
+          const program = this.gl.createProgram();
+          this.gl.attachShader(program, vertexShader);
+          this.gl.attachShader(program, fragmentShader);
+          this.gl.linkProgram(program);
+
+          const success = this.gl.getProgramParameter(
+            program,
+            this.gl.LINK_STATUS
+          );
+          if (success) {
+            return program;
+          }
+
+          console.error(this.gl.getProgramInfoLog(program));
+          this.gl.deleteProgram(program);
+        }
+
+        resize() {
+          // Set the canvas size to match the display size
+          const displayWidth = this.canvas.clientWidth;
+          const displayHeight = this.canvas.clientHeight;
+
+          if (
+            this.canvas.width !== displayWidth ||
+            this.canvas.height !== displayHeight
+          ) {
+            this.canvas.width = displayWidth;
+            this.canvas.height = displayHeight;
+            this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height);
+          }
+        }
+
+        animate() {
+          this.render();
+          requestAnimationFrame(this.animate.bind(this));
+        }
+
+        render() {
+          // Set the time for animation
+          const currentTime = performance.now() / 1000;
+
+          // Tell WebGL to use our program
+          this.gl.useProgram(this.program);
+
+          // Update uniforms
+          this.gl.uniform1f(this.timeUniformLocation, currentTime * this.speed);
+          this.gl.uniform2f(
+            this.resolutionUniformLocation,
+            this.canvas.width,
+            this.canvas.height
+          );
+          this.gl.uniform1f(this.scaleUniformLocation, this.scale);
+
+          // Set colors
+          const flattenedColors = [];
+          this.colorStops.forEach((color) => {
+            flattenedColors.push(...color);
+          });
+          this.gl.uniform4fv(
+            this.colorsUniformLocation,
+            new Float32Array(flattenedColors)
+          );
+
+          // Set up position attribute
+          this.gl.enableVertexAttribArray(this.positionAttributeLocation);
+          this.gl.vertexAttribPointer(
+            this.positionAttributeLocation,
+            2, // 2 components per iteration
+            this.gl.FLOAT, // the data is 32bit floats
+            false, // don't normalize the data
+            0, // 0 = move forward size * sizeof(type) each iteration to get the next position
+            0 // start at the beginning of the buffer
+          );
+
+          // Draw
+          this.gl.drawArrays(this.gl.TRIANGLES, 0, 6);
+        }
+      }
+
+      // Initialize the gradient when the page loads
+      window.addEventListener("load", () => {
+        new LiquidGradient();
+      });
+
+      const iframe = document.querySelector("iframe");
+
+      let holdScroll = -1;
+
+      setInterval(() => {
+        if (holdScroll !== -1 && window.pageYOffset !== holdScroll) {
+          window.scrollTo({ top: holdScroll, behavior: "instant" });
+        }
+      }, 10);
+
+      iframe.addEventListener("mouseenter", function (e) {
+        holdScroll = window.pageYOffset;
+        console.log("iframe mouse enter", holdScroll);
+        // Disable scrolling
+        document.body.style.overflow = "hidden";
+      });
+
+      iframe.addEventListener("mouseleave", function (e) {
+        console.log("iframe mouse leave");
+        holdScroll = -1;
+        // Re-enable scrolling
+        document.body.style.overflow = "";
+      });
+    </script>
+
+    <browser-mcp-container data-wxt-shadow-root=""></browser-mcp-container>
+
+    <script>
+      // Check for css query parameter and update the stylesheet
+      const urlParams = new URLSearchParams(window.location.search);
+      const cssParam = urlParams.get("css");
+
+      if (cssParam) {
+        const cssLink = document.getElementById("theme-css");
+        cssLink.href = cssParam + ".css";
+      }
+    </script>
+
+    <script>
+      let src = undefined;
+
+      // Check for URL query parameter on page load
+      window.addEventListener("load", function () {
+        if (src) {
+          return;
+        }
+
+        const urlParams = new URLSearchParams(top.location.search);
+        const urlParam = urlParams.get("url");
+
+        if (urlParam) {
+          src = top.location.protocol + "//" + top.location.host + top.location.pathname + "../?url=" + urlParam;
+          setTimeout(() => {
+            iframe.src = src;
+          }, 100);
+        }
+      });
+    </script>
+  </body>
+</html>
