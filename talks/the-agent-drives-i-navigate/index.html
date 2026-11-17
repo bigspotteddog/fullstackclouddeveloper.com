@@ -157,6 +157,11 @@ td:first-child { font-weight: 600; min-width: 150px; }
 /* callout */
 .callout { margin: 28px 0; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px 24px; }
 .callout p:last-child { margin-bottom: 0; }
+.tldr { border-left: 4px solid var(--accent); }
+.tldr .eyebrow { display: block; margin-bottom: 10px; }
+.tldr ul { margin: 0 0 14px; padding-left: 20px; }
+.tldr li { margin-bottom: 6px; }
+.tldr .quick a { color: var(--accent-text); font-weight: 600; }
 
 /* ---------- workflow diagram ---------- */
 .flow { margin: 32px 0; padding: 28px 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; }
@@ -207,7 +212,7 @@ td:first-child { font-weight: 600; min-width: 150px; }
 <h1>The Agent Drives, I&nbsp;Navigate</h1>
 <p class="sub">How I run a team of AI developers with XP discipline</p>
 <p class="talk-links"><a href="slides.html">View the slides →</a><a href="../">All talks</a><a href="/">fullstackclouddeveloper.com</a></p>
-<p class="byline">Joseph Cava · Nov 13, 2026</p>
+<p class="byline">Joseph Cava · Nov 13, 2026 · 25 min read</p>
 <div class="principle">
 <p class="big">Autonomous execution, not autonomous approval.</p>
 <p class="small">Agents plan, implement, test, and integrate; humans decide what ships.</p>
@@ -260,6 +265,18 @@ td:first-child { font-weight: 600; min-width: 150px; }
 <li><a href="#s14">What others can adopt</a></li>
 </ol>
 </details>
+
+<div class="callout tldr">
+<span class="eyebrow">In short</span>
+<ul>
+<li>Agents write the code; I keep the judgment: what to build, how it should work, what ships.</li>
+<li>Each agent works test-first in its own complete, running copy of the system and proves the change end to end before anyone reviews it.</li>
+<li>Related PRs are tested together, so the team checks results before merge instead of waiting for a deploy.</li>
+<li>Small slices keep PRs reviewable: a median of about 150 lines, tests included.</li>
+<li>It’s XP discipline applied to a new kind of team, and it costs me about $70 a month.</li>
+</ul>
+<p class="quick">Short on time? <a href="slides.html">The slides take about 5 minutes →</a></p>
+</div>
 
 <h2 id="idea"><span class="num">INTRODUCTION</span>The idea</h2>
 
